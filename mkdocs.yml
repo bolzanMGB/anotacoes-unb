@@ -1,0 +1,45 @@
+site_name: Anotações UnB
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: dark)"
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+
+
+markdown_extensions:
+  - admonition           # habilita !!! note, !!! example, etc.
+  - pymdownx.details     # permite admonitions “dobráveis”
+  - pymdownx.superfences # permite cercas de código dentro de admonitions
+  - pymdownx.highlight   # títulos em blocos de código e numeração de linhas
+  - attr_list            # permite atributos { } em elementos, se quiser
+
+nav:
+  - Home: index.md
+  - Estrutura de Dados 1:
+      - Ponteiros: disciplinas/EDA1/ponteiros.md
+      - Alocação de Memória: disciplinas/EDA1/alocacao.md
+      - Recurção: disciplinas/EDA1/recurcao.md
+      - Análise de Complexidade: disciplinas/EDA1/complexidade.md
+      - Listas Encadeadas: 
+        - Listas Simplesmente Encadeadas: disciplinas/EDA1/Listas Encadeadas/simplesEncadeada.md
+        - Listas Duplamente Encadeadas: disciplinas/EDA1/Listas Encadeadas/duplaEncadeada.md
+      - Algoritmos de Busca: 
+        - Busca Sequencial: disciplinas/EDA1/Algoritmos de Busca/buscaLinear.md
+        - Busca Binária: disciplinas/EDA1/Algoritmos de Busca/buscaBinaria.md
+      - Algoritmos de ordenação: 
+        - Introdução: disciplinas/EDA1/Algoritmos de ordenacao/introducao.md
+        - Selection Sort: disciplinas/EDA1/Algoritmos de ordenacao/selection.md
+        - Bubble Sort: disciplinas/EDA1/Algoritmos de ordenacao/bubble.md
+        - Insertion Sort: disciplinas/EDA1/Algoritmos de ordenacao/insertion.md
+        - Shell Sort: disciplinas/EDA1/Algoritmos de ordenacao/shell.md
+        - Merge Sort: disciplinas/EDA1/Algoritmos de ordenacao/merge.md
+        - Quick Sort: disciplinas/EDA1/Algoritmos de ordenacao/quick.md

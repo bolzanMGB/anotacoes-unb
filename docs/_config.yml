@@ -1,7 +1,0 @@
-title: "Meu Site"
-description: "Testando GitHub Pages com Minimal Mistakes"
-remote_theme: "mmistakes/minimal-mistakes"
-
-plugins:
-  - jekyll-remote-theme
-  - jekyll-include-cache
