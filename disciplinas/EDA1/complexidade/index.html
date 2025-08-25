@@ -1,0 +1,2342 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../recurcao/">
+      
+      
+        <link rel="next" href="../Listas%20Encadeadas/simplesEncadeada/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.18">
+    
+    
+      
+        <title>Análise de Complexidade - Anotações UnB</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.7e37652d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#analise-de-complexidade-de-algoritmos" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Anotações UnB" class="md-header__button md-logo" aria-label="Anotações UnB" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Anotações UnB
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Análise de Complexidade
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Anotações UnB" class="md-nav__button md-logo" aria-label="Anotações UnB" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Anotações UnB
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Estrutura de Dados 1
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Estrutura de Dados 1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ponteiros/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ponteiros
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../alocacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Alocação de Memória
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recurcao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Recurção
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Análise de Complexidade
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Análise de Complexidade
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-definicao" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Definição
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-classes-de-complexidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Classes de Complexidade
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Classes de Complexidade">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-complexidade-constante-o1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Complexidade Constante - O(1)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 Complexidade Constante - O(1)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#211-caracteristicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1.1 Características
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#212-quando-ocorrre" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1.2 Quando ocorrre
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-complexidade-linear-on" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Complexidade Linear - O(n)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 Complexidade Linear - O(n)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#221-caracteristicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2.1 Características
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#222-quando-ocorrre" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2.2 Quando ocorrre
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-complexidade-quadratica-on2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 Complexidade Quadrática - O(n²)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 Complexidade Quadrática - O(n²)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#231-caracteristicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3.1 Características
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#232-quando-ocorrre" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3.2 Quando ocorrre
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-complexidade-cubica-on3" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4 Complexidade Cúbica - O(n³)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.4 Complexidade Cúbica - O(n³)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#241-caracteristicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4.1 Características
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#242-quando-ocorrre" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4.2 Quando ocorrre
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-complexidade-exponencial-okn" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.5 Complexidade Exponencial - O(kⁿ)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.5 Complexidade Exponencial - O(kⁿ)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#251-caracteristicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.5.1 Características
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#252-quando-ocorrre" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.5.2 Quando ocorrre
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-complexidade-logaritmica-olog-n" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.6 Complexidade Logarítmica - O(log n)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.6 Complexidade Logarítmica - O(log n)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#261-caracteristicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.6.1 Características
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#262-quando-ocorrre" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.6.2 Quando ocorrre
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#27-complexidade-linearitmica-on-log-n" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.7 Complexidade Linearítmica - O(n log n)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.7 Complexidade Linearítmica - O(n log n)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#271-caracteristicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.7.1 Características
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#272-quando-ocorrre" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.7.2 Quando ocorrre
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-comparacao-de-complexidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Comparação de Complexidades
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-consideracoes-importantes" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Considerações Importantes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Considerações Importantes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-complexidade-de-espaco" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Complexidade de Espaço
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-melhor-caso-caso-medio-e-pior-caso" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Melhor Caso, Caso Médio e Pior Caso
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Listas Encadeadas
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            Listas Encadeadas
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Listas%20Encadeadas/simplesEncadeada/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Listas Simplesmente Encadeadas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Listas%20Encadeadas/duplaEncadeada/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Listas Duplamente Encadeadas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Algoritmos de Busca
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            Algoritmos de Busca
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Algoritmos%20de%20Busca/buscaLinear/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Busca Sequencial
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Algoritmos%20de%20Busca/buscaBinaria/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Busca Binária
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Algoritmos de ordenação
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            Algoritmos de ordenação
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Algoritmos%20de%20ordenacao/introducao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introdução
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Algoritmos%20de%20ordenacao/selection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Selection Sort
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Algoritmos%20de%20ordenacao/bubble/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Bubble Sort
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Algoritmos%20de%20ordenacao/insertion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Insertion Sort
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Algoritmos%20de%20ordenacao/shell/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Shell Sort
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Algoritmos%20de%20ordenacao/merge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Merge Sort
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Algoritmos%20de%20ordenacao/quick/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Sort
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Algoritmos%20de%20ordenacao/heap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Heap Sort
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Algoritmos%20de%20ordenacao/intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Intro Sort
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Algoritmos%20de%20ordenacao/counting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Counting Sort
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Algoritmos%20de%20ordenacao/radix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Radix Sort
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Tipos Abstratos de dados (TAD)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            Tipos Abstratos de dados (TAD)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tipos%20Abstratos%20de%20Dados/filas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Filas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tipos%20Abstratos%20de%20Dados/pilhas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pilhas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tipos%20Abstratos%20de%20Dados/arvores/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Árvores Binárias
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tipos%20Abstratos%20de%20Dados/arvoreDebusca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Árvores Binárias de Busca
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Estrutura de Dados 2
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Estrutura de Dados 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA2/tabelaSimb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tabela de Símbolos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA2/arvoreBin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Árvore Binária de Busca
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA2/arvore23/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Árvore 2-3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA2/redblack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Árvore Red Black
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA2/skipList/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Skip List
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA2/hash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tabela Hash List
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Grafos
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            Grafos
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA2/Grafos/grafos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introdução
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA2/Grafos/grafosDir/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Grafos Dirigidos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA2/Grafos/caminhoMin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Algorítmos de Caminho Mínimos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA2/Grafos/arvoreGer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Algorítmos de Árvores Geradoras Mínimas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-definicao" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Definição
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-classes-de-complexidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Classes de Complexidade
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Classes de Complexidade">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-complexidade-constante-o1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Complexidade Constante - O(1)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 Complexidade Constante - O(1)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#211-caracteristicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1.1 Características
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#212-quando-ocorrre" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1.2 Quando ocorrre
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-complexidade-linear-on" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Complexidade Linear - O(n)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 Complexidade Linear - O(n)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#221-caracteristicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2.1 Características
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#222-quando-ocorrre" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2.2 Quando ocorrre
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-complexidade-quadratica-on2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 Complexidade Quadrática - O(n²)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 Complexidade Quadrática - O(n²)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#231-caracteristicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3.1 Características
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#232-quando-ocorrre" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3.2 Quando ocorrre
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-complexidade-cubica-on3" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4 Complexidade Cúbica - O(n³)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.4 Complexidade Cúbica - O(n³)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#241-caracteristicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4.1 Características
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#242-quando-ocorrre" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4.2 Quando ocorrre
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-complexidade-exponencial-okn" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.5 Complexidade Exponencial - O(kⁿ)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.5 Complexidade Exponencial - O(kⁿ)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#251-caracteristicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.5.1 Características
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#252-quando-ocorrre" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.5.2 Quando ocorrre
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-complexidade-logaritmica-olog-n" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.6 Complexidade Logarítmica - O(log n)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.6 Complexidade Logarítmica - O(log n)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#261-caracteristicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.6.1 Características
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#262-quando-ocorrre" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.6.2 Quando ocorrre
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#27-complexidade-linearitmica-on-log-n" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.7 Complexidade Linearítmica - O(n log n)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.7 Complexidade Linearítmica - O(n log n)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#271-caracteristicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.7.1 Características
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#272-quando-ocorrre" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.7.2 Quando ocorrre
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-comparacao-de-complexidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Comparação de Complexidades
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-consideracoes-importantes" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Considerações Importantes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Considerações Importantes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-complexidade-de-espaco" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Complexidade de Espaço
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-melhor-caso-caso-medio-e-pior-caso" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Melhor Caso, Caso Médio e Pior Caso
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="analise-de-complexidade-de-algoritmos">Análise de Complexidade de Algoritmos</h1>
+<hr />
+<h2 id="1-definicao">1. Definição</h2>
+<p>A <strong>análise de complexidade</strong> estuda o consumo de recursos (tempo e espaço) de um algoritmo em relação ao tamanho da entrada. </p>
+<p>A complexidade é expressa usando a <strong>notação O</strong> (Big O), que descreve o comportamento assintótico do algoritmo.</p>
+<hr />
+<h2 id="2-classes-de-complexidade">2. Classes de Complexidade</h2>
+<h3 id="21-complexidade-constante-o1">2.1 Complexidade Constante - O(1)</h3>
+<p>O tempo de execução não depende do tamanho da entrada.</p>
+<h4 id="211-caracteristicas">2.1.1 Características</h4>
+<ul>
+<li>Instruções são realizadas um número fixo de vezes;</li>
+<li>Operações básicas: atribuição, comparação, acesso a índice;</li>
+</ul>
+<h4 id="212-quando-ocorrre">2.1.2 Quando ocorrre</h4>
+<ul>
+<li>Acesso a elementos em arrays estáticos;</li>
+<li>Operações em listas duplamente encadeadas: remoção, inserção após/before um nó;</li>
+<li>Operações aritméticas básicas;</li>
+</ul>
+<div class="highlight"><span class="filename">Exemplo:</span><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">operacao</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">op</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// O(1) - atribuição</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">op</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;+&#39;</span><span class="p">)</span><span class="w">      </span><span class="c1">// O(1) - comparação</span>
+<span class="w">        </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w">      </span><span class="c1">// O(1) - aritmética + atribuição</span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">op</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;-&#39;</span><span class="p">)</span><span class="w"> </span><span class="c1">// O(1) - comparação</span>
+<span class="w">        </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w">      </span><span class="c1">// O(1) - aritmética + atribuição</span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">op</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;*&#39;</span><span class="p">)</span><span class="w"> </span><span class="c1">// O(1) - comparação</span>
+<span class="w">        </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w">      </span><span class="c1">// O(1) - aritmética + atribuição</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">r</span><span class="p">;</span><span class="w">           </span><span class="c1">// O(1) - retorno</span>
+<span class="p">}</span>
+<span class="c1">// Complexidade total: O(1)</span>
+</code></pre></div>
+<hr />
+<h3 id="22-complexidade-linear-on">2.2 Complexidade Linear - O(n)</h3>
+<p>O tempo de execução cresce linearmente com o tamanho da entrada.</p>
+<h4 id="221-caracteristicas">2.2.1 Características</h4>
+<ul>
+<li>Percorre cada elemento da entrada uma vez</li>
+<li>Cresce a uma taxa constante</li>
+</ul>
+<h4 id="222-quando-ocorrre">2.2.2 Quando ocorrre</h4>
+<ul>
+<li>Busca sequencial em array não ordenado</li>
+<li>Remoção de nó específico em lista simplesmente encadeada</li>
+<li>Fatorial por recursão (chamadas lineares)</li>
+</ul>
+<div class="highlight"><span class="filename">Exemplo:</span><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">pesquisa</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="c1">// O(n) - loop</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"> </span><span class="c1">// O(1)</span>
+<span class="p">}</span>
+<span class="c1">// Complexidade total: O(n)</span>
+
+<span class="c1">// Fatorial recursivo - O(n) linear</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">fat</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">        </span><span class="c1">// O(1)</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">fat</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w">       </span><span class="c1">// n chamadas recursivas</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h3 id="23-complexidade-quadratica-on2">2.3 Complexidade Quadrática - O(n²)</h3>
+<p>O tempo de execução cresce proporcionalmente ao quadrado do tamanho da entrada.</p>
+<h4 id="231-caracteristicas">2.3.1 Características</h4>
+<ul>
+<li>Dois loops aninhados, cada um percorrendo n elementos;</li>
+<li>Comum em algoritmos de ordenação simples;</li>
+</ul>
+<h4 id="232-quando-ocorrre">2.3.2 Quando ocorrre</h4>
+<ul>
+<li>Bubble Sort, Selection Sort, Insertion Sort;</li>
+<li>Comparação de todos os pares em um conjunto;</li>
+</ul>
+<div class="highlight"><span class="filename">Exemplo:</span><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">ordenacao</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="p">[],</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">           </span><span class="c1">// O(n)</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">v</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">v</span><span class="p">[</span><span class="n">j</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">];</span><span class="w"> </span><span class="n">j</span><span class="o">--</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// O(n)</span>
+<span class="w">            </span><span class="n">troca</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">j</span><span class="p">],</span><span class="w"> </span><span class="n">v</span><span class="p">[</span><span class="n">j</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]);</span><span class="w">          </span><span class="c1">// O(1) - operação constante</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">// Complexidade total: O(n²)</span>
+</code></pre></div>
+<hr />
+<h3 id="24-complexidade-cubica-on3">2.4 Complexidade Cúbica - O(n³)</h3>
+<p>O tempo de execução cresce proporcionalmente ao cubo do tamanho da entrada.</p>
+<h4 id="241-caracteristicas">2.4.1 Características</h4>
+<ul>
+<li>Três loops aninhados, cada um percorrendo n elementos;</li>
+<li>Comum em operações com matrizes;</li>
+</ul>
+<h4 id="242-quando-ocorrre">2.4.2 Quando ocorrre</h4>
+<ul>
+<li>Multiplicação de matrizes n × n;</li>
+<li>Algoritmos que processam dados tridimensionais;</li>
+</ul>
+<div class="highlight"><span class="filename">Exemplo:</span><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">multiplica_matrizes</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">A</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">3</span><span class="p">],</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">B</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">3</span><span class="p">],</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">C</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">3</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">           </span><span class="c1">// O(n)</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">       </span><span class="c1">// O(n)</span>
+<span class="w">            </span><span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">                    </span><span class="c1">// O(1)</span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="n">k</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">   </span><span class="c1">// O(n)</span>
+<span class="w">                </span><span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">];</span><span class="w"> </span><span class="c1">// O(1)</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">// Complexidade total: O(n³)</span>
+</code></pre></div>
+<hr />
+<h3 id="25-complexidade-exponencial-okn">2.5 Complexidade Exponencial - O(kⁿ)</h3>
+<p>O tempo de execução dobra (ou multiplica por k) a cada aumento unitário na entrada.</p>
+<h4 id="251-caracteristicas">2.5.1 Características</h4>
+<ul>
+<li>Múltiplas chamadas recursivas em cada passo;</li>
+<li>Extremamente ineficiente para entradas grandes;</li>
+</ul>
+<h4 id="252-quando-ocorrre">2.5.2 Quando ocorrre</h4>
+<ul>
+<li>Fibonacci recursivo ingênuo;</li>
+<li>Problema da mochila (força bruta);</li>
+<li>Torre de Hanoi;</li>
+</ul>
+<div class="highlight"><span class="filename">Exemplo:</span><pre><span></span><code><span class="c1">// Fibonacci recursivo - O(2ⁿ)</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">fib</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w">         </span><span class="c1">// O(1)</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">fib</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">fib</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w">         </span><span class="c1">// 2 chamadas recursivas</span>
+<span class="p">}</span>
+
+<span class="c1">// Geração de permutações - O(n!)</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">anagram</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="n">str</span><span class="p">[],</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strlen</span><span class="p">(</span><span class="n">str</span><span class="p">);</span><span class="w">                  </span><span class="c1">// O(n)</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">k</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">len</span><span class="p">)</span><span class="w">                           </span><span class="c1">// O(1)</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">str</span><span class="p">);</span><span class="w">                </span><span class="c1">// O(n)</span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">k</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">len</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">     </span><span class="c1">// O(n)</span>
+<span class="w">            </span><span class="n">swap_char</span><span class="p">(</span><span class="n">str</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">);</span><span class="w">           </span><span class="c1">// O(1)</span>
+<span class="w">            </span><span class="n">anagram</span><span class="p">(</span><span class="n">str</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w">            </span><span class="c1">// Chamada recursiva</span>
+<span class="w">            </span><span class="n">swap_char</span><span class="p">(</span><span class="n">str</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">);</span><span class="w">           </span><span class="c1">// O(1)</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">// Relação de recorrência: T(n) = n × T(n-1) = O(n!)</span>
+</code></pre></div>
+<hr />
+<h3 id="26-complexidade-logaritmica-olog-n">2.6 Complexidade Logarítmica - O(log n)</h3>
+<p>O tempo de execução cresce logarithmicamente com o tamanho da entrada.</p>
+<h4 id="261-caracteristicas">2.6.1 Características</h4>
+<ul>
+<li>Inversa da função exponencial;</li>
+<li>Muito eficiente para grandes entradas;</li>
+<li>Divide o problema pela metade a cada passo;</li>
+</ul>
+<h4 id="262-quando-ocorrre">2.6.2 Quando ocorrre</h4>
+<ul>
+<li>Busca binária em array ordenado;</li>
+<li>Operações em árvores binárias balanceadas;</li>
+</ul>
+<div class="highlight"><span class="filename">Exemplo:</span><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">pesquisa</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="p">[],</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">esq</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">dir</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">esq</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">dir</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span><span class="w">               </span><span class="c1">// O(1)</span>
+
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">meio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">esq</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dir</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w">             </span><span class="c1">// O(1)</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">meio</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">meio</span><span class="p">;</span><span class="w">          </span><span class="c1">// O(1)</span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">meio</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">pesquisa</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">meio</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">dir</span><span class="p">);</span><span class="w"> </span><span class="c1">// T(n/2)</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">pesquisa</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">esq</span><span class="p">,</span><span class="w"> </span><span class="n">meio</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="c1">// T(n/2)</span>
+<span class="p">}</span>
+<span class="c1">// Relação de recorrência: T(n) = T(n/2) + O(1) = O(log n)</span>
+</code></pre></div>
+<hr />
+<h3 id="27-complexidade-linearitmica-on-log-n">2.7 Complexidade Linearítmica - O(n log n)</h3>
+<p>Combina características lineares e logarítmicas.</p>
+<h4 id="271-caracteristicas">2.7.1 Características</h4>
+<ul>
+<li>Divide e conquista: quebra problemas em subproblemas menores;</li>
+<li>Resolve subproblemas independentemente e combina soluções;</li>
+<li>Muito eficiente para ordenação;</li>
+</ul>
+<h4 id="272-quando-ocorrre">2.7.2 Quando ocorrre</h4>
+<ul>
+<li>Merge Sort, Quick Sort, Heap Sort;</li>
+<li>Algoritmos de transformada rápida de Fourier;</li>
+</ul>
+<div class="highlight"><span class="filename">Exemplo conceitual:</span><pre><span></span><code><span class="c1">// Merge Sort - O(n log n)</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">merge_sort</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">arr</span><span class="p">[],</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">l</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">r</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">l</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w">    </span><span class="c1">// O(1)</span>
+<span class="w">        </span><span class="n">merge_sort</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">);</span><span class="w">       </span><span class="c1">// T(n/2)</span>
+<span class="w">        </span><span class="n">merge_sort</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">);</span><span class="w">   </span><span class="c1">// T(n/2)</span>
+<span class="w">        </span><span class="n">merge</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">);</span><span class="w">         </span><span class="c1">// O(n)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">// Relação: T(n) = 2T(n/2) + O(n) = O(n log n)</span>
+</code></pre></div>
+<hr />
+<h2 id="3-comparacao-de-complexidades">3. Comparação de Complexidades</h2>
+<table>
+<thead>
+<tr>
+<th>Complexidade</th>
+<th>n = 10</th>
+<th>n = 100</th>
+<th>n = 1000</th>
+<th>Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>O(1)</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>Acesso a array</td>
+</tr>
+<tr>
+<td>O(log n)</td>
+<td>~3</td>
+<td>~7</td>
+<td>~10</td>
+<td>Busca binária</td>
+</tr>
+<tr>
+<td>O(n)</td>
+<td>10</td>
+<td>100</td>
+<td>1000</td>
+<td>Busca sequencial</td>
+</tr>
+<tr>
+<td>O(n log n)</td>
+<td>~30</td>
+<td>~700</td>
+<td>~10000</td>
+<td>Merge Sort</td>
+</tr>
+<tr>
+<td>O(n²)</td>
+<td>100</td>
+<td>10000</td>
+<td>1000000</td>
+<td>Bubble Sort</td>
+</tr>
+<tr>
+<td>O(n³)</td>
+<td>1000</td>
+<td>1000000</td>
+<td>10⁹</td>
+<td>Multiplicação de matrizes</td>
+</tr>
+<tr>
+<td>O(2ⁿ)</td>
+<td>1024</td>
+<td>1.3×10³⁰</td>
+<td>1.1×10³⁰¹</td>
+<td>Fibonacci recursivo</td>
+</tr>
+<tr>
+<td>O(n!)</td>
+<td>3.6×10⁶</td>
+<td>9.3×10¹⁵⁷</td>
+<td>4.0×10²⁵⁶⁷</td>
+<td>Permutações</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-consideracoes-importantes">4. Considerações Importantes</h2>
+<h3 id="41-complexidade-de-espaco">4.1 Complexidade de Espaço</h3>
+<p>Além do tempo, também analisamos o consumo de memória:</p>
+<ul>
+<li><strong>O(1)</strong>: espaço constante (variáveis fixas);</li>
+<li><strong>O(n)</strong>: espaço linear (arrays, listas);</li>
+<li><strong>O(n²)</strong>: espaço quadrático (matrizes n×n);</li>
+</ul>
+<h3 id="42-melhor-caso-caso-medio-e-pior-caso">4.2 Melhor Caso, Caso Médio e Pior Caso</h3>
+<ul>
+<li><strong>Melhor caso</strong>: menor tempo possível (ex: elemento encontrado logo);</li>
+<li><strong>Caso médio</strong>: tempo esperado para entradas aleatórias; </li>
+<li><strong>Pior caso</strong>: maior tempo possível (ex: elemento não existe);</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+    
+  </body>
+</html>
