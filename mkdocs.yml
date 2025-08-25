@@ -63,4 +63,4 @@ nav:
          - Introdução: disciplinas/EDA2/Grafos/grafos.md
          - Grafos Dirigidos: disciplinas/EDA2/Grafos/grafosDir.md
          - Algorítmos de Caminho Mínimos: disciplinas/EDA2/Grafos/caminhoMin.md
-         - Árvores Geradoras Mínimas: disciplinas/EDA2/Grafos/caminhoMin.md
+         - Algorítmos de Árvores Geradoras Mínimas: disciplinas/EDA2/Grafos/arvoreGer.md

@@ -1,16 +1,16 @@
-# Árvores Geradoras Mínimas (MST) - Implementação e Análise
+# Árvores Geradoras Mínimas (MST) 
 
 ---
 
 
-## 1 Árvores Geradoras de um Grafo Não-dirigido
+## 1. Árvores Geradoras de um Grafo Não-dirigido
 É um subconjunto das arestas de um grafo conectado e não dirigido;
 
 - Contem todos os vertices de G;
 - É conexo e sem ciclos;
 - Se o GND tem V vértices, a AG tem V - 1 arestas;
 
-``` c title = "Exemplo"
+```c title=" Exemplo:"
 // grafo
     A
    / \
@@ -43,11 +43,57 @@ Uma **Árvore Geradora Mínima (MST - Minimum Spanning Tree)** de um grafo não-
 - Só existe MST se o grafo for conexo
 
 ---
-## 3 Algorítmos de MST
 
-### 3.1 Algoritmo de Prim
+## 3. Algorítmos Geradores de MST
 
-#### 3.1.1 Implementação do Prim
+### 3.1. Algoritmo de Prim
+
+**Termos:**
+
+- Franja: Conjuntos de arestas que ligam a arvore atual T a vertices fora dela;
+- Gancho: É o vértice dentro da arvore que puxa um vertice de fora por meio da arestas mais barata;
+- Preço: É o custo da menor aresta que liga um vertice fora da arvore a algum vertice de dentro;
+
+**Caracteristicas:**
+
+- Encontra a MST em um grafo não dirigido e conexo;
+- Arestas podem ter custos positivos e negativos
+- Algortimo simples porém com implementação eficiente possui dificuldade inesperadas;
+
+**Ideia central:**
+
+- Começa em qualquer  vértice, por exemplo o v
+- Formado uma franja com todos as arestas que iniciam com v;
+- Se escolhe a aresta com menor custo, exemplo v-x;
+- Vértice v (gancho) puxa para franja todas as arestas que iniciam com x;
+- Novamente se escolhe a aresta com menor custo;
+- Continua até todos os vertices estarem na arvore;
+
+**Usado em:**
+
+- Construção de redes (eletrica, internet, estrada);
+- Redução de custo em ligação entre pontos;
+
+**Versoes:**
+
+**Ingenua:**
+
+- Desenpenho: O (V² +E)
+
+**Eficiente 1:**
+
+- Usa vetores de preço e ganho;
+    - Mantem eles atualizados;
+    - Evita calcular toda a franja a cada passo;
+- Desepenho: O( V²)
+
+**Eficiente 2:**
+
+- Usa fila de prioridade (heap)
+    - Para encontrar o menor preço;
+- Melhor em grafos esparsos (pouca aresta por vértice);
+- Desenpenho: E log V
+
 
 ```c title="Algoritmo de Prim para MST:"
 #define UGraph Graph
@@ -85,7 +131,7 @@ void UGRAPHmstP2( UGraph G, vertex *pa)
 
 ---
 
-## 4. Algoritmo de Kruskal
+### 3.2 Algoritmo de Kruskal
 **Características:**
 
 - Seleciona arestas de menor peso, sem formar ciclos, até ligar todos os vértices;
@@ -103,7 +149,20 @@ void UGRAPHmstP2( UGraph G, vertex *pa)
 - Grafos esparsos (poucas arestas);
 - Grafos nao dirigidos;
 - Tem uma lista das arestas
-### 4.1 Implementação do Kruskal
+
+**Componentes:**
+
+- `Sort-Edges(G)`: ordena as `m` arestas por peso crescente.
+- `Find(u)`: retorna o representante (diretor) da componente de `u`.
+- `Union(r, s)`: une as componentes representadas por `r` e `s`.
+
+**Eficiencia:**
+
+- Ordenar arestas: O (m log n);
+- Find: O (log n)
+- Union: O (1);
+- Total: O (n + m log n);
+
 
 ```c title="Algoritmo de Kruskal para MST:"
 MST-Kruskal (G, n, m, p)
@@ -131,3 +190,11 @@ devolva (V(G), X)
 
 ---
 
+## 4. Comparação dos Algoritmos 
+
+| Algoritmo        | Guloso | MST | Peso negativo | Detecta ciclo        | Grafos esparsos/grandes | Grafos densos/pequenos | Suporta grafo direcionado | Pré-condições / Quando usar      | Exemplo                   | Complexidade   |
+| ---------------- | ------ | --- | ------------- | -------------------- | ----------------------- | ---------------------- | ------------------------- | -------------------------------- | ------------------------- | -------------- |
+| **Bellman-Ford** | não    | não | sim           | sim (ciclo negativo) | ok                      | não                    | sim                       | Quando há arestas negativas      | Mercado financeiro        | O(V·E)         |
+| **Dijkstra**     | sim    | não | não           | não                  | sim (lista + heap)      | ok                     | sim                       | Grafos com pesos positivos       | Rotas em mapas (Waze)     | O(E log V)     |
+| **Prim**         | sim    | sim | sim           | não (evita)          | ok                      | sim (heap ajuda)       | não                       | MST em grafos densos e conexos   | Redes elétricas, internet | O(E + V log V) |
+| **Kruskal**      | sim    | sim | sim           | não (evita)          | sim                     | ok                     | não                       | MST em grafos esparsos e conexos | Redes de fibra ótica      | O(E log V)     |

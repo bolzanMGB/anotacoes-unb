@@ -1,17 +1,10 @@
-# Welcome to MkDocs
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+# Anotações UnB
 
-## Commands
+Bem-vindo(a)! 
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+Este site reúne algumas das anotações e resumos feitos por mim, [Othavio Bolzan](https://github.com/bolzanMGB), ao longo da minha graduação em **Engenharia de Software na Universidade de Brasília (UnB)**. As anotações foram originalmente escritas no Notion e depois organizadas aqui com o auxílio do **MkDocs**, para facilitar a navegação e a consulta.
 
-## Project layout
+**Aviso**: Durante a migração, pode ser que algumas anotações contenham erros de digitação, formatação ou pequenos enganos de conteúdo. Caso encontre algo, considere que o material não substitui livros ou aulas, mas serve como **apoio de estudos**.
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+
