@@ -43,3 +43,24 @@ nav:
         - Shell Sort: disciplinas/EDA1/Algoritmos de ordenacao/shell.md
         - Merge Sort: disciplinas/EDA1/Algoritmos de ordenacao/merge.md
         - Quick Sort: disciplinas/EDA1/Algoritmos de ordenacao/quick.md
+        - Heap Sort: disciplinas/EDA1/Algoritmos de ordenacao/heap.md
+        - Intro Sort: disciplinas/EDA1/Algoritmos de ordenacao/intro.md
+        - Counting Sort: disciplinas/EDA1/Algoritmos de ordenacao/counting.md
+        - Radix Sort: disciplinas/EDA1/Algoritmos de ordenacao/radix.md
+      - Tipos Abstratos de dados (TAD):
+        - Filas: disciplinas/EDA1/Tipos Abstratos de Dados/filas.md
+        - Pilhas: disciplinas/EDA1/Tipos Abstratos de Dados/pilhas.md
+        - Árvores Binárias: disciplinas/EDA1/Tipos Abstratos de Dados/arvores.md
+        - Árvores Binárias de Busca : disciplinas/EDA1/Tipos Abstratos de Dados/arvoreDebusca.md
+  - Estrutura de Dados 2: 
+      - Tabela de Símbolos: disciplinas/EDA2/tabelaSimb.md
+      - Árvore Binária de Busca: disciplinas/EDA2/arvoreBin.md
+      - Árvore 2-3: disciplinas/EDA2/arvore23.md
+      - Árvore Red Black: disciplinas/EDA2/redblack.md
+      - Skip List: disciplinas/EDA2/skipList.md
+      - Tabela Hash List: disciplinas/EDA2/hash.md
+      - Grafos:
+         - Introdução: disciplinas/EDA2/Grafos/grafos.md
+         - Grafos Dirigidos: disciplinas/EDA2/Grafos/grafosDir.md
+         - Algorítmos de Caminho Mínimos: disciplinas/EDA2/Grafos/caminhoMin.md
+         - Árvores Geradoras Mínimas: disciplinas/EDA2/Grafos/caminhoMin.md
