@@ -64,3 +64,14 @@ nav:
          - Grafos Dirigidos: disciplinas/EDA2/Grafos/grafosDir.md
          - Algorítmos de Caminho Mínimos: disciplinas/EDA2/Grafos/caminhoMin.md
          - Algorítmos de Árvores Geradoras Mínimas: disciplinas/EDA2/Grafos/arvoreGer.md
+  - Fundamentos de Sistemas Operacionais:
+      - Introdução: disciplinas/FSO/introFSO.md
+      - Processos: disciplinas/FSO/processos.md
+      - Escalonamento: disciplinas/FSO/escalonamento.md
+      - Threads: disciplinas/FSO/threads.md
+      - Condições de Corrida: disciplinas/FSO/corrida.md
+      - Fundamentos UNIX: disciplinas/FSO/unix.md
+      - Gerência de Memória: disciplinas/FSO/gerenciaMem.md
+      - Memória Virtual: disciplinas/FSO/memoriaVirtual.md
+      - Sistema de Arquivos: disciplinas/FSO/sistemaArquivos.md
+      - Gerência de Dispositivos de Entrada e Saída: disciplinas/FSO/gerencia.md
