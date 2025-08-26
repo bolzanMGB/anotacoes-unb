@@ -1,0 +1,2311 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../arvore23/">
+      
+      
+        <link rel="next" href="../skipList/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.18">
+    
+    
+      
+        <title>Árvore Red Black - Anotações UnB</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.7e37652d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#arvores-rubro-negras-esquerdistas-left-leaning-red-black-trees-llrbt" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Anotações UnB" class="md-header__button md-logo" aria-label="Anotações UnB" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Anotações UnB
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Árvore Red Black
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Anotações UnB" class="md-nav__button md-logo" aria-label="Anotações UnB" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Anotações UnB
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Estrutura de Dados 1
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Estrutura de Dados 1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA1/ponteiros/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ponteiros
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA1/alocacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Alocação de Memória
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA1/recurcao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Recurção
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA1/complexidade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Análise de Complexidade
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Listas Encadeadas
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            Listas Encadeadas
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA1/Listas%20Encadeadas/simplesEncadeada/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Listas Simplesmente Encadeadas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA1/Listas%20Encadeadas/duplaEncadeada/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Listas Duplamente Encadeadas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Algoritmos de Busca
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            Algoritmos de Busca
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA1/Algoritmos%20de%20Busca/buscaLinear/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Busca Sequencial
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA1/Algoritmos%20de%20Busca/buscaBinaria/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Busca Binária
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Algoritmos de ordenação
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            Algoritmos de ordenação
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA1/Algoritmos%20de%20ordenacao/introducao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introdução
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA1/Algoritmos%20de%20ordenacao/selection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Selection Sort
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA1/Algoritmos%20de%20ordenacao/bubble/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Bubble Sort
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA1/Algoritmos%20de%20ordenacao/insertion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Insertion Sort
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA1/Algoritmos%20de%20ordenacao/shell/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Shell Sort
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA1/Algoritmos%20de%20ordenacao/merge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Merge Sort
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA1/Algoritmos%20de%20ordenacao/quick/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Sort
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA1/Algoritmos%20de%20ordenacao/heap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Heap Sort
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA1/Algoritmos%20de%20ordenacao/intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Intro Sort
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA1/Algoritmos%20de%20ordenacao/counting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Counting Sort
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA1/Algoritmos%20de%20ordenacao/radix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Radix Sort
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Tipos Abstratos de dados (TAD)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            Tipos Abstratos de dados (TAD)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA1/Tipos%20Abstratos%20de%20Dados/filas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Filas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA1/Tipos%20Abstratos%20de%20Dados/pilhas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pilhas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA1/Tipos%20Abstratos%20de%20Dados/arvores/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Árvores Binárias
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA1/Tipos%20Abstratos%20de%20Dados/arvoreDebusca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Árvores Binárias de Busca
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Estrutura de Dados 2
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Estrutura de Dados 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tabelaSimb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tabela de Símbolos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../arvoreBin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Árvore Binária de Busca
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../arvore23/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Árvore 2-3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Árvore Red Black
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Árvore Red Black
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-conceitos-gerais" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Conceitos Gerais
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-estrutura-de-dados" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Estrutura de Dados
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Estrutura de Dados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-definicoes-e-macros" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Definições e Macros
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-estrutura-do-no" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Estrutura do Nó
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-implementacao-das-operacoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Implementação das Operações
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Implementação das Operações">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-inicializacao-e-utilidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Inicialização e Utilidades
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-operacoes-de-rotacao-e-ajuste" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Operações de Rotação e Ajuste
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-insercao" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 Inserção
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3 Inserção">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#331-funcionamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3.1 Funcionamento
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#332-passo-a-passo" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3.2 Passo a Passo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#333-insercao-manual" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3.3 Inserção Manual
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-busca" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4 Busca
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-travessia-e-ordenacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.5 Travessia e Ordenação
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-exemplo-de-uso" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.6 Exemplo de Uso
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-analise-de-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Análise de Performance
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Análise de Performance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-complexidade-das-operacoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Complexidade das Operações
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-propriedades-de-balanceamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Propriedades de Balanceamento
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-vantagens-sobre-bst-comum" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Vantagens sobre BST Comum
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-comparacao-com-outras-estruturas" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.4 Comparação com Outras Estruturas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-consideracoes-finais" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Considerações Finais
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Considerações Finais">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-quando-usar-arne" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 Quando Usar ARNE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-aplicacoes-praticas" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 Aplicações Práticas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skipList/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Skip List
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tabela Hash List
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Grafos
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            Grafos
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Grafos/grafos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introdução
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Grafos/grafosDir/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Grafos Dirigidos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Grafos/caminhoMin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Algorítmos de Caminho Mínimos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Grafos/arvoreGer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Algorítmos de Árvores Geradoras Mínimas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-conceitos-gerais" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Conceitos Gerais
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-estrutura-de-dados" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Estrutura de Dados
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Estrutura de Dados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-definicoes-e-macros" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Definições e Macros
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-estrutura-do-no" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Estrutura do Nó
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-implementacao-das-operacoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Implementação das Operações
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Implementação das Operações">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-inicializacao-e-utilidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Inicialização e Utilidades
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-operacoes-de-rotacao-e-ajuste" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Operações de Rotação e Ajuste
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-insercao" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 Inserção
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3 Inserção">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#331-funcionamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3.1 Funcionamento
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#332-passo-a-passo" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3.2 Passo a Passo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#333-insercao-manual" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3.3 Inserção Manual
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-busca" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4 Busca
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-travessia-e-ordenacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.5 Travessia e Ordenação
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-exemplo-de-uso" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.6 Exemplo de Uso
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-analise-de-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Análise de Performance
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Análise de Performance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-complexidade-das-operacoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Complexidade das Operações
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-propriedades-de-balanceamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Propriedades de Balanceamento
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-vantagens-sobre-bst-comum" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Vantagens sobre BST Comum
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-comparacao-com-outras-estruturas" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.4 Comparação com Outras Estruturas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-consideracoes-finais" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Considerações Finais
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Considerações Finais">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-quando-usar-arne" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 Quando Usar ARNE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-aplicacoes-praticas" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 Aplicações Práticas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="arvores-rubro-negras-esquerdistas-left-leaning-red-black-trees-llrbt">Árvores Rubro-Negras Esquerdistas (Left-Leaning Red-Black Trees - LLRBT)</h1>
+<hr />
+<h2 id="1-conceitos-gerais">1. Conceitos Gerais</h2>
+<p>As <strong>Árvores Rubro-Negras Esquerdistas (ARNE)</strong> são uma implementação específica de árvores rubro-negras que mantêm todos os links vermelhos inclinados para a esquerda, simplificando a implementação enquanto mantém as propriedades de balanceamento.</p>
+<p><strong>Princípio fundamental</strong>: Representação de árvores 2-3 usando árvores binárias com links coloridos:
+- <strong>Links negros</strong>: Links normais da árvore binária
+- <strong>Links vermelhos</strong>: Links "horizontais" que conectam nós do mesmo nível lógico (representando nós 3 da árvore 2-3)</p>
+<p><img align="center" alt="Inserção" src="../../../assets/pngs/15.png" />
+<br>
+<em>Estrutura de uma BST Red Black</em></p>
+<hr />
+<h2 id="2-estrutura-de-dados">2. Estrutura de Dados</h2>
+<h3 id="21-definicoes-e-macros">2.1 Definições e Macros</h3>
+<div class="highlight"><span class="filename">Definições básicas para ARNE:</span><pre><span></span><code><span class="k">typedef</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">Key</span><span class="p">;</span><span class="w">  </span><span class="c1">// Tipo da chave</span>
+
+<span class="c1">// Estrutura do item (chave + dados)</span>
+<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Key</span><span class="w"> </span><span class="n">k</span><span class="p">;</span><span class="w">        </span><span class="c1">// Chave</span>
+<span class="w">    </span><span class="c1">// data d;    // Dados associados (pode ser expandido)</span>
+<span class="p">}</span><span class="w"> </span><span class="n">Item</span><span class="p">;</span>
+
+<span class="cp">#define NULL_ITEM {0}  </span><span class="c1">// Item nulo</span>
+
+<span class="c1">// Macros para manipulação de itens</span>
+<span class="cp">#define key(A) ((A).k)</span>
+<span class="cp">#define less(A, B) (key(A) &lt; key(B))</span>
+<span class="cp">#define eq(A, B) (key(A) == key(B))</span>
+
+<span class="c1">// Cores dos links</span>
+<span class="cp">#define RED 0</span>
+<span class="cp">#define BLACK 1</span>
+</code></pre></div>
+<h3 id="22-estrutura-do-no">2.2 Estrutura do Nó</h3>
+<div class="highlight"><span class="filename">Estrutura do nó da ARNE:</span><pre><span></span><code><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">STNode</span><span class="w"> </span><span class="o">*</span><span class="n">link</span><span class="p">;</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">STNode</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Item</span><span class="w"> </span><span class="n">item</span><span class="p">;</span><span class="w">    </span><span class="c1">// Item armazenado</span>
+<span class="w">    </span><span class="n">link</span><span class="w"> </span><span class="n">l</span><span class="p">;</span><span class="w">       </span><span class="c1">// Ponteiro para filho esquerdo</span>
+<span class="w">    </span><span class="n">link</span><span class="w"> </span><span class="n">r</span><span class="p">;</span><span class="w">       </span><span class="c1">// Ponteiro para filho direito</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w">        </span><span class="c1">// Tamanho da subárvore (nó atual + filhos)</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">color</span><span class="p">;</span><span class="w">    </span><span class="c1">// Cor do link que aponta para este nó (RED ou BLACK)</span>
+<span class="p">};</span>
+
+<span class="c1">// Variáveis globais</span>
+<span class="n">link</span><span class="w"> </span><span class="n">h</span><span class="p">;</span><span class="w">  </span><span class="c1">// Raiz da árvore</span>
+<span class="n">link</span><span class="w"> </span><span class="n">z</span><span class="p">;</span><span class="w">  </span><span class="c1">// Nó sentinela (representa folhas vazias/nulo)</span>
+</code></pre></div>
+<hr />
+<h2 id="3-implementacao-das-operacoes">3. Implementação das Operações</h2>
+<h3 id="31-inicializacao-e-utilidades">3.1 Inicialização e Utilidades</h3>
+<div class="highlight"><span class="filename">Inicialização e funções auxiliares:</span><pre><span></span><code><span class="c1">// Criar um novo nó</span>
+<span class="n">link</span><span class="w"> </span><span class="nf">NEW</span><span class="p">(</span><span class="n">Item</span><span class="w"> </span><span class="n">item</span><span class="p">,</span><span class="w"> </span><span class="n">link</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">link</span><span class="w"> </span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">link</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">STNode</span><span class="p">));</span>
+<span class="w">    </span><span class="n">x</span><span class="o">-&gt;</span><span class="n">item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">item</span><span class="p">;</span>
+<span class="w">    </span><span class="n">x</span><span class="o">-&gt;</span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">l</span><span class="p">;</span>
+<span class="w">    </span><span class="n">x</span><span class="o">-&gt;</span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="p">;</span>
+<span class="w">    </span><span class="n">x</span><span class="o">-&gt;</span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">;</span>
+<span class="w">    </span><span class="n">x</span><span class="o">-&gt;</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RED</span><span class="p">;</span><span class="w">  </span><span class="c1">// Novos nós começam com link rubro</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Inicializar a árvore</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">ST_init</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NEW</span><span class="p">(</span><span class="n">NULL_ITEM</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w">  </span><span class="c1">// Nó sentinela</span>
+<span class="w">    </span><span class="n">z</span><span class="o">-&gt;</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BLACK</span><span class="p">;</span><span class="w">  </span><span class="c1">// Sentinela sempre negra</span>
+<span class="w">    </span><span class="n">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">z</span><span class="p">;</span><span class="w">  </span><span class="c1">// Raiz inicial aponta para sentinela</span>
+<span class="p">}</span>
+
+<span class="c1">// Verifica se um link é vermelho</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">isRed</span><span class="p">(</span><span class="n">link</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">z</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">  </span><span class="c1">// Links para sentinela são considerados negros</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="o">-&gt;</span><span class="n">color</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">RED</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Retorna o número de nós da árvore</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">ST_count</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">h</span><span class="o">-&gt;</span><span class="n">N</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Verifica se a árvore está vazia</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">ST_empty</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">z</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="32-operacoes-de-rotacao-e-ajuste">3.2 Operações de Rotação e Ajuste</h3>
+<ul>
+<li><strong>Rotação Esquerda (Anti-horária):|</strong><ul>
+<li>Usada quando há um link rubro à direita;</li>
+<li>Como funciona:<ul>
+<li>Rotação para esquerda da subwarvore</li>
+<li>Continua vermelho</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Rotação Direita (Horária):</strong><ul>
+<li>Usada quando há dois links rubros consecutivos à esquerda;</li>
+<li>Como funciona:<ul>
+<li>Rotaçao da subarvore para direita</li>
+<li>No superior fica vermelho</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Inversão de Cores:</strong><ul>
+<li>Simula a divisão de um nó triplo temporário em uma árvore 2-3;</li>
+<li>Remove a cor rubra dos dois filhos de um nó e torna o link que aponta para o nó rubro;</li>
+<li>Efeito: "Empurra" a cor rubra para cima na árvore;</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><span class="filename">Rotações e inversão de cores:</span><pre><span></span><code><span class="c1">// Rotação esquerda (anti-horária)</span>
+<span class="n">link</span><span class="w"> </span><span class="nf">rotateLeft</span><span class="p">(</span><span class="n">link</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">link</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="o">-&gt;</span><span class="n">r</span><span class="p">;</span><span class="w">          </span><span class="c1">// Filho direito sobe</span>
+<span class="w">    </span><span class="n">r</span><span class="o">-&gt;</span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="o">-&gt;</span><span class="n">l</span><span class="p">;</span><span class="w">           </span><span class="c1">// Adota subárvore esquerda de x</span>
+<span class="w">    </span><span class="n">x</span><span class="o">-&gt;</span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="p">;</span><span class="w">              </span><span class="c1">// r vira filho esquerdo de x</span>
+<span class="w">    </span><span class="n">x</span><span class="o">-&gt;</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="o">-&gt;</span><span class="n">color</span><span class="p">;</span><span class="w">   </span><span class="c1">// Herda a cor de r</span>
+<span class="w">    </span><span class="n">r</span><span class="o">-&gt;</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RED</span><span class="p">;</span><span class="w">        </span><span class="c1">// Novo link para r é rubro</span>
+<span class="w">    </span><span class="n">x</span><span class="o">-&gt;</span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="o">-&gt;</span><span class="n">N</span><span class="p">;</span><span class="w">           </span><span class="c1">// Atualiza contagem de nós</span>
+<span class="w">    </span><span class="n">r</span><span class="o">-&gt;</span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">r</span><span class="o">-&gt;</span><span class="n">l</span><span class="o">-&gt;</span><span class="n">N</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">r</span><span class="o">-&gt;</span><span class="n">r</span><span class="o">-&gt;</span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="c1">// Recalcula N para r</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Rotação direita (horária)</span>
+<span class="n">link</span><span class="w"> </span><span class="nf">rotateRight</span><span class="p">(</span><span class="n">link</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">link</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="o">-&gt;</span><span class="n">l</span><span class="p">;</span><span class="w">          </span><span class="c1">// Filho esquerdo sobe</span>
+<span class="w">    </span><span class="n">r</span><span class="o">-&gt;</span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="o">-&gt;</span><span class="n">r</span><span class="p">;</span><span class="w">           </span><span class="c1">// Adota subárvore direita de x</span>
+<span class="w">    </span><span class="n">x</span><span class="o">-&gt;</span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="p">;</span><span class="w">              </span><span class="c1">// r vira filho direito de x</span>
+<span class="w">    </span><span class="n">x</span><span class="o">-&gt;</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="o">-&gt;</span><span class="n">color</span><span class="p">;</span><span class="w">   </span><span class="c1">// Herda a cor de r</span>
+<span class="w">    </span><span class="n">r</span><span class="o">-&gt;</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RED</span><span class="p">;</span><span class="w">        </span><span class="c1">// Novo link para r é rubro</span>
+<span class="w">    </span><span class="n">x</span><span class="o">-&gt;</span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="o">-&gt;</span><span class="n">N</span><span class="p">;</span><span class="w">           </span><span class="c1">// Atualiza contagem de nós</span>
+<span class="w">    </span><span class="n">r</span><span class="o">-&gt;</span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">r</span><span class="o">-&gt;</span><span class="n">l</span><span class="o">-&gt;</span><span class="n">N</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">r</span><span class="o">-&gt;</span><span class="n">r</span><span class="o">-&gt;</span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="c1">// Recalcula N para r</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Inversão de cores (split de nó 4)</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">flipColors</span><span class="p">(</span><span class="n">link</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">r</span><span class="o">-&gt;</span><span class="n">l</span><span class="o">-&gt;</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BLACK</span><span class="p">;</span><span class="w">   </span><span class="c1">// Filhos tornam-se negros</span>
+<span class="w">    </span><span class="n">r</span><span class="o">-&gt;</span><span class="n">r</span><span class="o">-&gt;</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BLACK</span><span class="p">;</span>
+<span class="w">    </span><span class="n">r</span><span class="o">-&gt;</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RED</span><span class="p">;</span><span class="w">        </span><span class="c1">// Link para r torna-se rubro</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="33-insercao">3.3 Inserção</h3>
+<h4 id="331-funcionamento">3.3.1 Funcionamento</h4>
+<ul>
+<li>Insere um novo nó com link rubro, simulando a adição em uma árvore 2-3;</li>
+<li>Ajusta a árvore com rotações e inversões de cores para manter as propriedades da ARNE;</li>
+<li><strong>Casos</strong>:<ol>
+<li><strong>Nó simples</strong>: Novo nó é pendurado com link rubro (pode exigir ajustes);</li>
+<li><strong>Nó duplo</strong>: Forma um nó triplo temporário, que é dividido com inversão de cores;</li>
+</ol>
+</li>
+</ul>
+<h4 id="332-passo-a-passo">3.3.2 Passo a Passo</h4>
+<ul>
+<li>Insere recursivamente como em uma BST, pendurando o novo nó com link rubro;</li>
+<li>Após a inserção, verifica violações das propriedades:<ul>
+<li><strong>Link rubro à direita</strong>: Rotação esquerda;</li>
+<li><strong>Dois links rubros à esquerda</strong>: Rotação direita;</li>
+<li><strong>Dois filhos rubros</strong>: Inversão de cores;</li>
+</ul>
+</li>
+<li>Atualiza a contagem de nós (N);</li>
+<li>Garante que a raiz seja negra;</li>
+</ul>
+<div class="highlight"><span class="filename">Inserção com balanceamento:</span><pre><span></span><code><span class="c1">// Função pública de inserção</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">ST_insert</span><span class="p">(</span><span class="n">Item</span><span class="w"> </span><span class="n">item</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">insertR</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="w"> </span><span class="n">item</span><span class="p">);</span>
+<span class="w">    </span><span class="n">h</span><span class="o">-&gt;</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BLACK</span><span class="p">;</span><span class="w">  </span><span class="c1">// Raiz sempre negra</span>
+<span class="p">}</span>
+
+<span class="c1">// Função recursiva de inserção</span>
+<span class="n">link</span><span class="w"> </span><span class="nf">insertR</span><span class="p">(</span><span class="n">link</span><span class="w"> </span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">Item</span><span class="w"> </span><span class="n">item</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">r</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">z</span><span class="p">)</span><span class="w">  </span><span class="c1">// Encontrou posição de inserção</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">NEW</span><span class="p">(</span><span class="n">item</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">Key</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">key</span><span class="p">(</span><span class="n">item</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Key</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">key</span><span class="p">(</span><span class="n">r</span><span class="o">-&gt;</span><span class="n">item</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Inserção recursiva</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">less</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">r</span><span class="o">-&gt;</span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">insertR</span><span class="p">(</span><span class="n">r</span><span class="o">-&gt;</span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">item</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">r</span><span class="o">-&gt;</span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">insertR</span><span class="p">(</span><span class="n">r</span><span class="o">-&gt;</span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">item</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Balanceamento pós-inserção</span>
+<span class="w">    </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fixUp</span><span class="p">(</span><span class="n">r</span><span class="p">);</span>
+<span class="w">    </span><span class="n">r</span><span class="o">-&gt;</span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">r</span><span class="o">-&gt;</span><span class="n">l</span><span class="o">-&gt;</span><span class="n">N</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">r</span><span class="o">-&gt;</span><span class="n">r</span><span class="o">-&gt;</span><span class="n">N</span><span class="p">;</span><span class="w">  </span><span class="c1">// Atualiza contador</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">r</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Corrige violações das propriedades ARNE</span>
+<span class="n">link</span><span class="w"> </span><span class="nf">fixUp</span><span class="p">(</span><span class="n">link</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Corrige link vermelho à direita</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isRed</span><span class="p">(</span><span class="n">r</span><span class="o">-&gt;</span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">isRed</span><span class="p">(</span><span class="n">r</span><span class="o">-&gt;</span><span class="n">l</span><span class="p">))</span>
+<span class="w">        </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rotateLeft</span><span class="p">(</span><span class="n">r</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Corrige dois links vermelhos consecutivos à esquerda</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isRed</span><span class="p">(</span><span class="n">r</span><span class="o">-&gt;</span><span class="n">l</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">isRed</span><span class="p">(</span><span class="n">r</span><span class="o">-&gt;</span><span class="n">l</span><span class="o">-&gt;</span><span class="n">l</span><span class="p">))</span>
+<span class="w">        </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rotateRight</span><span class="p">(</span><span class="n">r</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Corrige dois filhos vermelhos (nó 4)</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isRed</span><span class="p">(</span><span class="n">r</span><span class="o">-&gt;</span><span class="n">l</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">isRed</span><span class="p">(</span><span class="n">r</span><span class="o">-&gt;</span><span class="n">r</span><span class="p">))</span>
+<span class="w">        </span><span class="n">flipColors</span><span class="p">(</span><span class="n">r</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">r</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="333-insercao-manual">3.3.3 Inserção Manual</h4>
+<p><img align="center" alt="Inserção" src="../../../assets/pngs/16.png" />
+<br>
+<em>Exemplo: ASERCH</em></p>
+<h3 id="34-busca">3.4 Busca</h3>
+<div class="highlight"><span class="filename">Busca recursiva:</span><pre><span></span><code><span class="c1">// Função pública de busca</span>
+<span class="n">Item</span><span class="w"> </span><span class="nf">ST_search</span><span class="p">(</span><span class="n">Key</span><span class="w"> </span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">searchR</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Função recursiva de busca</span>
+<span class="n">Item</span><span class="w"> </span><span class="nf">searchR</span><span class="p">(</span><span class="n">link</span><span class="w"> </span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">Key</span><span class="w"> </span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">r</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">z</span><span class="p">)</span><span class="w">  </span><span class="c1">// Não encontrado</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">NULL_ITEM</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">Key</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">key</span><span class="p">(</span><span class="n">r</span><span class="o">-&gt;</span><span class="n">item</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">eq</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">))</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">r</span><span class="o">-&gt;</span><span class="n">item</span><span class="p">;</span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">less</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">))</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">searchR</span><span class="p">(</span><span class="n">r</span><span class="o">-&gt;</span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">);</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">searchR</span><span class="p">(</span><span class="n">r</span><span class="o">-&gt;</span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="35-travessia-e-ordenacao">3.5 Travessia e Ordenação</h3>
+<div class="highlight"><span class="filename">Travessia in-order:</span><pre><span></span><code><span class="c1">// Função de visita</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">visit</span><span class="p">(</span><span class="n">Item</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="c1">// Travessia in-order recursiva</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">sortR</span><span class="p">(</span><span class="n">link</span><span class="w"> </span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">visit</span><span class="p">)(</span><span class="n">Item</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">r</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">z</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">sortR</span><span class="p">(</span><span class="n">r</span><span class="o">-&gt;</span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">visit</span><span class="p">);</span><span class="w">  </span><span class="c1">// Visita subárvore esquerda</span>
+<span class="w">    </span><span class="n">visit</span><span class="p">(</span><span class="n">r</span><span class="o">-&gt;</span><span class="n">item</span><span class="p">);</span><span class="w">      </span><span class="c1">// Visita nó atual</span>
+<span class="w">    </span><span class="n">sortR</span><span class="p">(</span><span class="n">r</span><span class="o">-&gt;</span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">visit</span><span class="p">);</span><span class="w">  </span><span class="c1">// Visita subárvore direita</span>
+<span class="p">}</span>
+
+<span class="c1">// Função pública para ordenação</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">ST_sort</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">visit</span><span class="p">)(</span><span class="n">Item</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">sortR</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="w"> </span><span class="n">visit</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="36-exemplo-de-uso">3.6 Exemplo de Uso</h3>
+<div class="highlight"><span class="filename">Exemplo de uso da ARNE:</span><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">ST_init</span><span class="p">();</span><span class="w">  </span><span class="c1">// Inicializa árvore</span>
+
+<span class="w">    </span><span class="c1">// Insere elementos: A S E R C H</span>
+<span class="w">    </span><span class="n">Item</span><span class="w"> </span><span class="n">items</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{{</span><span class="mi">1</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="mi">19</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="mi">5</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="mi">18</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="mi">3</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="mi">8</span><span class="p">}};</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">labels</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="sc">&#39;A&#39;</span><span class="p">,</span><span class="sc">&#39;S&#39;</span><span class="p">,</span><span class="sc">&#39;E&#39;</span><span class="p">,</span><span class="sc">&#39;R&#39;</span><span class="p">,</span><span class="sc">&#39;C&#39;</span><span class="p">,</span><span class="sc">&#39;H&#39;</span><span class="p">};</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">6</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">ST_insert</span><span class="p">(</span><span class="n">items</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Inserido: %c (%d)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">key</span><span class="p">(</span><span class="n">items</span><span class="p">[</span><span class="n">i</span><span class="p">]));</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Número de nós: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ST_count</span><span class="p">());</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Elementos em ordem: &quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">ST_sort</span><span class="p">(</span><span class="n">visit</span><span class="p">);</span><span class="w">  </span><span class="c1">// Imprime em ordem crescente</span>
+
+<span class="w">    </span><span class="c1">// Busca por uma chave</span>
+<span class="w">    </span><span class="n">Key</span><span class="w"> </span><span class="n">busca</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Item</span><span class="w"> </span><span class="n">resultado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ST_search</span><span class="p">(</span><span class="n">busca</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">key</span><span class="p">(</span><span class="n">resultado</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">Encontrado: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="p">(</span><span class="n">resultado</span><span class="p">));</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">Não encontrado: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">busca</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="4-analise-de-performance">4. Análise de Performance</h2>
+<h3 id="41-complexidade-das-operacoes">4.1 Complexidade das Operações</h3>
+<table>
+<thead>
+<tr>
+<th>Operação</th>
+<th>Melhor Caso</th>
+<th>Caso Médio</th>
+<th>Pior Caso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Busca</strong></td>
+<td>O(1)</td>
+<td>O(log n)</td>
+<td>O(log n)</td>
+</tr>
+<tr>
+<td><strong>Inserção</strong></td>
+<td>O(1)</td>
+<td>O(log n)</td>
+<td>O(log n)</td>
+</tr>
+<tr>
+<td><strong>Remoção</strong></td>
+<td>O(1)</td>
+<td>O(log n)</td>
+<td>O(log n)</td>
+</tr>
+<tr>
+<td><strong>Travessia</strong></td>
+<td>O(n)</td>
+<td>O(n)</td>
+<td>O(n)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="42-propriedades-de-balanceamento">4.2 Propriedades de Balanceamento</h3>
+<ul>
+<li><strong>Altura máxima</strong>: ≤ 2 log₂(n + 1)</li>
+<li><strong>Balanceamento perfeito</strong>: Todos os caminhos da raiz às folhas têm o mesmo número de links negros</li>
+<li><strong>Links vermelhos</strong>: Nunca dois links vermelhos consecutivos e sempre inclinados à esquerda</li>
+</ul>
+<h3 id="43-vantagens-sobre-bst-comum">4.3 Vantagens sobre BST Comum</h3>
+<ul>
+<li><strong>Balanceamento garantido</strong>: Sempre O(log n) para todas as operações</li>
+<li><strong>Performance consistente</strong>: Não degrada com dados ordenados</li>
+<li><strong>Eficiência de memória</strong>: Overhead mínimo (apenas 1 bit por nó para cor)</li>
+</ul>
+<h3 id="44-comparacao-com-outras-estruturas">4.4 Comparação com Outras Estruturas</h3>
+<table>
+<thead>
+<tr>
+<th>Característica</th>
+<th>BST Simples</th>
+<th>Árvore 2-3</th>
+<th>ARNE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Balanceamento</strong></td>
+<td>Não garantido</td>
+<td>Garantido</td>
+<td>Garantido</td>
+</tr>
+<tr>
+<td><strong>Altura máxima</strong></td>
+<td>O(n)</td>
+<td>O(log n)</td>
+<td>O(log n)</td>
+</tr>
+<tr>
+<td><strong>Complexidade</strong></td>
+<td>Simples</td>
+<td>Complexa</td>
+<td>Moderada</td>
+</tr>
+<tr>
+<td><strong>Overhead</strong></td>
+<td>Baixo</td>
+<td>Alto</td>
+<td>Baixo</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5-consideracoes-finais">5. Considerações Finais</h2>
+<h3 id="51-quando-usar-arne">5.1 Quando Usar ARNE</h3>
+<ul>
+<li><strong>Aplicações de alto desempenho</strong>: Onde O(log n) garantido é essencial</li>
+<li><strong>Dados dinâmicos</strong>: Muitas inserções/remoções com busca frequente</li>
+<li><strong>Memória limitada</strong>: Overhead menor que árvores 2-3</li>
+<li><strong>Dados ordenados</strong>: Excelente resistência a sequências ordenadas</li>
+</ul>
+<h3 id="52-aplicacoes-praticas">5.2 Aplicações Práticas</h3>
+<ul>
+<li><strong>Bancos de dados</strong>: Índices primários e secundários</li>
+<li><strong>Sistemas de arquivos</strong>: Estruturas de diretórios</li>
+<li><strong>Compiladores</strong>: Tabelas de símbolos eficientes</li>
+<li><strong>Bibliotecas padrão</strong>: Implementação de mapas e conjuntos ordenados</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+    
+  </body>
+</html>
