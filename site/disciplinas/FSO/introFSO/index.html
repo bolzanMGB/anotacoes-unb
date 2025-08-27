@@ -1,0 +1,2463 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../EDA2/Grafos/arvoreGer/">
+      
+      
+        <link rel="next" href="../processos/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.18">
+    
+    
+      
+        <title>Introdução - Anotações UnB</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.7e37652d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#fundamentos-de-sistemas-operacionais-fso" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Anotações UnB" class="md-header__button md-logo" aria-label="Anotações UnB" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Anotações UnB
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Introdução
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Anotações UnB" class="md-nav__button md-logo" aria-label="Anotações UnB" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Anotações UnB
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Estrutura de Dados 1
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Estrutura de Dados 1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA1/ponteiros/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ponteiros
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA1/alocacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Alocação de Memória
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA1/recurcao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Recurção
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA1/complexidade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Análise de Complexidade
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Listas Encadeadas
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            Listas Encadeadas
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA1/Listas%20Encadeadas/simplesEncadeada/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Listas Simplesmente Encadeadas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA1/Listas%20Encadeadas/duplaEncadeada/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Listas Duplamente Encadeadas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Algoritmos de Busca
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            Algoritmos de Busca
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA1/Algoritmos%20de%20Busca/buscaLinear/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Busca Sequencial
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA1/Algoritmos%20de%20Busca/buscaBinaria/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Busca Binária
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Algoritmos de ordenação
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            Algoritmos de ordenação
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA1/Algoritmos%20de%20ordenacao/introducao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introdução
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA1/Algoritmos%20de%20ordenacao/selection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Selection Sort
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA1/Algoritmos%20de%20ordenacao/bubble/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Bubble Sort
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA1/Algoritmos%20de%20ordenacao/insertion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Insertion Sort
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA1/Algoritmos%20de%20ordenacao/shell/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Shell Sort
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA1/Algoritmos%20de%20ordenacao/merge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Merge Sort
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA1/Algoritmos%20de%20ordenacao/quick/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Sort
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA1/Algoritmos%20de%20ordenacao/heap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Heap Sort
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA1/Algoritmos%20de%20ordenacao/intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Intro Sort
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA1/Algoritmos%20de%20ordenacao/counting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Counting Sort
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA1/Algoritmos%20de%20ordenacao/radix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Radix Sort
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Tipos Abstratos de dados (TAD)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            Tipos Abstratos de dados (TAD)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA1/Tipos%20Abstratos%20de%20Dados/filas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Filas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA1/Tipos%20Abstratos%20de%20Dados/pilhas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pilhas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA1/Tipos%20Abstratos%20de%20Dados/arvores/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Árvores Binárias
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA1/Tipos%20Abstratos%20de%20Dados/arvoreDebusca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Árvores Binárias de Busca
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Estrutura de Dados 2
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Estrutura de Dados 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA2/tabelaSimb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tabela de Símbolos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA2/arvoreBin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Árvore Binária de Busca
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA2/arvore23/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Árvore 2-3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA2/redblack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Árvore Red Black
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA2/skipList/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Skip List
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA2/hash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tabela Hash List
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Grafos
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            Grafos
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA2/Grafos/grafos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introdução
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA2/Grafos/grafosDir/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Grafos Dirigidos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA2/Grafos/caminhoMin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Algorítmos de Caminho Mínimos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EDA2/Grafos/arvoreGer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Algorítmos de Árvores Geradoras Mínimas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Fundamentos de Sistemas Operacionais
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Fundamentos de Sistemas Operacionais
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Introdução
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introdução
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-conceitos-basicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Conceitos Básicos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Conceitos Básicos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-definicao" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Definição
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-funcoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 Funções
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-classificacao-dos-sistemas-operacionais" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Classificação dos Sistemas Operacionais
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Classificação dos Sistemas Operacionais">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-monoprogramaveis-monotarefa" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Monoprogramáveis / Monotarefa
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-multiprogramaveis" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Multiprogramáveis
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#321-classificacao-por-numero-de-usuarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2.1 Classificação por número de usuários:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#322-classificacao-pela-forma-de-gerenciamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2.2 Classificação pela forma de gerenciamento:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-sistemas-com-multiplos-processadores" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 Sistemas com Múltiplos Processadores
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-sistemas-operacionais-usuais" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Sistemas Operacionais Usuais
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Sistemas Operacionais Usuais">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-computadores-pessoais" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Computadores Pessoais
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-servidores" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Servidores
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-embarcados" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Embarcados
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-estrutura-dos-sistemas-operacionais" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Estrutura dos Sistemas Operacionais
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Estrutura dos Sistemas Operacionais">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-basico" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 Básico
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-funcoes-do-nucleo" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 Funções do Núcleo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-modo-de-acesso" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3 Modo de Acesso
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-system-calls" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.4 System Calls
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55-arquiteturas-do-nucleo" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.5 Arquiteturas do Núcleo
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.5 Arquiteturas do Núcleo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#551-monoliticos" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.5.1 Monolíticos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#552-em-camadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.5.2 Em Camadas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#553-maquinas-virtuais" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.5.3 Máquinas Virtuais
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#554-microkernel" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.5.4 Microkernel
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#555-exokernel" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.5.5 Exokernel
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#556-conteineres" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.5.6 Contêineres
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-consideracoes-finais" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Considerações Finais
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../processos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Processos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../escalonamento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Escalonamento
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../threads/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Threads
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../corrida/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Condições de Corrida
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Fundamentos UNIX
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gerenciaMem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Gerência de Memória
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../memoriaVirtual/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Memória Virtual
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sistemaArquivos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sistema de Arquivos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gerencia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Gerência de Dispositivos de Entrada e Saída
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-conceitos-basicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Conceitos Básicos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Conceitos Básicos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-definicao" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Definição
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-funcoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 Funções
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-classificacao-dos-sistemas-operacionais" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Classificação dos Sistemas Operacionais
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Classificação dos Sistemas Operacionais">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-monoprogramaveis-monotarefa" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Monoprogramáveis / Monotarefa
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-multiprogramaveis" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Multiprogramáveis
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#321-classificacao-por-numero-de-usuarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2.1 Classificação por número de usuários:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#322-classificacao-pela-forma-de-gerenciamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2.2 Classificação pela forma de gerenciamento:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-sistemas-com-multiplos-processadores" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 Sistemas com Múltiplos Processadores
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-sistemas-operacionais-usuais" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Sistemas Operacionais Usuais
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Sistemas Operacionais Usuais">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-computadores-pessoais" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Computadores Pessoais
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-servidores" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Servidores
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-embarcados" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Embarcados
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-estrutura-dos-sistemas-operacionais" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Estrutura dos Sistemas Operacionais
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Estrutura dos Sistemas Operacionais">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-basico" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 Básico
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-funcoes-do-nucleo" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 Funções do Núcleo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-modo-de-acesso" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3 Modo de Acesso
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-system-calls" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.4 System Calls
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55-arquiteturas-do-nucleo" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.5 Arquiteturas do Núcleo
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.5 Arquiteturas do Núcleo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#551-monoliticos" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.5.1 Monolíticos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#552-em-camadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.5.2 Em Camadas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#553-maquinas-virtuais" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.5.3 Máquinas Virtuais
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#554-microkernel" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.5.4 Microkernel
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#555-exokernel" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.5.5 Exokernel
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#556-conteineres" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.5.6 Contêineres
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-consideracoes-finais" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Considerações Finais
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="fundamentos-de-sistemas-operacionais-fso">Fundamentos de Sistemas Operacionais (FSO)</h1>
+<hr />
+<h2 id="1-conceitos-basicos">1. Conceitos Básicos</h2>
+<p>Um <strong>computador</strong> é formado por duas partes principais:</p>
+<ul>
+<li><strong>Hardware</strong> (parte física)</li>
+<li><strong>Software</strong> (programas e instruções)</li>
+</ul>
+<h3 id="11-definicao">1.1 Definição</h3>
+<p><strong>Tanenbaum</strong>: Sistema Operacional (SO) é a parte fundamental do software que executa em <strong>modo protegido</strong>, com acesso total ao hardware e capacidade de executar qualquer instrução da máquina.</p>
+<ul>
+<li>Exemplo: apenas o SO tem acesso direto ao disco, memória e dispositivos. Aplicativos precisam solicitar esse acesso ao SO.</li>
+</ul>
+<p><strong>Machado e Maia</strong>: O SO é uma aplicação capaz de executar de forma <strong>assíncrona</strong>, em vez de linear.</p>
+<ul>
+<li>Exemplo: podemos ouvir música, baixar arquivos e usar antivírus ao mesmo tempo; se fosse síncrono, só rodaria uma tarefa por vez.</li>
+</ul>
+<h3 id="12-funcoes">1.2 Funções</h3>
+<p><strong>Abstração do hardware (máquina estendida / máquina abstrata):</strong></p>
+<ul>
+<li>O SO atua como interface entre usuário e computador.</li>
+<li>Inicialmente, programadores precisavam conhecer linguagem de máquina e hardware em detalhes.</li>
+<li>Atualmente, o SO esconde a complexidade, simplificando e tornando o uso mais seguro.</li>
+</ul>
+<p><strong>Compartilhamento de recursos:</strong></p>
+<p>O SO gerencia recursos físicos (CPU, memória, disco, dispositivos) e lógicos de forma organizada e protegida.
+- <strong>Exemplo multiusuário:</strong> o SO organiza impressões de vários usuários em uma mesma impressora.
+- <strong>Exemplo monousuário:</strong> em um laptop, o SO organiza múltiplas tarefas simultaneamente.</p>
+<p><strong>Responsabilidades do SO:</strong></p>
+<ul>
+<li>Gerenciar dispositivos (HD, memória, CPU, periféricos);</li>
+<li>Controlar operações de leitura/escrita;</li>
+<li>Transferir dados entre hardware e memória;</li>
+<li>Informar programas sobre conclusões de operações;</li>
+<li>Definir quem pode acessar quais recursos.</li>
+</ul>
+<hr />
+<h2 id="3-classificacao-dos-sistemas-operacionais">3. Classificação dos Sistemas Operacionais</h2>
+<h3 id="31-monoprogramaveis-monotarefa">3.1 Monoprogramáveis / Monotarefa</h3>
+<ul>
+<li>Primeiros a surgir.</li>
+<li>Executam apenas uma aplicação por vez.</li>
+<li>Todos os recursos são dedicados a uma única tarefa.</li>
+</ul>
+<h3 id="32-multiprogramaveis">3.2 Multiprogramáveis</h3>
+<ul>
+<li>Permitem que múltiplos programas compartilhem recursos.</li>
+<li>Enquanto um programa espera por E/S, outro pode usar o processador.</li>
+<li>Implementação mais complexa.</li>
+</ul>
+<h3 id="321-classificacao-por-numero-de-usuarios">3.2.1 Classificação por número de usuários:</h3>
+<ul>
+<li><strong>Monousuário</strong></li>
+<li><strong>Multiusuário</strong></li>
+</ul>
+<h3 id="322-classificacao-pela-forma-de-gerenciamento">3.2.2 Classificação pela forma de gerenciamento:</h3>
+<p><strong>Batch (em lote):</strong></p>
+<ul>
+<li>Programas armazenados e processados em lotes, sem interação do usuário.</li>
+<li>Exemplo: geração de boletos de clientes.</li>
+</ul>
+<p><strong>Tempo compartilhado:</strong></p>
+<ul>
+<li>Divisão do tempo do processador em fatias (time-slice).</li>
+<li>Usuários interagem diretamente com o SO.</li>
+<li>Alternância rápida → aparência de simultaneidade.</li>
+<li>Exemplo: celular executando vários aplicativos.</li>
+</ul>
+<p><strong>Tempo real:</strong></p>
+<ul>
+<li>Cumprimento rígido de prazos temporais.</li>
+<li>Pontualidade &gt; desempenho.</li>
+<li>Exemplo: controle de tráfego aéreo, airbags, indústria automobilística.</li>
+</ul>
+<h3 id="33-sistemas-com-multiplos-processadores">3.3 Sistemas com Múltiplos Processadores</h3>
+<ul>
+<li>Dois ou mais processadores trabalhando em conjunto.</li>
+<li>Vários programas executados em paralelo.</li>
+<li>Maior desempenho, escalabilidade e disponibilidade.</li>
+</ul>
+<p><strong>Tipos:</strong></p>
+<ul>
+<li><strong>Fortemente acoplados:</strong> memória compartilhada.</li>
+<li><strong>Fracamente acoplados:</strong> memórias independentes.</li>
+</ul>
+<hr />
+<h2 id="4-sistemas-operacionais-usuais">4. Sistemas Operacionais Usuais</h2>
+<h3 id="41-computadores-pessoais">4.1 Computadores Pessoais</h3>
+<ul>
+<li>Desktop, notebooks.</li>
+<li>Exemplo: Windows 10, Ubuntu, Fedora.</li>
+</ul>
+<h3 id="42-servidores">4.2 Servidores</h3>
+<ul>
+<li>Objetivo: atender vários usuários simultaneamente.</li>
+<li>Serviços: web, e-mail, autenticação.</li>
+<li>Exemplo: Windows Server 2008, CentOS, Red Hat.</li>
+</ul>
+<h3 id="43-embarcados">4.3 Embarcados</h3>
+<ul>
+<li>Equipamentos que não aparentam ser computadores.</li>
+<li>Exemplo: Android, iOS, sistemas embarcados de TVs, micro-ondas, carros.</li>
+</ul>
+<hr />
+<h2 id="5-estrutura-dos-sistemas-operacionais">5. Estrutura dos Sistemas Operacionais</h2>
+<h3 id="51-basico">5.1 Básico</h3>
+<ul>
+<li>O núcleo (kernel) é responsável por oferecer serviços essenciais.</li>
+<li>
+<p>Comunicação com o núcleo:</p>
+</li>
+<li>
+<p><strong>Chamadas de sistema (system calls):</strong> exemplo, criar/escrever arquivos.</p>
+</li>
+<li><strong>Utilitários:</strong> interfaces gráficas (gerenciador de arquivos, tarefas).</li>
+<li><strong>Linguagem de comando:</strong> terminal (prompt de comando, shell).</li>
+</ul>
+<h3 id="52-funcoes-do-nucleo">5.2 Funções do Núcleo</h3>
+<ul>
+<li>Tratamento de interrupções e exceções.</li>
+<li>Criação e eliminação de processos e threads.</li>
+<li>Comunicação e sincronização entre processos.</li>
+<li>Escalonamento de tarefas.</li>
+<li>Gerência de memória e arquivos.</li>
+<li>Controle de dispositivos de E/S.</li>
+<li>Suporte a redes locais e distribuídas.</li>
+<li>Contabilização e auditoria de recursos.</li>
+</ul>
+<h3 id="53-modo-de-acesso">5.3 Modo de Acesso</h3>
+<ul>
+<li><strong>Modo Usuário:</strong> execução de instruções não privilegiadas.</li>
+<li><strong>Modo Kernel:</strong> acesso total às instruções e recursos.</li>
+</ul>
+<h3 id="54-system-calls">5.4 System Calls</h3>
+<ul>
+<li>Permitem que aplicações solicitem serviços privilegiados do SO.</li>
+<li>Executadas em <strong>modo kernel</strong>.</li>
+<li>O processador alterna entre modo usuário ↔ modo kernel durante chamadas.</li>
+</ul>
+<h3 id="55-arquiteturas-do-nucleo">5.5 Arquiteturas do Núcleo</h3>
+<h4 id="551-monoliticos">5.5.1 Monolíticos</h4>
+<ul>
+<li>Núcleo único formado por módulos compilados em um único programa.</li>
+<li>Apenas o SO roda em modo protegido.</li>
+<li><strong>Vantagem:</strong> melhor tempo de resposta.</li>
+<li><strong>Desvantagem:</strong> difícil manutenção.</li>
+<li><strong>Exemplo:</strong> Linux.</li>
+</ul>
+<h4 id="552-em-camadas">5.5.2 Em Camadas</h4>
+<ul>
+<li>Dividido em camadas sobrepostas.</li>
+<li>Cada camada acessa apenas a imediatamente inferior.</li>
+<li><strong>Vantagens:</strong> isolamento, proteção.</li>
+<li><strong>Desvantagens:</strong> menor desempenho, mais trocas de modo.</li>
+<li><strong>Exemplos:</strong> THE, MULTICS.</li>
+</ul>
+<h4 id="553-maquinas-virtuais">5.5.3 Máquinas Virtuais</h4>
+<ul>
+<li>Camada intermediária que cria máquinas virtuais independentes.</li>
+<li>Cada VM possui cópia virtual configurável do hardware.</li>
+<li><strong>Vantagens:</strong> isolamento, consolidação de servidores, testes.</li>
+<li><strong>Exemplo:</strong> VMware ESX, VirtualBox.</li>
+</ul>
+<h4 id="554-microkernel">5.5.4 Microkernel</h4>
+<ul>
+<li>Modelo cliente-servidor.</li>
+<li>Núcleo mínimo: gerencia processos, memória básica, IPC e interrupções.</li>
+<li>Serviços do SO implementados em nível usuário.</li>
+<li><strong>Vantagens:</strong> estabilidade, segurança.</li>
+<li><strong>Desvantagens:</strong> implementação complexa, menor desempenho.</li>
+</ul>
+<h4 id="555-exokernel">5.5.5 Exokernel</h4>
+<ul>
+<li>Núcleo mínimo que apenas gerencia recursos básicos (CPU, memória, disco).</li>
+<li>Aplicações acessam diretamente o hardware.</li>
+<li><strong>Vantagens:</strong> alta performance, customização.</li>
+<li><strong>Desvantagens:</strong> complexidade de uso.</li>
+</ul>
+<h4 id="556-conteineres">5.5.6 Contêineres</h4>
+<ul>
+<li>Alternativa às máquinas virtuais.</li>
+<li>Não emulam hardware nem rodam um SO completo.</li>
+<li>Compartilham o mesmo kernel, mas têm bibliotecas isoladas.</li>
+<li><strong>Exemplo:</strong> Docker.</li>
+</ul>
+<hr />
+<h2 id="6-consideracoes-finais">6. Considerações Finais</h2>
+<ul>
+<li>O Sistema Operacional é essencial para abstrair, organizar e proteger recursos.</li>
+<li>Diferentes arquiteturas e classificações atendem a necessidades distintas (tempo real, multiprogramação, servidores, embarcados).</li>
+<li>Evoluções recentes como <strong>máquinas virtuais</strong> e <strong>contêineres</strong> expandem seu papel para ambientes de nuvem e escalabilidade.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+    
+  </body>
+</html>

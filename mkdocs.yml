@@ -64,6 +64,9 @@ nav:
          - Grafos Dirigidos: disciplinas/EDA2/Grafos/grafosDir.md
          - Algorítmos de Caminho Mínimos: disciplinas/EDA2/Grafos/caminhoMin.md
          - Algorítmos de Árvores Geradoras Mínimas: disciplinas/EDA2/Grafos/arvoreGer.md
+  - Fundamentos de Arquitetura de Computadores:
+      - Assembly MIPS: disciplinas/FAC/introFAC.md
+      - Arquitetura Processador MIPS: disciplinas/FAC/processador.md
   - Fundamentos de Sistemas Operacionais:
       - Introdução: disciplinas/FSO/introFSO.md
       - Processos: disciplinas/FSO/processos.md
