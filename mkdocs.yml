@@ -78,3 +78,5 @@ nav:
       - Memória Virtual: disciplinas/FSO/memoriaVirtual.md
       - Sistema de Arquivos: disciplinas/FSO/sistemaArquivos.md
       - Gerência de Dispositivos de Entrada e Saída: disciplinas/FSO/gerencia.md
+  - Banco de Dados 1:
+      - Modelo Entidade Relacionamento (MER): disciplinas/BD1/mer.md
