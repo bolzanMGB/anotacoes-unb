@@ -1,72 +1,92 @@
-# Elicitação de Requisitos
+# **Elicitação de Requisitos**
 
 ---
 
-## 1. O que é
-A elicitação é o processo de obter informações detalhadas sobre o que o sistema deve fazer. O foco é capturar necessidades, expectativas e restrições de todos os stakeholders, incluindo usuários finais, clientes, reguladores, e até a própria equipe técnica.
+## **1. O que é**
+
+A elicitação de requisitos é o processo de obter informações detalhadas sobre o que o sistema deve fazer. O foco está em capturar as necessidades, expectativas e restrições de todos os stakeholders (usuários finais, clientes, reguladores, equipe técnica etc.), além de compreender o contexto do domínio e o problema que precisa ser resolvido.
 
 ---
 
-## 2. Objetivos principais
+## **2. Objetivos principais**
 
-- Identificar requisitos funcionais e não funcionais.
-- Compreender o contexto do sistema e o problema real.
-- Evitar ambiguidades e lacunas que podem gerar retrabalho.
+Identificar requisitos funcionais e não funcionais.
+
+Compreender o problema real e o contexto em que o sistema será utilizado.
+
+Criar uma base de entendimento comum entre equipe e stakeholders.
+
+Evitar ambiguidades, lacunas e mal-entendidos que possam gerar retrabalho.
 
 ---
 
-## 3. Como funciona
+## **3. Como funciona**
+
 O processo geralmente envolve interação direta com stakeholders e análise de fontes de informação existentes.
-Passos típicos:
+Etapas típicas:
 
-- Preparação: conhecer o domínio e os stakeholders.
-- Coleta: realizar entrevistas, observações, workshops.
-- Documentação: registrar os requisitos de forma clara.
-- Validação preliminar: checar se os requisitos fazem sentido antes de avançar.
+- Preparação → conhecer o domínio, mapear stakeholders e planejar a coleta.
+
+- Coleta → aplicar técnicas como entrevistas, observações, workshops e análise documental.
+
+- Documentação inicial → registrar requisitos e descobertas de forma clara e compreensível.
+
+- Validação preliminar → checar se os requisitos coletados fazem sentido antes de avançar.
+
+## **4. Técnicas Comuns de Elicitação**
+
+### **4.1 Entrevista**
+
+Conversa estruturada ou semiestruturada com stakeholders.
+
+Permite obter informações detalhadas, esclarecer dúvidas e descobrir necessidades ocultas.
+
+Pode ser individual ou em grupo.
 
 ---
 
-## 4. Técnicas Comuns de Elicitação
+### **4.2 Questionário**
 
-**4.1 Entrevista**
+Conjunto de perguntas enviado a usuários ou stakeholders.
 
-- Conversa estruturada ou semiestruturada com stakeholders.
-- Permite obter informações detalhadas, esclarecer dúvidas e descobrir necessidades ocultas.
+Útil para coletar dados de muitas pessoas rapidamente.
 
-- Pode ser individual ou em grupo.
+Pode ser aberto (respostas livres) ou fechado (opções pré-definidas).
 
-**4.2 Glossário**
+---
 
-- Lista de termos e definições relevantes do domínio do sistema.
+### **4.3 Observação / Shadowing**
 
-- Ajuda a uniformizar a linguagem entre analistas e stakeholders, evitando ambiguidades.
+Consiste em observar usuários em seu ambiente real de trabalho.
 
-**4.3 Questionário**
+Permite identificar atividades e requisitos que os usuários podem não conseguir descrever verbalmente.
 
-- Conjunto de perguntas enviadas a usuários ou stakeholders.
+Útil para descobrir requisitos implícitos.
 
-- Útil para coletar dados de muitas pessoas rapidamente.
+---
 
-- Pode ser aberto (respostas livres) ou fechado (opções pré-definidas).
+### **4.4 Grupo Focal (Focus Group)**
 
-**4.4 Introspecção**
+Reunião facilitada com um grupo de usuários representativos.
 
-- Técnica em que o próprio analista reflete sobre o sistema e as necessidades dos usuários, baseado em experiência e conhecimento.
+Coleta opiniões, expectativas e feedbacks sobre o sistema ou protótipos.
 
-- Ajuda a identificar requisitos que stakeholders podem não perceber.
+Ajuda a entender perspectivas coletivas e priorizar requisitos.
 
-**4.5 Grupo Focal (Focus Group)**
+---
 
-- Reunião de um grupo de usuários/discussão facilitada.
+### **4.5 Introspecção**
 
-- Coleta opiniões, expectativas e feedbacks sobre o sistema ou protótipos.
+Técnica em que o analista reflete sobre o sistema e as necessidades dos usuários, baseado em experiência e conhecimento prévio.
 
-- Útil para entender perspectivas coletivas e priorizar requisitos.
+Útil para identificar requisitos que stakeholders podem não perceber.
 
-**4.6 Observação / Shadowing**
+---
 
-- Observar usuários no ambiente real.
+### **4.6 Léxicos/Glossário**
 
-- Identifica processos que eles podem não conseguir descrever verbalmente.
+Lista de termos e definições relevantes do domínio.
 
-- Útil para descobrir requisitos implícitos.
+Ajuda a uniformizar a linguagem entre analistas e stakeholders, evitando ambiguidades.
+
+Pode começar na elicitação e ser refinado durante a análise e especificação.

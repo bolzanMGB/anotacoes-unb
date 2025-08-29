@@ -78,14 +78,20 @@ nav:
       - Memória Virtual: disciplinas/FSO/memoriaVirtual.md
       - Sistema de Arquivos: disciplinas/FSO/sistemaArquivos.md
       - Gerência de Dispositivos de Entrada e Saída: disciplinas/FSO/gerencia.md
-  - Banco de Dados 1:
-      - Modelo Entidade Relacionamento (MER): disciplinas/BD1/mer.md
   - Requisitos de Software:
-      - Introdução: disciplinas/REQ/.md
+      - Introdução: disciplinas/REQ/introREQ.md
       - Elicitação: disciplinas/REQ/elicitacao.md
       - Análise e Modelagem: disciplinas/REQ/modelagem.md
       - Priorização: disciplinas/REQ/priorizacao.md
+      - Especificação: disciplinas/REQ/especificação.md
+      - Gerência: disciplinas/REQ/gerencia.md
+  - Banco de Dados 1:
+      - Modelo Entidade Relacionamento (MER): disciplinas/BD1/mer.md
   - Arquitetura e Desenho de Software: 
-      - Deenho de Software: disciplinas/ARQ/Desenho/desenho.md
-      - BPMN: disciplinas/ARQ/Desenho/BPMN.md
+      - Base:
+        - Desenho de Software: disciplinas/ARQ/Base/desenho.md
+        - BPMN: disciplinas/ARQ/Base/BPMN.md
+  - Fundamentos de Redes de Computadores:
+      - Introdução: disciplinas/REDES/introRED.md
+
 

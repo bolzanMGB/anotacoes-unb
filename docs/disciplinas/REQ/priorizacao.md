@@ -1,67 +1,106 @@
-# **Pré-Rastreabilidade (Pre-Traceability Assessment)**
-
-## **1. O que é**
-
-A pré-rastreabilidade é a etapa em que você **garante que todos os requisitos têm uma origem clara e justificada**, antes de criar a rastreabilidade formal com casos de teste, design e código. É uma checagem de consistência inicial para evitar problemas futuros.
-
-Em outras palavras, **cada requisito precisa ter “uma história”**: de onde veio, quem solicitou, qual necessidade atende, qual objetivo do negócio suporta.
+# Priorização de Requisitos
 
 ---
 
-## **2. Objetivos principais**
+## 1. O que é
 
-* Confirmar que todos os requisitos são **válidos, relevantes e viáveis**.
-* Evitar requisitos vagos, duplicados ou conflitantes.
-* Preparar os requisitos para o **mapeamento formal de rastreabilidade** (pós-rastreabilidade).
-* Ajudar a equipe a entender **quem são os usuários e qual contexto eles estão inseridos**.
+A priorização de requisitos é o processo de **definir a ordem de importância** dos requisitos identificados, levando em conta o valor para o negócio, a urgência, os riscos, as restrições técnicas e os interesses dos stakeholders.
 
----
-
-## **3. Como funciona**
-
-1. Revisão de todos os requisitos coletados na **elicitação**.
-2. Verificação da **origem** de cada requisito:
-
-   * Stakeholder específico
-   * Documento de referência
-   * Observação de processos
-3. Validação da **clareza e completude**.
-4. Criação de representações que **facilitem entendimento do contexto** (usuários, processos, interações).
+O objetivo é ajudar na **tomada de decisão** sobre quais requisitos devem ser implementados primeiro, quais podem ser adiados e quais podem ser descartados.
 
 ---
 
-## **4. Técnicas comuns de Pré-Rastreabilidade**
+## 2. Objetivos principais
 
-
-### **4.1 Rich Pictures**
-
-* Diagramas visuais que representam o sistema, atores, interações e contexto.
-* Podem incluir problemas atuais, fluxos de trabalho, stakeholders e processos.
-* Objetivo: **comunicação visual do contexto**, facilitando identificação de requisitos e potenciais lacunas.
-
-### **4.2 Storyboards**
-
-* Sequências de telas ou situações que demonstram como os usuários interagem com o sistema.
-* Auxilia a validar requisitos funcionais e identificar necessidades não explicitadas.
-
-### **4.3 Mapas Conceituais**
-
-* Mostram relações entre conceitos, processos e requisitos.
-* Útil para ver como diferentes requisitos se conectam e identificar dependências.
-
-### **4.4 Checklists de Origem**
-
-* Listas que ajudam a confirmar que cada requisito possui:
-
-  * Fonte clara (stakeholder ou documento)
-  * Objetivo de negócio definido
-  * Categoria (funcional, não funcional)
-* Evita ambiguidades e requisitos “soltos”.
+* Garantir que os requisitos mais críticos sejam atendidos primeiro.
+* Ajudar na gestão de tempo, custo e esforço do projeto.
+* Balancear as necessidades dos stakeholders com as restrições do sistema.
+* Evitar conflitos e alinhar expectativas sobre entregas.
 
 ---
 
-## **5. Resultados da Pré-Rastreabilidade**
+## 3. Como funciona
 
-* Todos os requisitos têm **origem identificável**.
-* Contexto do sistema e do usuário está **documentado e compreendido**.
-* Facilita a **rastreabilidade formal** (pós-rastreabilidade) e a **validação**.
+A priorização ocorre depois que os requisitos já foram **elicitados e documentados**. Normalmente é feita de forma **colaborativa com os stakeholders**, usando critérios como:
+
+* Valor de negócio;
+* Frequência de uso;
+* Impacto no usuário;
+* Custo/esforço de implementação;
+* Riscos e dependências.
+
+---
+
+## 4. Técnicas Comuns de Priorização
+
+**4.1 MoSCoW**
+
+* Classifica requisitos em quatro categorias:
+
+  * **Must Have**: indispensáveis.
+  * **Should Have**: importantes, mas não críticos.
+  * **Could Have**: desejáveis, mas não necessários.
+  * **Won’t Have (for now)**: fora do escopo atual.
+* Técnica simples e muito usada em metodologias ágeis.
+
+---
+
+**4.2 \$100 (ou 100 Points Method)**
+
+* Cada stakeholder recebe 100 pontos (ou “dinheiros fictícios”).
+* Eles distribuem os pontos entre os requisitos conforme a importância.
+* O resultado mostra a prioridade relativa segundo a percepção dos stakeholders.
+
+---
+
+**4.3 First Things First (FTF)**
+
+* Cada requisito é avaliado em dois eixos: **Valor** e **Custo**.
+* Normalmente se usa uma fórmula para calcular a prioridade, como:
+
+  $$
+  \text{Prioridade} = \frac{Valor}{Custo}
+  $$
+* Requisitos com maior relação valor/custo são priorizados.
+
+---
+
+**4.4 Three-Level Scale**
+
+* Classificação simples em três níveis:
+
+  * **Alta prioridade**
+  * **Média prioridade**
+  * **Baixa prioridade**
+* Fácil de aplicar em projetos menores ou no início da análise.
+
+---
+
+**4.5 Ranking por pares (Pairwise Comparison / Analytic Hierarchy Process - AHP)**
+
+* Requisitos são comparados **dois a dois**.
+* Stakeholders decidem qual dos dois é mais importante.
+* O processo gera um ranking global de prioridade.
+* A versão mais sofisticada é o **AHP**, que usa matriz de decisão com pesos.
+
+---
+
+**4.6 Kano Model**
+
+* Classifica requisitos segundo a **satisfação do usuário**:
+
+  * **Básicos**: esperados, ausência causa insatisfação.
+  * **Desempenho**: aumentam a satisfação proporcionalmente.
+  * **Encantadores**: surpreendem positivamente, mas ausência não gera insatisfação.
+
+---
+
+**4.7 WSJF (Weighted Shortest Job First)** *(muito usado em SAFe/Agile)*
+
+* Calcula prioridade com base em:
+
+  $$
+  WSJF = \frac{\text{Valor do Negócio + Urgência + Redução de Risco}}{\text{Tamanho ou Esforço}}
+  $$
+* Foca em maximizar valor entregue no menor tempo possível.
+
