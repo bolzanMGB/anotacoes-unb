@@ -144,6 +144,24 @@ Podem ser genérico, tempo, mensagem, sinal, erro, cancelamento, etc.
 
 ### **2.9 Gateways (Decisões)**
 
+Controlam divergência ou convergência do fluxo.
+
+Tipos principais:
+
+- Exclusivo (XOR).
+
+- Inclusivo (OR).
+
+- Paralelo (AND).
+
+- Baseado em evento.
+
+- Complexo.
+
 ---
 
 ### **2.10 Itens e Dados**
+
+Representam documentos, informações ou objetos físicos que transitam no processo.
+
+Exemplo: artefatos de dados, anotações.
