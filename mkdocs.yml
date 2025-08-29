@@ -80,3 +80,12 @@ nav:
       - Gerência de Dispositivos de Entrada e Saída: disciplinas/FSO/gerencia.md
   - Banco de Dados 1:
       - Modelo Entidade Relacionamento (MER): disciplinas/BD1/mer.md
+  - Requisitos de Software:
+      - Introdução: disciplinas/REQ/.md
+      - Elicitação: disciplinas/REQ/elicitacao.md
+      - Análise e Modelagem: disciplinas/REQ/modelagem.md
+      - Priorização: disciplinas/REQ/priorizacao.md
+  - Arquitetura e Desenho de Software: 
+      - Deenho de Software: disciplinas/ARQ/Desenho/desenho.md
+      - BPMN: disciplinas/ARQ/Desenho/BPMN.md
+
