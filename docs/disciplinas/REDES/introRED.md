@@ -82,9 +82,11 @@ Formada por computadores autônomos conectados via meios de transmissão e proto
 - Formato IPv4: X.Y.Z.W (0 a 255).
 - Ex.: 192.168.1.1.
 
-- Pirvado
 
-- publico
+**IP Público:** é o IP que identifica a sua rede de internet, entregue pela operadora
+
+**IP Privado:** é o IP que identifica cada dispositivo dentro da sua rede, distribuido pelo roteador
+
 
 **Classes de endereços IPv4:**
 

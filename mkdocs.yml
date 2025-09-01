@@ -93,5 +93,9 @@ nav:
         - BPMN: disciplinas/ARQ/Base/BPMN.md
   - Fundamentos de Redes de Computadores:
       - Introdução: disciplinas/REDES/introRED.md
+  - Qualidade de Software 1:
+      - Introdução: disciplinas/QUAL/introQual.md
+
+
 
 
