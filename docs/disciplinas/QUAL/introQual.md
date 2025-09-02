@@ -1,5 +1,6 @@
 # Introdução
 
+---
 
 ## 1. Conceito de qualidade:
 
@@ -15,6 +16,8 @@
 - Pressman: Conformidade a requisitos funcionais e não-funcionais, padrões e boas práticas.
 - Galin (2004): Inclui requisitos, padrões de contrato e boas práticas implícitas.
 
+---
+
 ## 2. Princípios básicos da qualidades:
 
 - Qualidade deve ser pensada **desde o início**.
@@ -24,6 +27,7 @@
 - Gestão participativa: qualidade envolve todos.
 - Todos os artefatos do desenvolvimento podem ser avaliados.
 
+---
 
 ## 3. Visões da Qualidade de Software:
 
@@ -51,6 +55,8 @@
 - Relação qualidade x custo;
 - Exemplo: quanto o cliente está disposto a pagar por mais confiabilidade;
 
+---
+
 ## 4. Qualidade no Ciclo de Vida:
 
 **Qualidade interna:**propriedades internas de software (código, arquitetura)
@@ -61,10 +67,11 @@
 
 São semper avaliadas por validação e verificação
 
+---
 
-## 4. Dimensões da Qualidade
+## 5. Dimensões da Qualidade
 
-### 4.1 McCall:
+### 5.1 McCall:
 
 Dividido em 3 categorias
 
@@ -88,7 +95,7 @@ Dividido em 3 categorias
 - Reusabilidade.
 - Interoperabilidade.
 
-### 4.2 FURPS:
+### 5.2 FURPS:
 
 **F – Functionality:** funcionalidades, segurança, interoperabilidade.
 
@@ -100,7 +107,7 @@ Dividido em 3 categorias
 
 **S – Supportability:** manutenibilidade, testabilidade, adaptabilidade, extensibilidade.
 
-### 4.3 SQUARE:
+### 5.3 SQUARE:
 
 - Definição de requisitos de segurança.
 - Identificação de ativos críticos.
