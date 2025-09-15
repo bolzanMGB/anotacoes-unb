@@ -83,7 +83,7 @@ nav:
       - Elicitação: disciplinas/REQ/elicitacao.md
       - Análise e Modelagem: disciplinas/REQ/modelagem.md
       - Priorização: disciplinas/REQ/priorizacao.md
-      - Especificação: disciplinas/REQ/especificação.md
+      - Especificação: disciplinas/REQ/especificacao.md
       - Gerência: disciplinas/REQ/gerencia.md
   - Banco de Dados 1:
       - Modelo Entidade Relacionamento (MER): disciplinas/BD1/mer.md
