@@ -1825,7 +1825,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../REQ/especificação.md" class="md-nav__link">
+      <a href="../../REQ/especificacao/" class="md-nav__link">
         
   
   
@@ -2310,9 +2310,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#51-mccall" class="md-nav__link">
+  <a href="#51-modelo-mccall" class="md-nav__link">
     <span class="md-ellipsis">
-      5.1 McCall:
+      5.1 Modelo McCall:
     </span>
   </a>
   
@@ -2328,9 +2328,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#53-square" class="md-nav__link">
+  <a href="#54-modelo-isoiec-25010" class="md-nav__link">
     <span class="md-ellipsis">
-      5.3 SQUARE:
+      5.4 Modelo ISO/IEC 25010
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-modelo-square-software-quality-requirements-and-evaluation" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3 Modelo SQuaRE (Software Quality Requirements and Evaluation):
     </span>
   </a>
   
@@ -2430,9 +2439,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#51-mccall" class="md-nav__link">
+  <a href="#51-modelo-mccall" class="md-nav__link">
     <span class="md-ellipsis">
-      5.1 McCall:
+      5.1 Modelo McCall:
     </span>
   </a>
   
@@ -2448,9 +2457,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#53-square" class="md-nav__link">
+  <a href="#54-modelo-isoiec-25010" class="md-nav__link">
     <span class="md-ellipsis">
-      5.3 SQUARE:
+      5.4 Modelo ISO/IEC 25010
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-modelo-square-software-quality-requirements-and-evaluation" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3 Modelo SQuaRE (Software Quality Requirements and Evaluation):
     </span>
   </a>
   
@@ -2479,6 +2497,9 @@
 
 <h1 id="introducao">Introdução</h1>
 <hr />
+<p>https://aprender3.unb.br/pluginfile.php/3230264/mod_resource/content/2/_LO%20QSW1%20UND1%20Introducao%20a%20qsw.pdf</p>
+<p>https://aprender3.unb.br/pluginfile.php/3230265/mod_resource/content/3/LO%20Fatores%20de%20qualidade%20galin2018.pdf</p>
+<p>https://aprender3.unb.br/pluginfile.php/3230273/mod_resource/content/0/QSW1%20A03%20Dimensoes%20da%20qualidade%20de%20sw.pdf</p>
 <h2 id="1-conceito-de-qualidade">1. Conceito de qualidade:</h2>
 <p><strong>Definição (IEEE):</strong> grau em que o sistema, componente ou processo satisfaz:</p>
 <ul>
@@ -2504,76 +2525,138 @@
 </ul>
 <hr />
 <h2 id="3-visoes-da-qualidade-de-software">3. Visões da Qualidade de Software:</h2>
-<p><strong>Transcendental:</strong>
-- Algo ideal, difícil de definir, mas reonhecível quando se vê. Um achismo.
-- Exemplo: softwate elegante ou bonito;</p>
-<p><strong>Usuário:</strong></p>
+<p>São as diferentes formas de interpretar o que significa qualidade no contexto da Engenharia de Software. São elas:</p>
+<p><strong>Transcendental:</strong></p>
 <ul>
-<li>Grau em que o produto atende às expectativas do usuáraio;</li>
-<li>Exemplo: usabilidade (interface simples, intuitiva);</li>
+<li>Qualidade vista como algo subjetivo ou ideal;</li>
+<li>Algo difícil de definir, mas reconhecível quando se vê. Um achismo.</li>
+<li>Exemplo: softwate elegante ou bonito;</li>
 </ul>
-<p><strong>Produto:</strong></p>
+<p><strong>Baseada no Usuário:</strong></p>
 <ul>
-<li>Qualidade interna, resulta em qualidade externa.</li>
-<li>Avalia de forma objetiva, relação causal.</li>
-<li>Exemplo: código bem estruturado gera menso falhas para o usuário.</li>
+<li>Qualidade é medida pelo quanto o software saisfaz o usuário final;</li>
+<li>Grau em que o produto atende às expectativas do usuário;</li>
+<li>Exemplo: usabilidade (interface simples, intuitiva), um sistema pode ser tecnicamente impecável, mas se não for intuitivo, o usuário não considera de qualidade.;</li>
 </ul>
-<p><strong>Manufatura (processo):</strong></p>
+<p><strong>Baseada no Produto:</strong></p>
+<ul>
+<li>Qualidade depende das características técnicas do software;</li>
+<li>Avalia de forma objetiva:complexidade do código, manutenibilidade, desempenho; </li>
+<li>Qualidade interna, resulta em qualidade externa (relação causal);</li>
+<li>Exemplo: código bem estruturado gera menso falhas e aumenta a qualidade percebida para o usuário.</li>
+</ul>
+<p><strong>Baseada na Manufatura (processo):</strong></p>
 <ul>
 <li>Qualidade do processo de desenvolvimento influencia o produto;</li>
 <li>Exemplo: seguir boas práticas ágeis e CMMI melhora o resultado;</li>
 </ul>
-<p><strong>Baseada em valor:</strong>
-- Relação qualidade x custo;
-- Exemplo: quanto o cliente está disposto a pagar por mais confiabilidade;</p>
+<p><strong>Baseada em valor:</strong></p>
+<ul>
+<li>Relação qualidade x custo;</li>
+<li>Considera o ponto de vista do cliente: até que ponto vale a pena investir em mais confiabilidade, desempenho ou suporte?</li>
+<li>Exemplo: quanto o cliente está disposto a pagar por mais confiabilidade, em alguns casos, não compensa gastar mais para atingir “perfeição” se o cliente aceita uma versão “boa o suficiente”.</li>
+</ul>
 <hr />
 <h2 id="4-qualidade-no-ciclo-de-vida">4. Qualidade no Ciclo de Vida:</h2>
-<p><strong>Qualidade interna:</strong>propriedades internas de software (código, arquitetura)</p>
+<p><strong>Qualidade interna:</strong> propriedades internas de software (código, arquitetura);</p>
 <p><strong>Qualidade externa:</strong> como o software se comporta quando executado;</p>
 <p><strong>Qualidade em uso:</strong> percepção do usuário (eficácia, eficiência, satisfação);</p>
-<p>São semper avaliadas por validação e verificação</p>
+<p>São sempre avaliadas por validação e verificação.</p>
 <hr />
 <h2 id="5-dimensoes-da-qualidade">5. Dimensões da Qualidade</h2>
-<h3 id="51-mccall">5.1 McCall:</h3>
-<p>Dividido em 3 categorias</p>
-<p><strong>Operação do produto:</strong></p>
+<h3 id="51-modelo-mccall">5.1 Modelo McCall:</h3>
+<p>Modelo que define a qualidade de software através de três grandes perspectivas a várias dimensões específicas. São elas:</p>
+<p><strong>5.1.1 Fatores de Operação do Produto:</strong>
+Foca em como o software funciona durante o uso:</p>
 <ul>
-<li>Correção (atender requisitos).</li>
-<li>Confiabilidade.</li>
-<li>Eficiência.</li>
-<li>Integridade (segurança).</li>
-<li>Usabilidade.</li>
+<li>Correção: o software realiza corretamentos os requisitos que deveria executar.</li>
+<li>Confiabilidade: o software é confiável, funciona sem falhar durante a operação.</li>
+<li>Eficiência: o software é eficiente, uso adequado e otimizado dos recursos (CPU, memória etc.)</li>
+<li>Integridade: o software é seguro.</li>
+<li>Usabilidade: o software tem usabilidade de fácil uso pelo usuario;</li>
 </ul>
-<p><strong>Revisão do produto:</strong></p>
+<p><strong>5.1.2 Fatores de Revisão do Produto:</strong>
+Foca em mudanças e manutenção do software. </p>
 <ul>
-<li>Manutenibilidade.</li>
-<li>Flexibilidade.</li>
-<li>Testabilidade.</li>
+<li>Manutenibilidade: é fácil de localizar e corrigir defeitos;</li>
+<li>Flexibilidade: é fácil de adaptar ou modificar o software;</li>
+<li>Testabilidade: é fácil de testar o software;</li>
 </ul>
-<p><strong>Transição do produto:</strong></p>
+<p><strong>5.1.3 Transição do produto:</strong>
+Foca na capacidade do software de se adaptar a novos ambientes.</p>
 <ul>
-<li>Portabilidade.</li>
-<li>Reusabilidade.</li>
-<li>Interoperabilidade.</li>
+<li>Portabilidade: é facil de transferir o software par aoutro ambiente;</li>
+<li>Reusabilidade: é possivel usar partes do software em outros sistemas;</li>
+<li>Interoperabilidade: é possivel se comunicar/trabalhar com outros sistemas;</li>
 </ul>
+<hr />
 <h3 id="52-furps">5.2 FURPS:</h3>
-<p><strong>F – Functionality:</strong> funcionalidades, segurança, interoperabilidade.</p>
-<p><strong>U – Usability:</strong> interface, consistência, facilidade de uso, documentação.</p>
-<p><strong>R – Reliability:</strong> disponibilidade, tolerância a falhas, precisão.</p>
-<p><strong>P – Performance:</strong> tempo de resposta, eficiência, consumo de recursos.</p>
-<p><strong>S – Supportability:</strong> manutenibilidade, testabilidade, adaptabilidade, extensibilidade.</p>
-<h3 id="53-square">5.3 SQUARE:</h3>
+<p>Define a qualidade 5 características principais:</p>
 <ul>
-<li>Definição de requisitos de segurança.</li>
-<li>Identificação de ativos críticos.</li>
-<li>Identificação de ameaças.</li>
-<li>Identificação de riscos.</li>
-<li>Priorização de requisitos de segurança.</li>
-<li>Especificação e documentação.</li>
-<li>Validação.</li>
-<li>Integração aos requisitos do sistema.</li>
-<li>Rastreabilidade.</li>
+<li>
+<p><strong>Functionality (Funcionalidade):</strong> funcionalidades, segurança, interoperabilidade.</p>
+</li>
+<li>
+<p><strong>Usability (Usabilidade):</strong> interface, consistência, facilidade de uso, documentação.</p>
+</li>
+<li>
+<p><strong>Reliability (Confiabilidade):</strong> disponibilidade, tolerância a falhas, precisão.</p>
+</li>
+<li>
+<p><strong>Performance (Desempenho):</strong> tempo de resposta, eficiência, consumo de recursos.</p>
+</li>
+<li>
+<p><strong>Supportability (Suportabilidade):</strong> manutenibilidade, testabilidade, adaptabilidade, extensibilidade.</p>
+</li>
 </ul>
+<hr />
+<h3 id="54-modelo-isoiec-25010">5.4 Modelo ISO/IEC 25010</h3>
+<p>Define a qualidade em 8 características principais:</p>
+<ul>
+<li>
+<p><strong>Functional suitability:</strong> Adequação, o software atende às funções e necessidades especificadas.</p>
+</li>
+<li>
+<p><strong>Performance efficiency:</strong> Eficiência, uso adequado e otimizado de recursos (tempo de resposta, processamento, memória).</p>
+</li>
+<li>
+<p><strong>Compatibility:</strong> Compatibilidade, capacidade de coexistir e interagir com outros sistemas.</p>
+</li>
+<li>
+<p><strong>Usability:</strong> Usabilidade, facilidade de aprendizado, operação e satisfação do usuário.</p>
+</li>
+<li>
+<p><strong>Reliabilit:</strong> Confiabilidade, probabilidade de o software funcionar corretamente sem falhas.</p>
+</li>
+<li>
+<p><strong>Security:</strong> Segurança, proteção contra acessos não autorizados e vulnerabilidades.</p>
+</li>
+<li>
+<p><strong>Maintainability:</strong> Manutenibilidade, facilidade de modificar, corrigir ou adaptar o software.</p>
+</li>
+<li>
+<p><strong>Portabilit:</strong> Portabilidade, facilidade de transferir ou adaptar o software para outros ambientes/plataformas.</p>
+</li>
+</ul>
+<h3 id="53-modelo-square-software-quality-requirements-and-evaluation">5.3 Modelo SQuaRE (Software Quality Requirements and Evaluation):</h3>
+<p>O SQuaRE é um framework que reúne várias normas ISO/IEC relacionadas — conjuntos de padrões internacionais — e padroniza a forma de definir, medir e avaliar a qualidade de produtos de software. Ele é formado por: </p>
+<p><strong>5.3.1 Gestão da Qualidade (ISO/IEC 2500n):</strong>
+Define Modelos, termos, definições para uso nas demais seções da SQuare.</p>
+<p><strong>5.3.2 Modelo de Qualidade (ISO/IEC 2501n):</strong>
+Apresenta um modelo detalhado da qualidadedo produto e da qualidade em uso incluindo características.</p>
+<ul>
+<li><strong>Modelo de Qualidade do Produto:</strong> funcionalidade, compatibilidade, usabilidade, segurança, manutennabilidade, portabilidade e confiabilidade.</li>
+<li><strong>Modelo de Qualidade em Uso:</strong> efetividade, eficiência, satisfação (utilidade, conforto, prazer e confiança).</li>
+</ul>
+<p><strong>5.3.3 Medição da Qualidade (ISO/IEC 2502n):</strong>
+Define como medir as características do software.
+Ex.: métricas, indicadores, métodos de coleta de dados.</p>
+<p><strong>5.3.4 Requisitos de Qualidade (ISO/IEC  2503n):</strong>
+Define como especificar os requisitos de qualidade no projeto.
+Ex.: requisitos de desempenho, confiabilidade, usabilidade.</p>
+<p><strong>5.3.5 Avaliação da Qualidade (ISO/IEC 2504n):</strong>
+Define como avaliar e validar se o software atende aos requisitos de qualidade.
+Ex.: auditorias, testes, revisões de métricas.</p>
 
 
 
