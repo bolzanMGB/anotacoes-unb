@@ -464,5 +464,3 @@ Router(config)#do wr
 </p>
 
 
-
-v

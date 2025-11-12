@@ -22,6 +22,10 @@ markdown_extensions:
   - pymdownx.highlight   # títulos em blocos de código e numeração de linhas
   - attr_list            # permite atributos { } em elementos, se quiser
 
+extra_javascript:
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
 nav:
   - Home: index.md
   - Estrutura de Dados 1:
@@ -96,8 +100,8 @@ nav:
       - CISCO Packet Tracer: disciplinas/REDES/cisco.md
   - Qualidade de Software 1:
       - Introdução: disciplinas/QUAL/introQual.md
-  
-
+  - Redes Neurais:
+      - Introdução: disciplinas/NEURAIS/redesNeurais.md
 
 
 
