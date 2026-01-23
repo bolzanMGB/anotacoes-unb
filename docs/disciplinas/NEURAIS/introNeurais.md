@@ -17,8 +17,9 @@ IA é o uso de máquinas e computadores para imitar a capacidade humana de racio
 ## 2. Tipos de Aprendizado
 ### 2.1 Aprendizado Supervisionado
 - Usa dados rotulados (ex: "gato", "cachorro") para treinar modelos;
-- Objetivo: prever ouclassificar novos dados;
+- Objetivo: prever ou classificar novos dados;
 - Tipos de problemas: classificação e regressão;
+- Usar quando: você ja sabe a resposta correta
 - Requer: 
     - Dados rotulados para treinar o modelo;
     - Uma métrica para avaliar o resultado do modelo criado;
@@ -28,6 +29,7 @@ IA é o uso de máquinas e computadores para imitar a capacidade humana de racio
 - Usa dados não rotulados para descobrir padrões ocultos;
 - Objetivo: prever ou classificar novos dados;
 - Tipos de problemas: classificação e regressão;
+- Usar quando você não sabe a resposta certa;
 - Requer: 
     - Dados não rotulados para descobrir padrões ocultos;
 - Técnicas comuns: K-means, PCA (análise de componentes principais).

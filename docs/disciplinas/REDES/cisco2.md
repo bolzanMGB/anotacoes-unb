@@ -12,7 +12,7 @@
 Cisco Unified Communications Manager Express: uma solução onde o roteador funciona como um gateway de voz e servidor de chamadas, gerenciado os telefones IP.
 
 **DHCP Option 150**
-Configuração específica do serviço DHC'que indica aos dispositivos VOIP o endereço IP do servidor TFTP, de onde eles podem baixar seus arquivos de configuração.
+Configuração específica do serviço DHCP que indica aos dispositivos VOIP o endereço IP do servidor TFTP, de onde eles podem baixar seus arquivos de configuração.
 
 **Directory Number (ephone-dn)**
 Representa um canal de voz virtual do sistema CME.
@@ -228,6 +228,7 @@ SSH, assim com o Telnet, também é um protocolo de comunicação de rede que pe
 - O servidor solicita usuário e senha.
 - Uma vez autenticado, o cliente pode executar comandos remotamente.
 - Toda a comunicação é protegida por chaves criptográficas, garantindo que os dados trocados fiquem seguro e criptografado.
+
 ### 3.2 Características
 
 - Usado para garantir a comunicação remota segura de dispositivos em uma rede insegura.

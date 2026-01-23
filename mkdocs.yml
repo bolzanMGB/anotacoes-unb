@@ -101,8 +101,11 @@ nav:
   - Qualidade de Software 1:
       - Introdução: disciplinas/QUAL/introQual.md
   - Redes Neurais:
-      - Introdução: disciplinas/NEURAIS/redesNeurais.md
-
-
+      - Introdução: disciplinas/NEURAIS/introNeurais.md
+      - Camadas e tipos: disciplinas/NEURAIS/redesNeurais.md
+      - Redes Convulacionais: disciplinas/NEURAIS/convulacional.md
+      - Otimizadores: disciplinas/NEURAIS/otimizadores.md
+      - Inicialização dos Parâmetros: disciplinas/NEURAIS/parâmetros.md
+      - Redes Neurais Recorrentes: disciplinas/NEURAIS/recorrentes.md
 
 

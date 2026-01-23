@@ -397,7 +397,7 @@ Router(config)#exit
 </p>
 
 
-## 4.8 VLAN 
+### 4.8 VLAN 
 - Criar a star 1 (192.168.20.0);
 - Criar a star 2 (192.168.30.0);
 - conectar o servidor e o router;

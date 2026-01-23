@@ -11,7 +11,9 @@
 
 ## 2. Camadas de uma rede neural
 
-São grupos de neuronios que atuam em paralelo, elas são:
+São grupos de neuronios que atuam em paralelo, elas são: 
+
+
 - Entrada (input layer): recebe os dados;
 - Escondidas (hidden layers): fazem transformações intermediárias;
 - Saída (output layers): gera a previsão final;
@@ -39,15 +41,15 @@ São grupos de neuronios que atuam em paralelo, elas são:
 
 Os neurônios recebem uma linha de base de dados ou a sáida dos neurónios anteriores (x1, x2 ,x3, xi) e realizam duas etapas:
 
-- Combinação linear das entradas: através da fómula a seguir que considera:
-  - Pesos (w): ajustam a importância de cada entrada;
-  - Viés (b): deslocada a função de ativação;
+**Combinação linear das entradas:** através da fómula a seguir que considera:
+    - Pesos (w): ajustam a importância de cada entrada;
+    - Viés (b): deslocada a função de ativação;
 
 <p align="center">
   <img src="../../../assets/pngs/56.png" alt="A">
 </p>
 
-- Aplicação da função de ativação: introduzem não-linearidade na rede ao resultado da camada anterior. O resultado é enviado aos neurónios da próxima camada;
+**Aplicação da função de ativação:** introduzem não-linearidade na rede ao resultado da camada anterior. O resultado é enviado aos neurónios da próxima camada;
 
 <p align="center">
   <img src="../../../assets/pngs/57.png" alt="A">
@@ -70,7 +72,7 @@ Os neurônios recebem uma linha de base de dados ou a sáida dos neurónios ante
 
 ## 6. Funções de perda
 
-Cada neurônio faz a sua combinação linear das entradas e depois aplica a sua função de ativação. Na ultima camada o mesmo processo acontace e é aplicada a função de ativação da camada de saída, dando origem a saída prevista da rede.
+Cada neurônio faz a sua combinação linear das entradas e depois aplica a sua função de ativação. Na ultima camada o mesmo processo acontece e é aplicada a função de ativação da camada de saída, dando origem a saída prevista da rede.
 
 Em seguida, a função de perda compara essa saída prevista com o valor real esperado, que vem do conjunto de dados de treinamento. A partir dessa comparação, calcula-se o erro da rede, que será usado no processo de aprendizado para ajustar os pesos e melhorar as próximas previsões. As duas principais funções de perda são:
 
@@ -97,9 +99,11 @@ $$
 ## 7. Convergência e treinamento
 
 **Método do Gradiente (Gradient Descent):**
+
 - Busca o mínimo da função de perda ajustando os parâmetros
 
 **Backpropagation**
+
 - Algoritmo que calcula o gradiente de forma eficiente;
 - Usa a regra da cadeia para propagar o erro da saída até as camadas anteriores;
 - Atualiza pesos e vieses com base nesses gradientes.
@@ -110,6 +114,7 @@ $$
 - Isso explica o poder expressivo das redes neurais.
 
 **Kolmogorov-Arnold Networks (KAN)**
+
 - Havia alguns problemas das redes neurais: necessidade de muitos dados, custo alto de treinamento, pouca interŕetabildiade, muitos parâmetros;
 - Surgiu essa abordagem recente: tenta reduzir a complexidade das DNN;
 - Baseada no teorema de representação de Kolmogorov-Arnold, que diz que qualquer função multivariada pode ser escrita como soma de funções univariadas.
