@@ -95,11 +95,24 @@ nav:
       - Base:
         - Desenho de Software: disciplinas/ARQ/Base/desenho.md
         - BPMN: disciplinas/ARQ/Base/BPMN.md
+      - Modelagem:
+        - Dinâmica:  disciplinas/ARQ/Modelagem/dinamica.md
+        - Estática: disciplinas/ARQ/Modelagem/estatica.md
+      - Padrões: 
+        - Introdução: disciplinas/ARQ/Padões/intro.md
+        - Comportamental: disciplinas/ARQ/Padões/comportamental.md
+        - Criacional: disciplinas/ARQ/Padões/criacional.md
+        - Estrututal: disciplinas/ARQ/Padões/estrutural.md
   - Fundamentos de Redes de Computadores:
       - Introdução: disciplinas/REDES/introRED.md
-      - CISCO Packet Tracer: disciplinas/REDES/cisco.md
+      - Introdução CISCO Packet Tracer: disciplinas/REDES/cisco.md
+      - Continuação CISCO Packet Tracer: disciplinas/REDES/cisco2.md
+      - Cabeamento: disciplinas/REDES/cabeamento.md
+      - Transmissão de Dados: disciplinas/REDES/transmissao.md
   - Qualidade de Software 1:
       - Introdução: disciplinas/QUAL/introQual.md
+      - Medição: disciplinas/QUAL/medicacao.md
+      - Processo de Avaliação: disciplinas/QUAL/processoAvaliacao.md
   - Redes Neurais:
       - Introdução: disciplinas/NEURAIS/introNeurais.md
       - Camadas e tipos: disciplinas/NEURAIS/redesNeurais.md
@@ -107,5 +120,8 @@ nav:
       - Otimizadores: disciplinas/NEURAIS/otimizadores.md
       - Inicialização dos Parâmetros: disciplinas/NEURAIS/parâmetros.md
       - Redes Neurais Recorrentes: disciplinas/NEURAIS/recorrentes.md
+      - MNIST: disciplinas/NEURAIS/mnist.md
+      - Reguladores: disciplinas/NEURAIS/reguladores.md
+      
 
 
