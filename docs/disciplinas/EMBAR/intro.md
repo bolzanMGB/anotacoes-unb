@@ -12,55 +12,112 @@ Eles geralmente leem o mundo externo através de sensores, processam esses dados
 
 ## 4. Características
 
-**Especificação:** aplicação bem definida e pré-definida.
+**Especificação:** Aplicação bem definida e pré-definida.
 
-**Restrições de tempo-real:** hard real-time ou soft real-time.
-- Confiabilidade e segurança.
-- Eficiência energética: muitos operam com bateria.
-- Baixo custo.
-- Restrição de memória.
+**Restrições de tempo-real:** A resposta do sistema deve ocorrer dentro de um limite de tempo rigoroso.
+
+- Hard Real-Time: Se o tempo limite for perdido, o sistema falha totalmente. Ex: acionamento de airbag.
+
+- Soft Real-Time: Perde o limite de tempo diminui qualidade, mas ão destrói o sistema. Ex: atraso em um vídeo de uma plataforma de streaming
+
+**Confiabilidade e Tolerância a Falhas:** Precisam operar anos sem reinicialização ou update de software ou falhas físicas.
+
+**Eficiência Energética:** mMuitos operam com baterias.
+
+**Baixo custo e Restrição de memória**
+
 
 ---
-## 3. Classificações
 
-**Sistema similares à computadores de propósito geral:** video games, tablets, smartphones.
-**Sistemas de controle:** controle de eletrodomésticos.
-**Processamento de Sinais:** radar, decodificador de TV.
-**Comunicação e redes:** telefones, roteadores.
-
----
-
-## 5. Componentes de Arquitetura
+## 5. Hardware
 
 ![Inserção](../../assets/pngs/93.png){align=center }
 
-### 5.1 Hardware
-**Processador:** É o cérebro. Pode ser um microcontrolador (MCU), um microprocessador (MPU) ou um DSP (Processador Digital de Sinais).
+### 5.1 Componentes
 
-**Memória:** Armazena tanto o código (Software) quanto os dados temporários. Em SE, costuma ser Flash (para o programa) e RAM (para variáveis).
+A arquitetura de software é escolhida com base da necessidade de poder de processamento, consumo de bateria e custo. Principais componentes são:
 
-**Periféricos e Dispositivos de Entrada e Saída:**
+**Unidade Central (Chip)**
 
-- Entradas Analógicas (ADC): Converte sinais do mundo real (como temperatura ou voltagem) em número que o processador entende.
-- Saídas Analógicas (DAC): Faz o caminho inverso, transformando dados digitais em sinais elétricos para controlar algo.
-- Entrada/Saídas Digitais: Lidam com estados binários (0 ou 1).
+- **Processador:** O núcleo que executa as instruções matemáticas e lógicas.
 
-**Interfaces de Comunicação:** São os protocolos que permitem o processador falar com outros chips e redes.
+- **Memória:** Armazena tanto o código do software (Flash), quanto os dados temporários (RAM).
 
-### 5.2 Software
+**Barramentos:** São as estradas internas que conectam o processador à memória e às interfaces, permitindo que os dados trafeguem entre eles.
+
+- **Interfaces de Comunicação:** Permitem conversar com outros dispositivos. Ex: Wi-Fi, Bluetooth.
+
+**Periféricos Externos**
+
+- **Sensores:** Entradas analógicas ou digitais que capturam dados (ex: temperatura, pressão).
+
+- **Atuadores:** Saídas analógicas ou digitais que realizam a ação no mundo físico (motores, telas).
+
+
+### 5.2 Categorias de Dispositivos de Processamento
+
+Os dispositivos de processamento são os diferentes tipos de chips que formam o núcleo do hardware. Cada um organiza o processador, a memória e os periféricos de uma forma específica para atender a diferentes necessidades:
+
+**Microcontroladores (MCUs)**
+
+São computadores em um único chip. Nele processador, memória e periféricos estão embutidos em uma única pastilha de silício.
+
+São extremamente baratos, consomem pouquíssima energia e resolvem 90% dos problemas de automação básica e eletrodoméstico.
+
+
+**Processadores de Propósito Geral (GPPs)**
+
+Chips poderosos, mas arquiteturalmente "dependentes". Eles não têm memória RAM ou interfaces de disco internas; dependem de componentes externos soldados na placa.
+
+Usados quando há necessidade de alto processamento ou interfaces gráficas pesadas. Exemplos: Processadores ARM Cortex-A (como no Raspberry Pi) ou Intel Core.
+
+**Processadores de Sinais Digitais (DSPs)**
+
+Microprocessadores projetados especificamente para cálculos matemáticos contínuos e pesados. Utilizam a "Arquitetura Harvard", que possui vias separadas para dados e instruções, permitindo processar informações muito mais rápido.
+
+Possuem unidades MAC (Multiply-and-Accumulate) que conseguem multiplicar e somar números em um único ciclo de clock.São essenciais para processamento de áudio, voz, radares, sonares e telecomunicações.
+
+**FPGAs (Field Programmable Gate Arrays)**
+
+Hardware que pode ser "reprogramado" pelo usuário. Ao invés de escrever um software que roda em um processador fixo, você escreve um código que fisicamente reestrutura o chip para criar circuitos digitais customizados.
+
+Compostos por uma enorme matriz de unidades lógicas e chaves de interconexão configuráveis.
+
+Executam tarefas em paralelo com velocidade extrema. São usados em processamento de vídeo em tempo real ou cálculos de altíssima velocidade.
+
+**ASICs (Application Specific Integrated Circuits)**
+
+Circuitos integrados fabricados e "fundidos" na fábrica para fazer apenas uma tarefa. Não podem ser reprogramados.
+
+Possuem a maior eficiência energética e velocidade possível. Embora o custo de criar o primeiro chip seja na casa dos milhões, eles se tornam centavos quando fabricados em grande escala (ex: chip controlador do seu mouse ou do micro-ondas).
+
+**SoCs (System-on-Chip) e MPSoCs**
+
+O ápice da integração. Colocam GPPs, Placas de Vídeo (GPUs), interfaces Wi-Fi/Modem e até FPGAs dentro de um mesmo chip físico. Os Multiple Processor System-on-Chip (MPSoCs) usam múltiplos núcleos (cores) diferentes no mesmo chip interligados por uma rede interna (Network-on-chip).
+
+A maior parte dos processadores de smartphones modernos (Snapdragon, Apple A-Series) são SoCs/MPSoCs, pois economizam espaço físico e entregam poder computacional massivo.
+
+## 6. Software
 
 **Software do Sistema:**
+
 - RTOS: Usado para gerenciar tarefas de restrições de tempo.
 - Ferramentas de Debug: Essenciais para ver erros enquanto o código roda.
 
 **Aplicação:** É o código final que você escreve. Ex: caso sensor de temperatura ler > 40°, ligar o ventilador.
 
-## 6. Software Embarcado
+## 7. Cenário de Mercado
 
-### 6.1 Requisitos
+**Principais Aplicações:** 
+- Controle Industrial e Automação (32%).
+- Eletrônicos de Consumo (29%).
+- Internet das Coisas (25%).
 
-## 7. Projeto de um Sistema Embarcado
+**Linguagens de Programação:**
+- C   (56%).
+- C++ (29%).
 
-## 8. Arquiteturas de Hardware
-### 8.1 Microcontroladores
-### 8.2 Processador de Propósito Geral (GPP)
+**Sistemas Operacionais:**
+- Linux.
+- FreeRTOS;
+- Bare metal (código direto no hardware).
