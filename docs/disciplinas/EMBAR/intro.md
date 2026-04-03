@@ -10,7 +10,7 @@ Eles geralmente leem o mundo externo através de sensores, processam esses dados
 
 ---
 
-## 4. Características
+## 2. Características
 
 **Especificação:** Aplicação bem definida e pré-definida.
 
@@ -29,11 +29,11 @@ Eles geralmente leem o mundo externo através de sensores, processam esses dados
 
 ---
 
-## 5. Hardware
+## 3. Arquitetura de Hardware
 
 ![Inserção](../../assets/pngs/93.png){align=center }
 
-### 5.1 Componentes
+### 3.1 Componentes
 
 A arquitetura de software é escolhida com base da necessidade de poder de processamento, consumo de bateria e custo. Principais componentes são:
 
@@ -54,7 +54,7 @@ A arquitetura de software é escolhida com base da necessidade de poder de proce
 - **Atuadores:** Saídas analógicas ou digitais que realizam a ação no mundo físico (motores, telas).
 
 
-### 5.2 Categorias de Dispositivos de Processamento
+### 3.2 Categorias de Dispositivos de Processamento
 
 Os dispositivos de processamento são os diferentes tipos de chips que formam o núcleo do hardware. Cada um organiza o processador, a memória e os periféricos de uma forma específica para atender a diferentes necessidades:
 
@@ -63,7 +63,6 @@ Os dispositivos de processamento são os diferentes tipos de chips que formam o 
 São computadores em um único chip. Nele processador, memória e periféricos estão embutidos em uma única pastilha de silício.
 
 São extremamente baratos, consomem pouquíssima energia e resolvem 90% dos problemas de automação básica e eletrodoméstico.
-
 
 **Processadores de Propósito Geral (GPPs)**
 
@@ -97,16 +96,7 @@ O ápice da integração. Colocam GPPs, Placas de Vídeo (GPUs), interfaces Wi-F
 
 A maior parte dos processadores de smartphones modernos (Snapdragon, Apple A-Series) são SoCs/MPSoCs, pois economizam espaço físico e entregam poder computacional massivo.
 
-## 6. Software
-
-**Software do Sistema:**
-
-- RTOS: Usado para gerenciar tarefas de restrições de tempo.
-- Ferramentas de Debug: Essenciais para ver erros enquanto o código roda.
-
-**Aplicação:** É o código final que você escreve. Ex: caso sensor de temperatura ler > 40°, ligar o ventilador.
-
-## 7. Cenário de Mercado
+## 4. Cenário de Mercado
 
 **Principais Aplicações:** 
 - Controle Industrial e Automação (32%).
