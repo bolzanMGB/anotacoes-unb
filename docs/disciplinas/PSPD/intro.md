@@ -51,14 +51,14 @@ computadores interligados em rede se comunicam e coordenam suas ações apenas p
 
 ## 3. Sistemas Descentralizados VS Sistemas Distribuídos
 
-Sistemas Descentralizados: Dividido em vários computadores por necessidade, enfatizando autonomia e independência como objetivo. Se tentar centralizar o sistema quebra. Exemplos:
+**Sistemas Descentralizados:** Dividido em vários computadores por necessidade, enfatizando autonomia e independência como objetivo. Se tentar centralizar o sistema quebra. Exemplos:
 
 - IA: Modelos de IA são grandes demais para uma placa de vídeo só, portanto o treinamento precisa ser dividido .
 - Blockchain: Garante autonomia, ninguém precisa confiar em ninguém.
 - Geografia e Latência (Edge Computing): Em vez de enviar um arquivo para um servidor gigante e distante (processo demorado), utilizar de um mini-computador, como uma RaspberryPI. Exemplo: câmeras de segurança.
 - Leis: Muitas vezes, dados de usuários europeus precisar fica na Europa.
 
-Sistemas Distribuído: Dividido em vários computadores suficientemente para que o sistema seja rápido e confiável, enfatizando que o usuário não perceba a divisão. Exemplos: 
+**Sistemas Distribuído:** Dividido em vários computadores suficientemente para que o sistema seja rápido e confiável, enfatizando que o usuário não perceba a divisão. Exemplos: 
 
 - Sistemas NAS: Servidor acessado por Wi-Fi que aparece como Unidade Z e esconde toda a bagunça do hardware.
 - Sistemas CDNs: Como a Netflix e Youtube. Quando você da play, você não perceve que o vídeo vem de um servidor perto de você e não da sede nos EUA.
@@ -161,44 +161,124 @@ Uma vez que a funcionalidade do sistema é atendida, devemos observar as **propr
 * **Garantia de recursos:** para serviços críticos (como streaming de vídeo), o sistema deve ser capaz de reservar recursos de computação e rede para garantir que as tarefas sejam terminadas no tempo correto.
 
 ## 5. Sistema de Computação Distribuídos de Alta Performance
-- Sistena de cimputação de cluster.
-- Conjunto de estações de trabaçho ou PCs semelhantes, compostos por componentes comuns de mercado, conectados por uma rede local de alta velocidade.
-- O grande atrativo foi que em um certo ponto ficou melhor construir supercomputadores usadno sistemas simples que são conectados.
-- O nó de gerenciamento é responsável por receber tarefas e distribuir as tarefas entre os nós de processamento.
-- Nós de processamento possuem um software simplificado quando comparados ao de gerenciamento.
-- 95% é baseado em Linux.
-- Algumas abordagens com uso de kernel simplificado e um kernel complexo são encontradas na literatura.
-- Atualmente, a minimização da complexidade do software base da estação pode ser alcançada através do uso de contêiners.
-- Sistema de computação em grade (grid).
-- Sistemas com alto grau de heterogeneidade, não podendo assumir nada sobre sistemas, hardware.
-- Sistema distribuído que conecta computadores distantes geograficamente, para criar um supercomputador virual.
-- Modelos de simulação na engenharia, serviços, financeiros e aplicações.
-- O grid tmb pode ser visto como uma federação de computadores de diferente dominios administrartivos, permitindo a colaboração de grupos de pessoas.
-- Exempĺo CERN
-- F@h
-- Foster: arquitetura em camads: base, conectividade, recurso, coletiva e aplicação
-- Bases: camada-base, provê interfaces para recursos locasi e um lugar específico, funções que obtêm estados e recursos.
-- A soma das camadas são o middle ware do grid.
--Padrao Open GRid Service Archictecture
+
+### 5.1 Sistemas de Computação Distribuídos de Alta Performance
+
+Focada em força bruta computacional, Podem ser:
+
+#### 5.1.1 Sistemas de Computação de Cluster:
+
+Formado por um conjunto de nós de computadores simples e semelhantes (homogêneos) que são conectados por meio de uma rede local de alta velocidade e controlados e acessados por meio de um único nó mestre.
+
+**Características:**
+
+- Cada nó possui o mesmo SO, geralmente Linux
+- O nó mestre distribui as tarefas para os "nós de processamento" e proporciona uma interface para os usuários.
+- Atrativo: construir supercomputadores usando computadores simples.
+- Usado em programação paralela, onde o um único programa é executado em várias máquinas.
+- Exemplo: cluster Beowulf.
+
+![Inserção](../../assets/pngs/98.png){ align=center }
+
+#### 5.1.2 Sistemas de Computação em Grade:
+
+Formado por máquinas totalmente heterogêneas de diferentes domínios administrativos ao redor do mundo que são conectadas criando um supercomputador virtual.
+
+**Características:**
+
+- Permite a colaboração de pessoas e instituições.
+- Compartilhamento de recursos, facilidade de armazenamento e banco de dados.
+- Exemplo: CERN e F@h.
+
+**Arquitetura em Quatro Camadas:**
+
+- **Camada Base:** Fornece interfaces para as camadas acima consultarem estados e recursos locais de hardware.
+- **Camada Conectividade:** Consiste em protocolos de comunicação e segurança para suportar transações entre máquinas diferentes do Grid.
+- **Camada Recursos:**  Responsável pelo gerenciamento de um único recurso. Usa a conectividade para enviar comandos para base.
+- **Camada Coletiva:** Manipula o acesso a múltiplos recursos e normalmente consiste em serviços para  alocação e escalonamento de tarefas.
+- **Camada Aplicação:** Roda as aplicações para o usuário final.
+
+*Obs: o middleware é formado pelas camadas de conectividade, recursos e coletiva.
+
+![Inserção](../../assets/pngs/99.png){ align=center }
+
+### 5.2 Sistemas de Informação Distribuídos
+
+No inícios as aplicações era monolíticas, havia um único servidor central que guardava o banco de dados e processava toda a lógica, de modo que os clientes (computadores dos usuários) eram burros, serviam apenas como um terminal e não realizavam nenhum cálculo, e congelavam até a resposta chegar.
+
+Atualmente, com as Transações RPC/RMI, as operações começaram a ser agrupadas (regra do tudo ou nada) e separadas do banco de dados. Além disso, grande parte da lógica acontece em segundo plano e no próprio dispositivo do usuário
+
+Assim, o Sistemas de Informação Distribuídos são focadas em dados e processos de negócios, invés de cálculo e velocidade. Eles são divididos em:
+
+#### 5.2.1 Sistemas de Processamento de Transações
+
+Possuem como foco a integridade. Aplicações de banco de dados realizam operações sob a forma de transações, que por sua vez requer o uso de primitivas especiais, como BEGIN_TRANSACTION, END_TRANSACTION, READ e WRITE.
+
+**Características (ACID):**
+
+- Atômicas: Para o mundo exterior, a transação acontece como se fosse indivisível (tudo ou nada).
+- Consistentes: A transação não viola invariantes de sistema: se eles forem válidos antes da transação, terão que continuar sendo após.
+- Isoladas: Transações concorrentes não interferem umas com as outras.
+- Duráveis: Uma vez comprometida uma transação, as alterações são permanentes.
 
 
+**Subtransações:**
 
-## 5. Sistema de Informação Distribuido
+Uma transação, nesse caso chamada de transação aninhada,pode ser dividida em subtransações que são executadas em paralelo e que, por sua vez, também podem ser redivididas. Exemplo: Imagine que você está reservando uma viagem. A "Transação Pai" é a Viagem. As "Subtransações" (filhas) são: 1. Reservar Voo, 2. Reservar Hotel, 3. Alugar Carro.
 
-Os componentes foram separados e notadamente foram distinguidos as atividades de computação
+Rollback: Se a transação pai der errado, ou seja, se qualquer uma das subtransações der errado, todas as subtransações devem ser desfeitas. Nesse sentido, enquanto as subtransações estão rodando, os resultados delas são provisório e só se tornam permanentes/duráveis no banco de dados quando a transação pai termina com sucesso total.
+
+Monitor de Processamento de Transações (TP): Como há vários servidores envolvidos, no exemplo anterior um para o voo, outro para o hotel, o Monitor TP permite acessar esses diferentes bancos de dados e coordenar o êxito das subtransações.
 
 
+![Inserção](../../assets/pngs/100.png){ align=center }
 
-## 5. Sistema de Processamento de Transações
-ACID
-- Atomicas: indivisivel, ou toda transacao é executada ou nada é
-- Consistente: a transação não viola invariantes de sistema.
-- Isolada: transações concorrentes não interferem.
-- Durpaveis: permanente quando finalizadas. 
+#### 5.2.2 Integração de Aplicações Empresariais (EAI)
 
-## 5. Sistema distribuidos Ubiquos
-- Sistemas Doméstico;
-- Sistemas de Saúde Eletrônicos
-- Rede de Sensores
+Possuem como foco a comunicação e surgiram quando as empresas perceberam que tinham vários sistemas independentes prontos (um de RH, um de Vendas, um de Estoque) que precisavam conversar entre si, mas não "falavam a mesma língua". 
 
-##
+Deste modo, em vez de forçar todos os sistemas a usarem o mesmo banco de dados, o EAI cria uma camada que permite que eles troquem mensagens e chamem funções uns dos outros. Essa camada utiliza de duas tecnologias:
+
+**Chamadas de Procedimento Remoto (RPC):** Envia uma requisição de forma que um ambiente externo execute uma determinada função.
+
+**Invocação de Procedimento Remoto (IPC):** É o mesmo que uma RPC, porém funciona com objetos remotos em vez de com aplicações.
+
+Como ambos possuem a desvantagem de possuírem um forte acoplamento, onde o chamador e o chamado precisam estar ligados e em funcionamento no momento da comunicação, as tecnologias acabaram migrando para um Middleware orientado e Mensagem (MOM), onde o invocador não precisa de conhecimento do executador.
+
+
+### 5.3 Sistemas Distribuídos Ubíquos e Pervasivos
+
+Enquanto as categorias de Informação ou Alta Performance focam em integridade de dados e poder de cálculo, esta categoria busca a invisibilidade. Nela, o processamento não está em um gabinete central, mas espalhado por diversos pequenos nós (sensores, smartwatches, celulares e servidores na nuvem).
+
+Esses dispositivos são, em geral, sistemas embarcados que funcionam como "peças" de um quebra-cabeça que, quando se conectam e colaboram entre si, formam um grande sistema distribuído. Aqui temos duas definições principais:
+
+**Sistemas Distribuídos Pervasivos:** São discretos e integrados organicamente ao ambiente, tornando-se difíceis de serem notados durante o uso.
+
+**Sistemas Distribuídos Ubíquos:** São a evolução dos pervasivos. Além de serem invisíveis, estão continuamente disponíveis em qualquer lugar e a qualquer momento, adaptando-se ao contexto do usuário.
+
+
+#### 5.3.1 Os Cinco Pilares do Sistema Ubíquo:
+
+**Distribuição:** Ele precisa estar na rede para acessar recursos e outros dispositivos.
+
+**Interação Discreta:** Você não deveria ter que "operar" o sistema o tempo todo; ele deve agir em segundo plano.
+
+**Sensibilidade ao Contexto:** O sistema sabe onde você está, quem está com você e o que você está fazendo (ex: o GPS do carro que sugere o caminho de casa no horário que você costuma sair do trabalho).
+
+**Autonomia:** Ele se autogerencia. Se precisar de uma atualização, ele faz sozinho. Se o IP mudar, ele se vira.
+
+**Inteligência:** Usa IA para entender comandos incompletos ou mudanças bruscas no ambiente (ex: um sensor de queda em um idoso que sabe diferenciar um tropeço de um desmaio).
+
+
+O mecanismo que permite esses pilares é o de **Composição Ad Hoc**, que diz que o sistema dever autoconfigurável, permitindo que dispositivos se juntem ou saiam de forma espontânea e sem controle administrativo centralizado. Para exemplificar isso temos que seu celular se conecta ao Wi-Fi da faculdade, depois ao Bluetooth do carro e depois à rede da sua casa, tudo sem você precisar configurar manualmente os IPs ou as rotas cada vez que muda de lugar.
+
+
+#### 5.3.2 Tipos
+
+**Sistemas Domésticos (Smart Homes):** Lâmpadas que acendem sozinhas, fechaduras digitais e termostatos. O foco é a facilidade para o usuário leigo.
+
+**Saúde Eletrônica (e-Health):** Wearables como smartwatches que medem batimentos ou sensores de glicose. Eles processam dados ali mesmo (na "borda" da rede) para serem rápidos.
+
+**Redes de Sensores:** Milhares de mini-sensores espalhados (em uma floresta para detectar fogo, por exemplo). Eles colaboram entre si para economizar bateria e só enviam o sinal principal quando algo importante acontece.
+
+**Computação Móvel:** Sistemas em carros ou dispositivos com GPS. A premissa aqui é que o equipamento muda de lugar o tempo todo, então ele precisa lidar com conexões que caem e voltam.
