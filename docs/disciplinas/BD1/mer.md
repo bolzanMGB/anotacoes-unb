@@ -130,8 +130,7 @@ Permite tratar um relacionamento como uma **entidade**.
 
 ### 7.1 Generalização
 
-Cria um **supertipo** a partir de características comuns de várias 
-entidades.
+Cria um **supertipo** a partir de características comuns de várias entidades.
 
 * Exemplo: Pessoa → (Aluno, Professor, Funcionário).
 * **Herança**: subtipos herdam atributos e relacionamentos do supertipo.
@@ -166,4 +165,3 @@ entidades.
 * (T,E) → Total + Exclusiva.
 * (T,S) → Total + Sobreposta.
 
-## 8. Resumo Notações
