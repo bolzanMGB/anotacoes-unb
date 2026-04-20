@@ -18,7 +18,7 @@
 - A metade de dois mais dois é igual a três.
 
 ### 1.4 Não-Proposições:
-- Cuidado! Curva acentauda à esquerda!
+- Cuidado! Curva acentuada à esquerda!
 - Onde fica a agência bancária mais próxima?
 
 ### 1.5  Operadores Lógicos
