@@ -1,7 +1,5 @@
 # Prolog
 
----
-
 ## 1. Instalação
 
 ### 1.1 Download
@@ -62,7 +60,6 @@ Para consultar ou reconsultar um arquivo podemos usar:
     ?- reconsult('con.pl').
 ```
 
----
 
 ## 2. Cláusulas
 
@@ -215,7 +212,7 @@ Regra é um tipo de cláusula que representam uma consulta armazenada. Sua sinta
     true.
 ```
 
----
+
 
 ## 3. Consultas
 
@@ -377,7 +374,7 @@ Nele a unificação também percore o banco de dados e também é bem sucedida s
     X = 'Cuiabá',   Y = mt ;
 ```
 
----
+
 
 ## 4. Manipulação da base de dados
 
@@ -416,7 +413,6 @@ Nele a unificação também percore o banco de dados e também é bem sucedida s
 
 ```
 
----
 
 ## 5. Mecanismos
 
@@ -492,13 +488,13 @@ Exemplo:
 
 ```
 
----
+
  
 ## 6. Predicados extra-lógicos
 
-![Inserção](../../../assets/pngs/92.png){ align=center }
+![Inserção](../../../assets/pngs/92.png)
 
-Exemplo: 
+**Exemplo:**
 
 ```prolog
 
@@ -535,7 +531,7 @@ Exemplo:
     true.
 
 ```
----
+
 
 ## 7. Condicionais
 

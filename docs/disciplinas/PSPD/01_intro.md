@@ -178,7 +178,7 @@ Formado por um conjunto de nós de computadores simples e semelhantes (homogêne
 - Usado em programação paralela, onde o um único programa é executado em várias máquinas.
 - Exemplo: cluster Beowulf.
 
-![Inserção](../../assets/pngs/98.png){ align=center }
+![Inserção](../../assets/pngs/98.png)
 
 #### 5.1.2 Sistemas de Computação em Grade:
 
