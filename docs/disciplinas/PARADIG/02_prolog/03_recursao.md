@@ -84,17 +84,3 @@ car(honda, civic, 2022, manual, 4).
 car(honda, model(civic, 2022), specs(manual, doors(4))).
 ```
 
-### 4.2 Unificação
-Para que dois termos unifiquem, eles precisar ter:
-
-- O mesmo Functor (nome da estrutura).
-- A mesma Aridade (número de argumentos).
-- Argumentos que também unifiquem entre si.
-
-```prolog
-% As duas estruturas a seguir não se unificam pois seus argumentos não se unificam entre si:
-
-car(honda, civic, 2022, manual, 4).
-car(honda, model(civic, 2022), specs(manual, doors(4))).
-```
-fibonaci

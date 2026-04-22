@@ -64,7 +64,10 @@ ERRO
 
 Exemplo: se temos um operador "e" que é xfy, então "sol e chuva e vento" é lido como e(sol, e(chuva, vento)).
 
-**2.2 Infixo Associativo à Direita(yfx):** O y está na esquerda, então ele "empilha" para a esquerda.
+Exemplo: Se temo um operador "+" que é yfx, então "1 + 2 + 3" é lido como: +(+(3,2),1).
+**2.2 Infixo Associativo à Esquerda(yfx):** O y está na esquerda, então ele "empilha" para a esquerda.
+
+Exemplo: se temos um operador "e" que é xfy, então "sol e chuva e vento" é lido como e(e(sol,chuva), vento).
 
 Exemplo: Se temo um operador "+" que é yfx, então "1 + 2 + 3" é lido como: +(+(1, 2), 3).
 
@@ -94,9 +97,9 @@ venceu(Jogador1, Jogador2) :-
 
 | Operador | Nome | O que faz? | Exemplo |
 | :--- | :--- | :--- | :--- |
-| `=` | xfx | 700 | **Unificação**: Tenta tornar os termos iguais (vincula variáveis). |
-| `==` | xfx | 700 | **Identidade**: Verdadeiro se os termos são exatamente iguais (sem vincular). |
-| `=:=` | xfx | 700 | **Igualdade Aritmética**: Os valores numéricos são iguais? |
+| `=` | xfx | Tenta unificar de acordo com a aridade | **Unificação**: Tenta tornar os termos iguais (vincula variáveis). |
+| `==` | xfx | Verifica a igualdade literal | **Identidade**: Verdadeiro se os termos são exatamente iguais (sem vincular). |
+| `=:=` | xfx | Verifica igualdade matematica. Não funciona com variáveis | **Igualdade Aritmética**: Os valores numéricos são iguais? |
 
 
 #### 8.2.1 Operador de Unificação (=)
@@ -115,6 +118,11 @@ false.
 ?- 2 + X = Y + a.
 X = a,
 Y = 2.
+
+?- X = 2 + 2.
+X = 2+2.
+
+
 
 ```
 
@@ -141,7 +149,7 @@ false
 
 ```prolog
 ?- X =:= Y.
-false.
+ERROR
 
 ?- 2 + 2 =:= 2 + 2.
 true.
@@ -186,7 +194,7 @@ true.
 | :--- | :--- | :--- | :--- |
 | `\=` | xfx | 700 | **Não Unificável**: Verdadeiro se os termos não podem ser unificados. |
 | `\==` | xfx | 700 | **Não Idêntico**: Verdadeiro se os termos não são estritamente iguais. |
-| `=\=/2` | xfx | 700 | **Diferença Aritmética**: Os valores numéricos são diferentes? |
+| `=\=` | xfx | 700 | **Diferença Aritmética**: Os valores numéricos são diferentes? |
 
 ### 8.5 Operadores de Comparação Numérica
 
@@ -218,18 +226,20 @@ Ao invés de atar o resultado a uma variável, elas retornam o valor das suas op
 **Exemplo:**
 
 ```prolog
-
-% Carrega a biblioteca de aritmética
 :- use_module(library(arithmetic)).
+
 % Declara os predicados como funções aritmética. Note que a aridade declarada
 % é uma unidade menor do que a aridade usada na definição do predicado, e que a
 % última variável conterá o valor de 'retorno'
 :- arithmetic_function(number_of_lines/1).
 :- arithmetic_function(juros_simples/3).
+
 number_of_lines(N, Res) :- Res is 2^N.
+
 juros_simples(M, J, T, Res) :-
-Res is M * (1 + J * T).
-% Agora é possível usar os predicados em conjunto com o operador is/2
+    Res is M * (1 + J * T).
+
+% Terminal
 ?- X is 1 + number_of_lines(4).
 X = 17.
 ?- X is juros_simples(1000, 0.05, 60).
@@ -256,11 +266,15 @@ S = 1.
 O predicado var/1 retornar verdadeiro se a varíavel é livre, e o predicado nonvar retorna verdadeiro se já foi atada previamente na consulta. Exemplo:
 
 ```prolog
-% Equivalência entre graus Celsius e Fahrenheit
 celsius_fahrenheit(C, F) :-
-((var(C), var(F))
--> instantiation_error('Ao menos uma variável deve estar atada') ; true),
-(nonvar(C) -> F is C*9/5 + 32 ; C is (F - 32)*5/9).
+    ((var(C), var(F)) -> 
+        instantiation_error('Ao menos uma variável deve estar atada') 
+    ; 
+        true),
+    (nonvar(C) -> 
+        F is C*9/5 + 32 
+    ; 
+        C is (F - 32)*5/9).
 
 % Exemplos de consultas
 ?- celsius_fahrenheit(40, F).

@@ -63,7 +63,7 @@ Para consultar ou reconsultar um arquivo podemos usar:
 
 ## 2. Cláusulas
 
-uma cláusula é a menor unidade de um programa. Ela é uma instrução que termina obrigatoriamente com um ponto finas, podendo ser um **fato** ou uma **regra**.
+uma cláusula é a menor unidade de um programa. Ela é uma instrução que termina obrigatoriamente com um ponto final, podendo ser um **fato** ou uma **regra**.
 
 Exemplo
 
@@ -155,7 +155,7 @@ São os argumentos de um fato, podem ser:
 
 ### 2.5 Regras
 
-Regra é um tipo de cláusula que representam uma consulta armazenada. Sua sintaxe se da por:
+Regra é um tipo de cláusula que representa uma consulta armazenada. Sua sintaxe se da por:
 
 - **Head:** é um predicado
 - **Pescoço:** neck-symbol (:-), lido como "se".
@@ -452,13 +452,15 @@ São utilizadas para definir geenralizações universais. Na lógica formal dize
 
 - **Call:** Onde a avaliação começa.
 - **Exit:** Se alguma cláusula unifica com o objetivo a avaliação termina, atando as avariáveis com os devidos elementos dos conjunto universais.
-- **Fail:** Caso contraário, a avaliação falha.
+- **Fail:** Caso contrário, a avaliação falha.
 - **Redo:** Se for bem sucedida e seguida de um ';', a avaliação é retomada (redo) a aprtir do ponto que parou, após desatar as variáveis.
 
 No caso de consultas compostas ele encerra com sucesso apenas se sai pela porta exit do último predicado da consulta (mais à direita).
 
-![Inserção](../../assets/pngs/91.png){ align=center }
 
+<div style="text-align: center;">
+  <img src="../../../assets/pngs/91.png" alt="Inserção" />
+</div>
 
 ### 5.3.1 Modo Trace
 Trace é o modo de debug/rastreamento do Prolog. Invez de nos mesmos colocar breakpoints (como em python), no Prolog ele próprio faz isso, porém com uma visualização baseado no Box Model. Para utilizar esse modo é necessário utilizar o comando **trace.** no terminal.
@@ -492,7 +494,13 @@ Exemplo:
  
 ## 6. Predicados extra-lógicos
 
-![Inserção](../../../assets/pngs/92.png)
+
+
+<div style="text-align: center;">
+  <img src="../../../assets/pngs/92.png" alt="Inserção" />
+</div>
+
+O fail sempre volta para o último ponto de escolha.
 
 **Exemplo:**
 
@@ -516,19 +524,19 @@ Exemplo:
     
     
     % Consultas no terminal
-    82 ?- unb_report.
+    ?- unb_report.
     Estudantes da UnB: 
-    ana
-    proximo 
-    beto
-    proximo 
-    carlos
-    proximo 
-    diana
-    proximo 
-    esther
-    proximo 
-    true.
+        ana
+        proximo 
+        beto
+        proximo 
+        carlos
+        proximo 
+        diana
+        proximo 
+        esther
+        proximo 
+        true.
 
 ```
 
@@ -538,12 +546,39 @@ Exemplo:
 Os condicionais em Prolog são habilitados através do predicado meta_predicate, onde N indica o número de parâmetros da função. Após ele é necessário declarar a função que irá ter a sintaxe **(If -> Then)**. ou **(If -> Then ;  Else)**. 
 
 ```prolog
-    % Banco de Dados 
+    % Banco de Fatos
+    nota(X) :-
+        (
+            (X < 5) -> 
+                write('Reprovado')
+            ;
+                write('Aprovado')
+        ).
+    
+    % Terminal
+    ?- nota(5).
+    Aprovado
+    true.
+
+    ?- nota(2).
+    Reprovado
+    true.
+```
+
+O `:- meta_predicate` é uma diretiva usada para informar ao compilador que um (ou mais) dos argumentos de uma regra não é um dado comum, mas sim um objetivo (goal) ou uma função que será executada. Regras:
+
+- Para cada argumento que for uma função, indicamos um número. Esse número representa quantos argumentos extras o predicado call irá adicionar àquela função durante a execução.
+
+- Para cada argumento que não for uma função (números, nomes, listas), usamos obrigatoriamente o símbolo *.
+
+
+```prolog
+    % Exemplo 1
     soma(A, B, R) :- R is A + B.
     sub(A, B, R)  :- R is A - B.
     mult(A, B, R) :- R is A * B.
 
-    :- meta_predicate executar(3).
+    :- meta_predicate executar(3, *, *, *).
 
     executar(Op, N1, N2, N) :-
         ( call(Op, N1, N2, N) -> 
@@ -553,12 +588,16 @@ Os condicionais em Prolog são habilitados através do predicado meta_predicate,
             write('erro')
         ).
 
-    % Terminal
-    ?- executar(mult, 2, 4, 8).
-    certo
+    % Exemplo 2
+     
+    :- meta_predicate combinar(1, 1, *, *, *).
 
-    ?- executar(sub, 10, 5, 100).
-    erro
-    
+    combinar(Op1, Op2, N1, N2, Res) :-
+        ((call(Op1, N1, R1), call(Op2, N2, R2)) ->  
+            Res is R1 + R2,                        
+            format('Sucesso! O resultado foi ~w', [Res])
+        ;   
+            write('Erro: Uma das operacoes falhou!'), 
+            fail).
 ```
 
