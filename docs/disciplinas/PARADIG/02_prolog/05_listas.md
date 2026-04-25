@@ -59,8 +59,9 @@ length_([], 0).
 Tamanho = 4.
 
 ```
+#### 2.3.1 Filtros
 
-#### 2.3.1 member/2
+##### 2.3.1.1 member/2
 
 Verifica se algo pertence à lista, chegando o Head e percorrendo recursivamente o Tail.
 
@@ -95,7 +96,79 @@ true .
 ```
 
 
-#### 2.3.2 append/3
+#### 2.3.1.2 findall/3
+
+Usado para encontrar todos os valores que satisfazem um objetivo e agrupá-los em uma lista resultante. Primeiro argumento é o que você quer encontrar, o segundo a regra que de ve ser satisfeita e o terceiro a variável onde a lista com os resultados sera guardada.
+
+> findall(N, regra(_,N), novaLista).
+
+**Exemplo:**
+```prolog
+% Banco de Fatos
+
+nota(joao, 7).
+nota(maria, 5).
+nota(cleber, 3).
+
+% Terminal
+findall(Nome, (nota(Nome, N), N > 5), Lista).
+X = Joao.
+```
+
+
+##### 2.3.1.3 include/3
+
+- Recebe uma regra, uma lista N e uma lista M.
+- Vai aplicar a regra em cada elemento da lista N, caso  o objetivo der true o elemento fica na lista, caso der false ele sai.
+- A lista N é comparada com a lista M, caso unificar dar true.
+- Caso a lista M for uma variável, vai retornar a lista N filtrada somente com os elementos que passaram na regra.
+
+> include(Goal, List, Filtered).
+
+**Exemplo:**
+```prolog
+% Banco de Fatos
+is_odd(X) :- mod(X, 2) =:= 1.
+
+odds(L, Odds) :- include(is_odd, L, Odds)
+
+% Terminal
+?- odds([1,2,3,4,5,6],L).
+L = [1, 3, 5].
+
+
+```
+
+
+##### 2.3.1.4 exclude/3
+
+- Mesma coisa do include, porém vai deixar sos elementos para os quais o objetivo falha.
+
+> include(Goal, List, Filtered).
+
+**Exemplo:**
+```prolog
+% Banco de Fatos
+is_odd(X) :- mod 2 =/= 0.
+
+odds(L, Odds) :- include(is_odd, L, Odds)
+evens(L, Evens) :- exclude(is_odd, L, Evens).
+
+% Terminal
+?- evens([1,2,3,4,5,6],L).
+L = [2, 4, 6].
+
+```
+
+##### 2.3.1.5 intersection/3
+Pega o que tem em comum em duas listas
+
+```prolog
+?- intersection([joao, maria, cleber], [maria, ana, joao], Comum).
+Comum = [joao, maria].
+```
+#### 2.3.4 Adicionar membros na lista
+##### 2.3.4.1 append/3
 
 Anexa a segunda lista à primeira. Também é usado para decompor uma lista em todas as combinações possíveis de prefixos e sufixos.
 
@@ -141,26 +214,7 @@ Y = [] ;
 false.
 ```
 
-#### 2.3.3 findall/3
-
-Usado para encontrar todos os valores que satisfazem um objetivo e agrupá-los em uma lista resultante. Primeiro argumento é o que você quer encontrar, o segundo a regra que de ve ser satisfeita e o terceiro a variável onde lista com resultados sera guardada.
-
-> findall(N, regra(_,N), novaLista).
-
-**Exemplo:**
-```prolog
-% Banco de Fatos
-
-nota(joao, 7).
-nota(maria, 5).
-nota(cleber, 3).
-
-% Terminal
-?- findall (N, regra(_,N), X)
-X = [7,5,3].
-```
-
-#### 2.3.4 asserta/1 e assertz/1
+##### 2.3.4.2 asserta/1 e assertz/1
 Permite que o programa aprenda novos fatos enquanto está rodando. Assim, É possível transformar uma lista de termos em fatos reais na memória. O "asserta" coloca no inicio e o "assertz" no final
 
 
@@ -200,8 +254,8 @@ list_to_facts([H|T]) :-
     assertz(H),        % Transforma o item H em um fato real 
     list_to_facts(T).  % Continua para o resto da lista 
 ```
-
-#### 2.3.4 maplist/N
+#### 2.3.5 Iteradores 
+##### 2.3.5.1  maplist/N
 É um predicado que atua como um iterador sincronizado sobre múltiplas listas. 
 
 > maplist (funcao, lista1, ..., listaN).
@@ -249,7 +303,7 @@ R = 6.
 
 R = [3,6].
 ```
-#### 2.3.5 numList/3
+##### 2.3.5.2 numList/3
 
 Recebe dois número, N e M, e gera uma lista com todos os inteiros no intervalo de N a M. Sua sintaxe é:
 
@@ -264,51 +318,8 @@ numList(1,5,L).
 L = [1, 2, 3, 4, 5].
 ```
 
-#### 2.3.5 include/3
 
-- Recebe uma regra, uma lista N e uma lista M.
-- Vai aplicar a regra em cada elemento da lista N, caso  o objetivo der true o elemento fica na lista, caso der false ele sai.
-- A lista N é comparada com a lista M, caso unificar dar true.
-- Caso a lista M for uma variável, vai retornar a lista N filtrada somente com os elementos que passaram na regra.
-
-> include(Goal, List, Filtered).
-
-**Exemplo:**
-```prolog
-% Banco de Fatos
-is_odd(X) :- mod 2 =/= 0.
-
-odds(L, Odds) :- include(is_odd, L, Odds)
-
-% Terminal
-?- odds([1,2,3,4,5,6],L).
-L = [1, 3, 5].
-
-
-```
-
-
-#### 2.3.6 exclude/3
-
-- Mesma coisa do include, porém vai deixar sos elementos para os quais o objetivo falha.
-
-> include(Goal, List, Filtered).
-
-**Exemplo:**
-```prolog
-% Banco de Fatos
-is_odd(X) :- mod 2 =/= 0.
-
-odds(L, Odds) :- include(is_odd, L, Odds)
-evens(L, Evens) :- exclude(is_odd, L, Evens).
-
-% Terminal
-?- evens([1,2,3,4,5,6],L).
-L = [2, 4, 6].
-
-```
-
-#### 2.3.7 foldl/N
+##### 2.3.5.3 foldl/N
 
 Ele vai aplicar o predicado ao primeiro item da lista, somá-lo ao valor inicial e colocá-lo no resultado, fazendo isso na lista inteira.
 
@@ -323,7 +334,7 @@ soma(X, total, NovoTotal) :- NovoTotal is total + X.
 R = 15.
 ```
 
-#### 2.3.8 scanl
+##### 2.3.5.4 scanl
 
 Mesma coisa do foldl, porém registra os passos intermediários
 

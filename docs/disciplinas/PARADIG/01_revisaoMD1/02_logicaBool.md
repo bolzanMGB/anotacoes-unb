@@ -1,6 +1,5 @@
 # Lógica Proposional Booleana
 
----
 
 ## 1. Conceitos Elementares
 

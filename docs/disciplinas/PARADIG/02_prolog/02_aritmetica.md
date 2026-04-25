@@ -65,6 +65,7 @@ ERRO
 Exemplo: se temos um operador "e" que é xfy, então "sol e chuva e vento" é lido como e(sol, e(chuva, vento)).
 
 Exemplo: Se temo um operador "+" que é yfx, então "1 + 2 + 3" é lido como: +(+(3,2),1).
+
 **2.2 Infixo Associativo à Esquerda(yfx):** O y está na esquerda, então ele "empilha" para a esquerda.
 
 Exemplo: se temos um operador "e" que é xfy, então "sol e chuva e vento" é lido como e(e(sol,chuva), vento).

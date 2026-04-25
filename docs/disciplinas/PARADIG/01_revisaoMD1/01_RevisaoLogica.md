@@ -70,3 +70,28 @@ Os principais quantificadores são: Todo, ALgum e Nenhum.
 | **ALGUM** A é B | **NENHUM** A é B | A negação do "existe ao menos um" é dizer que não existe **nenhum**. |
 | **ALGUM** A **NÃO** é B | **TODO** A é B | A negação da "exceção" (um que não é) é a "regra geral" (todos são). |
 
+
+
+## 4. Teoria dos Conjuntos
+| Símbolo | Nome | Exemplo | Descrição |
+| :---: | :--- | :--- | :--- |
+| $\in$ | Pertence | $x \in A$ | Um **elemento** está dentro do conjunto. |
+| $\notin$ | Não pertence | $y \notin A$ | O elemento está fora do conjunto. |
+| $\subset$ | Está contido | $A \subset B$ | O conjunto A está dentro do conjunto B. |
+| $\supset$ | Contém | $B \supset A$ | O conjunto B engloba o conjunto A. |
+| $\cup$ | União | $A \cup B$ | Elementos que estão em A **OU** em B. |
+| $\cap$ | Intersecção | $A \cap B$ | Elementos que estão em A **E** em B. |
+| $\emptyset$ | Vazio | $A = \emptyset$ | Conjunto sem nenhum elemento. |
+
+
+## 5. Funções
+
+função composta
+
+função inversa
+
+algebra de função
+
+função sobrejotora, injetora, bijetora
+
+dominio, contradominio, imagem
