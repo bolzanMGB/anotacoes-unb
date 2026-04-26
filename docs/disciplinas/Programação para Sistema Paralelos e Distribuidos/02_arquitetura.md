@@ -9,6 +9,7 @@ Tanembaum faz a distinção clara entre dois conceitos sobre a organização do 
 **Estilos Arquitetônicos:** Refere-se à organização lógica do software. É o "desenho" de como os componentes interagem entre si, independentemente de onde eles serão instalados. O foco aqui são os Componentes (unidades de software) e os Conectores (mecanismos de comunicação).
 
 **Arquiteturas de Sistemas:** Refere-se à organização física. É a maneira como colocamos os componentes de software em máquinas reais e como essas máquinas se relacionam. É aqui que decidimos se o sistema será centralizado ou se todos os nós terão o mesmo peso.
+**Arquiteturas de Sistemas:** Refere-se à organização física. É a maneira como colocamos os componentes de software em máquinas reais e como essas máquinas se relacionam. É aqui que decidimos se o sistema será centralizado ou se todos os nós terão o mesmo peso.
 
 ---
 

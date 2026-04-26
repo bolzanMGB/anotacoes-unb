@@ -137,11 +137,99 @@ Após receber a mensagem de volta, o cliente desempacota o resultado de forma us
 
 110 png
 
-### 3.3 Mashalling e unmarshalling
+### 3.3 Passagem de parâmetros por valor
 
 Esse processo de transformar estruturas de dados em uma representação transmissível e depois reconstruí-las no destino é algo muito complicado.
 
-**Marshalling:** Processo de empacotar os parâmetros/dados para o envio.S
-**Unmarshalling:** Processo de desempacotar e recosntruir os parâmetros/dados ao chegar.
+**Marshalling:** Processo de empacotar os parâmetros/dados para o envio.
+**Unmarshalling:** Processo de desempacotar e reconstruir os parâmetros/dados ao chegar, de modo que sejam equivalentes aos do cliente.
 
-Isso é necessário porque máquinas podem ter arquiteturas diferentes, como little endian e big endian, além de formatos distintos para números, alinhamento e representação interna.
+Isso é necessário porque máquinas podem ter arquiteturas diferentes, como little endian (numera os bytes da direita para esquerda) e big endian (numera os dados da esquerda para a direita), além de formatos distintos para números, alinhamento e representação interna.
+
+Uma solução para esse empacotamento de valores em formato diferente é transaforma-los de forma indepedente da máquina de destino. Para isso usa-se corba, objetos em java e XML/JSON.
+
+### 3.4 Passagem de parâmetros por referência
+
+A passagem de dados por valor é algo mais simples, já que dados podem ser copiados. Já passagens por referência, como ponteiros e estruturadas ligadas a memória loca, é mais difícil, pois o endereço existente no contexto local não faz necessariamente sentido no contexto de otura máquina. Assim, esse tipo de passagem são raras e proibidas no geral.
+
+
+### 3.5 IDL e heterogeneidade
+
+Se dois stubs usam o mesmo protocolo RPC, ou seja, o mesmo formato de comunicação, mensagem e empacotamento, a única coisa que muda entre eles é qual função da interface eles representam para a aplicação, e consequentemente o nome da função, seus parâmetros e tipo de retorno.
+
+Assim, criar mecanismos de geração automática de stubs é algo muito conveniente, pois evita implementar manualmente a lógica de comunicação. No entanto, esses stubs precisam ser gerados para linguagens específicas, já que cliente e servidor podem estar escritos em linguagens diferentes.
+
+Nesse contexto entram as IDLs, que permitem especificar a interface de forma independente de linguagem. A partir dessa definição, ferramentas geram automaticamente os stubs de cliente e servidor em diferentes linguagens, garantindo que ambos sigam a mesma interface e protocolo.
+
+### 3.6 Limitações reais da transparência
+
+RPC nunca fica “idêntica” a uma chamada local. Existem diferenças importantes:
+
+- latência de rede;
+- falhas de comunicação;
+- timeouts;
+- perda de disponibilidade;
+- necessidade de tratar exceções remotas.
+
+Essa é uma das ideias mais importantes em Tanenbaum: a transparência é desejável, mas sempre custa algum grau de complexidade e perda de controle.
+
+### 3.7 RPC sincrona, assíncrona e one-way
+
+A RPC tradicional é síncrona e transiente: o cliente espera a resposta. Mas existem variações:
+
+- RPC assíncrona: o cliente dispara a chamada e recebe confirmação depois.
+- RPC one-way RPC: não há espera de resposta imediata.
+
+### 3.8 Quando usar RPC
+RPC é útil quando:
+
+- a aplicação quer simplicidade de programação;
+- o serviço remoto é bem definido;
+- a latência é tolerável;
+- a semântica de chamada/resposta combina com o problema.
+
+Ela é menos adequada quando o sistema exige grande flexibilidade, alto desacoplamento ou tolerância forte a desconexões
+
+## 4. Comunicação por envio de mensagens
+
+A comunicação por envio de mensagens é uma forma direta de interação em sistemas distribuídos, na qual os processos trocam dados explicitamente por meio de mensagens. Diferente da RPC, que abstrai a comunicação e esconde a complexidade da rede, nesse modelo a aplicação é responsável por construir, enviar, receber e interpretar as mensagens.
+
+Esse modelo pode ser classificado como transiente e persistente e, por oferecer controle explícito sobre o envio, formato e processamento das mensagens, proporciona maior controle e,menor overhead em comparação com o RPC.
+
+### 4.1 Sockets
+
+Um socket é um canal bidirecional de comunicação entre dois processos, que permite enviar e receber dados pela rede. Podem ser via:
+
+**TCP:** Com conexão, mais confiável e organizado. Usado em HTTP.
+
+**UDP:** Sem conexão, sem garantia de entrega e mais rápido. Usado em jogos e streaming.
+
+Além disso, eles ocorrem por meio das operações:
+
+● socket: criar um ponto de comunicação
+● connect: estabelece uma conexão
+● send: envia dados de uma conexão
+● receive: recebe dados de uma conexão
+● close: fecha a conexão
+● bind: estabelecer um endereço local
+● listen: dizer que o socket aceita conexões nele e
+qual o tamanho máximo de conexões pendentes
+● accept: bloqueia até receber uma requisição
+
+## 4.2 Message-Parsing Interface (MPI)
+O MPI é um padrão de comunicação desenvolvido para computação paralela de alto desempenho. Enquanto os Sockets foram feitos para a internet em geral, o MPI foi feito para rodar em redes fechadas de altíssima velocidade e ao mesmo tempo garantir portabilidade de códigos, ou seja, permitir que sejam rodados em diferentes sistemas sem modificações.
+
+### 4.2.1 Ideia Principal
+
+Ele assume que a rede é compostas por diversos grupos fechados e seguros que possuem seus próprios processos. A comunicação entre grupos é feita utilizando um par de identificação (ID do Grupo, ID do Processo) para definifir a origem e o destino.
+
+
+## 5. Message-Oriented Middleware (MOM)
+
+É um software focado em mensagens persistentes e assíncronas, ou seja, um sistema onde (diferente do MPI e RPC):
+
+- As mensagens não sao bloqueantes.
+- As mensagens são momentaneamente armazenadas pelo middleware.
+- Emissor e receptor não precisam estar ativos simultaneamente para se comunicarem.
+- Comunicações podem demorar minutos, ao invés de segundos.
+
