@@ -65,6 +65,12 @@ A Raspberry Pi tem 40 pinos físicos, cuja numeração pode ser conferida no esq
   <p><em>Detalhamento <a href="https://pinout.xyz/">aqui</a></em></p>
 </div>
 
+## 3. UART e RS485
+
+**UART (Universal Asynchronous Receiver-Transmitter):** É o protocolo de hardware que a Raspberry Pi usa nativamente para conversar com outros dispositivos através de dois fios principais: TX (transmissão) e RX (recepção).
+
+**RS485:** É o padrão físico de fiação. Enquanto a UART é boa para distâncias curtas, o RS485 é usado em ambientes industriais porque é muito resistente a ruídos e permite conectar vários dispositivos no mesmo par de fios (barramento).
+
 ## 3. Exercícios
 Os exercícios foram retiradas [daqui](https://gitlab.com/fse_fga/raspberry-pi/exercicios/exercicio-gpio)
 
@@ -246,3 +252,4 @@ O encoder tem 5 pinos, deve-se conectar da seguinte forma:
         GPIO.cleanup()
 ```
 </details>
+
