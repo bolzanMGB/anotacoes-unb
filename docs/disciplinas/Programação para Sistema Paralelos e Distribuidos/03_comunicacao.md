@@ -194,7 +194,7 @@ Ela é menos adequada quando o sistema exige grande flexibilidade, alto desacopl
 
 A comunicação por envio de mensagens é uma forma direta de interação em sistemas distribuídos, na qual os processos trocam dados explicitamente por meio de mensagens. Diferente da RPC, que abstrai a comunicação e esconde a complexidade da rede, nesse modelo a aplicação é responsável por construir, enviar, receber e interpretar as mensagens.
 
-Esse modelo pode ser classificado como transiente e persistente e, por oferecer controle explícito sobre o envio, formato e processamento das mensagens, proporciona maior controle e,menor overhead em comparação com o RPC.
+Esse modelo pode ser classificado como transiente e persistente e, por oferecer controle explícito sobre o envio, formato e processamento das mensagens, proporciona maior controle e, menor overhead (uso de recurso extra) em comparação com o RPC.
 
 ### 4.1 Sockets
 
@@ -299,7 +299,6 @@ Uma possível solução seria usar um broker, como em sistemas de mensageria, ma
 
 Além disso, o multicast nativo da Internet possui uso limitado, pois exige suporte da infraestrutura de rede e pode consumir muita banda, tornando-se pouco viável em larga escala.
 
-### 6.2 Alternativas ao Multicasting
 
 ### 6.2 Overlay network
 
@@ -358,3 +357,15 @@ Uma otimização que define o número máximo de nós que a mensagem pode percor
 #### 6.3.2 Flooding Probabilístico
 
 Mesmo com o TTL, o flooding ainda é pesado. Então outra otimização é: em vez de retransmitir sempre, cada nó retransmite com certa probabilidade. Isso reduz overhead, mas sacrifica garantia de alcance total. É um compromisso entre custo e confiabilidade.
+
+#### 6.3.4 Disseminação Epidêmica (Gossip)
+
+Em vez de enviar para todos os vizinhos, um nó escolhe e envia para alguns nós aleatórios da rede. Esses nós escolhidos (infectados) fazem a mesma coisa. Com o tempo, a informação se espalha pela rede de forma probabilística e exponencial, sendo muito mais eficiente. 
+
+Assim, o gossip se relaciona com o termo **antientropia**: são otimos em garantir que todos os nós fiquem com o mesmo estado, por exemplo em relação a uma **atualização**, não somente espalhar de uma vez. Há dois tipos de gossip:
+
+**Push:** Um nó infectado escolhe outro nó e envia a informação para ele. No começo funciona bem pois, como poucos nós estão infectados, é quase garantido que todo contato gera um novo nó. Poém, quando quase todos os nós já estão infectados,um nó infectado pode acabar escolhendo um o nó que já está infectado, desperdidançando esforço.
+
+**Pull:** Acontece o contrário: o nó não infectado é que toma iniciativa. Ele entra em contato com outro nó e pergunta: “você está infectado?. Se tiver, ele recebe. Esse modelo funciona melhor quando já existem poucos nós desatualizados, porque são justamente eles que vão atrás da informação. Isso evita o desperdício de mandar dados para quem já está atualizado.
+
+**Push-Pull:** Combina os dois comportamentos. Quando dois nós se encontram, eles comparam seus estados e trocam o que estiver faltando dos dois lados. Ou seja, um pode enviar e o outro pode receber ao mesmo tempo. Esse modelo é mais eficiente no geral porque funciona bem em todas as fases da propagação. No início, ele se comporta como push e no final, ele se comporta como pull.
