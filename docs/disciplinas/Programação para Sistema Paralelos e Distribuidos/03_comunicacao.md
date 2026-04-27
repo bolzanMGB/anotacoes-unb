@@ -228,8 +228,133 @@ Ele assume que a rede é compostas por diversos grupos fechados e seguros que po
 
 É um software focado em mensagens persistentes e assíncronas, ou seja, um sistema onde (diferente do MPI e RPC):
 
-- As mensagens não sao bloqueantes.
 - As mensagens são momentaneamente armazenadas pelo middleware.
+- As mensagens não sao bloqueantes.
 - Emissor e receptor não precisam estar ativos simultaneamente para se comunicarem.
 - Comunicações podem demorar minutos, ao invés de segundos.
 
+### 5.1 Filas de mensagens
+
+Nele, ao invez de um contato direto entre cliente e servidor, as mensagens sao guardadas por um middleware, que as organiza em uma fila. Essa fila é útil pois:
+
+- O produtor não precisa esperar o consumidor.
+- O consumidor pode processar no seu próprio ritmo.
+- Resolve problemas de falhas de rede e indisponibilidade.
+- Resolve problema de lentidão em momentos de pico.
+
+Operações típicas de fila são:
+
+PUT: adicionar uma mensagem na fila (nãoblocante)
+GET: remove um elemento da fila, bloqueia se
+estiver vazio
+POLL: remove um elemento da fila mas não
+bloqueia se estiver vazio
+NOTIFY: insere uma função de callback que deve
+ser executada quando existir elemento na fila
+
+### 5.2 Brokers
+
+Em um ambiente com vários sistemas interagindo, surgem múltiplas filas e a comunicação ponto a ponto se torna complexa, pois cada sistema precisa saber para qual fila enviar mensagens e quem irá consumi-las. 
+
+Nesse cenário, surge o broker, que atua como um mediador central responsável por gerenciar as filas, definir regras de roteamento, realizar possíveis conversões de dados e encaminhar mensagens. 
+
+Com isso, os sistemas passam a se comunicar apenas com o broker, que decide para qual fila cada mensagem deve ser enviada e quais consumidores irão recebê-la. Essa centralização reduz a complexidade de integração de O(N²) para O(N), tornando o sistema mais escalável e organizado.
+
+Assim como os brookers podem:
+
+- Transformar campos.
+- Converter formatos.
+- Adaptar protocolos.
+- Fazer integração entre aplicações heterogêneas.
+
+Eles toranam os middlewares muitos valioso em ambientes corporativos e de integração de sistemas legados.
+
+### 5.3 Advanced Message Queuing Protocol  AMQP)
+
+Como no passado cada empresa criava seu próprio Broker proprietário, em 2006 foi criado o AMQP, um padrão aberto criado para permitir que diferentes sistemas de enfileiramento de mensagens operem juntos.
+
+- Usa conexões TCP.
+- Comunicação vidirecional.
+- Dado viaja por meio de links.
+- Uma mensagem nasce com status unsettled e muda para settled quando o destino confirma que a processo com sucesso.
+
+### 5.4 Aplicações Práticas
+
+**RabbitMQ:** É um dos Message Brokers mais famosos e implementa o AMQP. O grande diferencial arquitetural dele é o conceito de Exchanges.
+
+- Quem envia a mensagem não manda direto para a fila. Manda para um Exchange.
+- O Exchange, ao contrário do Broker, não armazena mensagens, apenas lê as regras e decide em quais filas aquela mensagem deve ser jogada. 
+- Isso dá uma flexibilidade enorme para criar sistemas complexos.
+
+**Celery:** É um framework (middleware) muito usado em Python para gerenciar filas de tarefas. Ele facilita a vida do programador porque padroniza o código, permitindo que você conecte seu software a um RabbitMQ (Message Broker) ou a um Redis (Banco em Memória), sem precisar reescrever as integrações se decidir trocar a tecnologia de fila no futuro.
+
+
+## 6. Multicasting
+
+### 6.1 O problema do multicasting
+
+Até aqui, a comunicação foi tratada principalmente como interações ponto a ponto (um sistema mandando para apena um outro). No entanto, em cenários de multicast, onde uma mesma mensagem precisa alcançar vários destinos, esse modelo se torna ineficiente. 
+
+Uma possível solução seria usar um broker, como em sistemas de mensageria, mas em contextos como redes P2P isso quebra a descentralização e pode criar um gargalo central. 
+
+Além disso, o multicast nativo da Internet possui uso limitado, pois exige suporte da infraestrutura de rede e pode consumir muita banda, tornando-se pouco viável em larga escala.
+
+### 6.2 Alternativas ao Multicasting
+
+### 6.2 Overlay network
+
+Como alternativa, surgiu o multicast em nível de aplicação (ao inves de níve de rede), no qual a própria aplicação implementa a lógica de disseminação das mensagens. Isso é feito por meio de uma overlay network: uma rede lógica virtual formada por uma estrutura de dados onde um nó que quer enviar uma mensagem virá o nó raiz e os nós que querem receber a mensagem se inserem formando uma árvore.
+
+Assim, o nó inicial não precisa enviar a mensagem para todos os participantes diretamente; ele envia para poucos, e os demais nós continuam a disseminação. Esse mecanismo distribui a carga de comunicação e torna o processo mais escalável em ambientes descentralizados.
+
+```bash
+        A
+      /   \
+     B     C
+    / \     \
+   D   E     F
+```
+
+**Funcionamento:**
+
+- A envia para B e C.
+- B repassa para D e E.
+- C repassa para F.
+
+#### 6.2.1 Problema: Link Stress
+
+O grande problema aqui é que, como a rede overlay não sabe como são os enlaces físicos, ou seja, como os cabos físicos da internet estão ligados no mundo real, uma única mensagem pode acabar passando pelo mesmo roteador físico várias vezes para alcançar caminhos virtuais diferentes. Isso gera um gargalo chamado **Estresse de Enlace (Link Stress).**
+
+**Exemplo:** Tendo a árvore anterior, ela só correposnde a rede virutla, na vida real, por exemplo, pode acontece de:
+
+- O caminho físco de A até B envolve passar por F e D.
+- O caminho físco de A até C também envolve passar por F e D.
+- Assim, a mensagem atravessa múltiplas vezes os mesmo enlaces físicos, resultando em desperdício de banda, congestionamento e gargalos.
+
+**Switch-trees:** É um sistema que otimiza o problema do Link-Stress ao permitir que os nós mudem de pai dinamicamente para encontrar caminhos com menor latência e economiza banda.
+
+### 6.3 Flooding
+
+É uma alternativa de multicast quando não é possivel cosntruir uma estrutura organizada como uma árvore. A ideia principal é: quando um nó recebe uma mensagem, ele repassa essa mensagem para todos os seus vizinhos, esses vizinho fazem o mesmo, e assim por diante.  Se o nó já tiver visto a mensagem anteriormente, ele a ignora para evitar ciclos e duplicatas. Ideial quando:
+
+**Quando usar:**
+
+- Árvore não é viável.
+- Não quer uma estrutura complexa.
+- A rede é dinâmica.
+- Você so quer garantir que chegue em todo mundo.
+
+**Vantagens:** Simples e Robusto.
+
+**Desvantagens:**
+
+- Pode gerar uma explosão de mensagens.
+- Desperdício de banda.
+
+#### 6.3.1 Time-to-Live (TTL)
+
+Uma otimização que define o número máximo de nós que a mensagem pode percorrer. Cada vez que passa por um nó esse valor diminui e quando chega a zero a mensagem é descartada, reduzindo o tráfego.
+
+#### 6.3.2 Flooding Probabilístico
+
+Mesmo com o TTL, o flooding ainda é pesado. Então outra otimização é: em vez de retransmitir sempre, cada nó retransmite com certa probabilidade. Isso reduz overhead, mas sacrifica garantia de alcance total. É um compromisso entre custo e confiabilidade.
