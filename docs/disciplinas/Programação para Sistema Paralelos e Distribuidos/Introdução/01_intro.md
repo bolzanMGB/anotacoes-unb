@@ -20,7 +20,7 @@ O resultados dessas tecnologias foi a viabilidade ao decorrer dos anos de montar
 **Nota:** Apesar disso tudo, os Mainframes não morreram. Eles evoluíram, encolheram para o tamanho de uma geladeira e hoje são máquinas altamente especializadas para processamento de transações críticas (como as de grandes bancos), onde a centralização ainda é uma vantagem de segurança.
 
 
-## 1. Definição
+## 1. Definições
 
 **Tanenbaum:** Um conjunto de computadores independentes conectados entre sí via rede. Esse conjunto compartilha processos e recursos e se apresenta a seus usuários como um sistema único e coerente.
 
@@ -33,51 +33,16 @@ computadores interligados em rede se comunicam e coordenam suas ações apenas p
 - Não há visão do usuário nessa definição.
 
 
-
-## 2. Características Importantes:
-
-**Simplificação para o usuário:** O sistema oculta que seus recursos estão distribuídos em várias máquinas. Assim, o usuário não percebe sua organização interna, nem que se trata de vários sistemas. Exemplo: Quando você acessa o Google, não sabe (e não precisa saber) em qual servidor ou país sua busca está sendo processada.
-
-**Escalabilidade:** Facilidade de aumentar a capacidade do sistema conforme a demanda cresce. Pode-se aumentar a RAM/CPu ou adicionar novas máquinas.
-
-**Concorrência:** Como existem vários computadores, vários processos acontecem ao mesmo tempo.
-
-**Falta de um relógio global:** Em um sistema centralizado, há um único relógio. Em sistemas distribuídos, cada máquina tem seu próprio tempo interno, resultando em limitações na sincronização exata do tempo.
-
-**Falhas independentes:** Um nó falha sem interromper o sistema todo.
-
-
-
-## 3. Sistemas Descentralizados VS Sistemas Distribuídos
-
-**Sistemas Descentralizados:** Dividido em vários computadores por necessidade, enfatizando autonomia e independência como objetivo. Se tentar centralizar o sistema quebra. Exemplos:
-
-- IA: Modelos de IA são grandes demais para uma placa de vídeo só, portanto o treinamento precisa ser dividido .
-- Blockchain: Garante autonomia, ninguém precisa confiar em ninguém.
-- Geografia e Latência (Edge Computing): Em vez de enviar um arquivo para um servidor gigante e distante (processo demorado), utilizar de um mini-computador, como uma RaspberryPI. Exemplo: câmeras de segurança.
-- Leis: Muitas vezes, dados de usuários europeus precisar fica na Europa.
-
-**Sistemas Distribuído:** Dividido em vários computadores suficientemente para que o sistema seja rápido e confiável, enfatizando que o usuário não perceba a divisão. Exemplos: 
-
-- Sistemas NAS: Servidor acessado por Wi-Fi que aparece como Unidade Z e esconde toda a bagunça do hardware.
-- Sistemas CDNs: Como a Netflix e Youtube. Quando você da play, você não perceve que o vídeo vem de um servidor perto de você e não da sede nos EUA.
-
-| Modelo | Localização do Processamento | Objetivo Principal |
-| :--- | :--- | :--- |
-| **Centralizado** | Uma única máquina (Mainframe). | Controle total e simplicidade lógica. |
-| **Descentralizado** | Espalhado por **necessidade** (técnica, legal ou de confiança). | Autonomia, privacidade e falta de um "dono" central. |
-| **Distribuído** | Espalhado por **estratégia** (escala e performance). | 
-
-
 ## 4. Metas/Desafios/Design Goals
 
-### 4.1 Heterogeneidade
- A realidade física é heterogênea, ou seja, compostas por uma variedade de hardwares, sistemas operacionais, redes e linguagens de programação. Os SDs tem como objetivo "disfarçar" essa bagunça e faz isso através de um Middleware.
+### 4.1 Homogeneidade
+A realidade física é heterogênea, ou seja, compostas por uma variedade de hardwares, sistemas operacionais, redes e linguagens de programação. O SDs oculta que seus recursos estão distribuídos em várias máquinas. Assim, o usuário não percebe sua organização interna, nem que se trata de vários sistemas. Exemplo: Quando você acessa o Google, não sabe (e não precisa saber) em qual servidor ou país sua busca está sendo processada.
 
-**Middleware:** Uma camada de software, situada entre uma camada de nível mais alto (usuários e aplicações) e uma subjacente (sistemas operacionais), que oferece um modelo computacional de sistema único. 
+**Middleware:** Uma camada de software, situada entre uma camada de nível mais alto (usuários e aplicações) e uma subjacente (sistemas operacionais), que oferece um modelo computacional de sistema único, responsável por disfarçar essa bagunça.
+
 
 <div style="text-align: center;">
-  <img src="../../assets/pngs/93.png" alt="Inserção" />
+  <img src="../../../assets/pngs/93.png" alt="Inserção" />
 </div>
 
 ### 4.2 Abertura do Sistema
@@ -107,12 +72,13 @@ Escalabilidade é a capacidade de um sistema continuar operando de formar eficie
 Para que um sistema seja escalável, o custo dos recursos físicos deve ser, no máximo, proporcional ao número de usuários ou recursos presentes no sistema e a perda de desempenho deve ser manter em uma complexidade logarítmica em relação ao volume de dados.
 
 ### 4.5 Tratamento de Falhas
-Em sistema distribuído as falhas são parciais, ou seja, alguns componentes falham enquanto outros continuam funcionando. Portanto, o tratamento de falhas é particularmente difícil.
+Em sistema distribuído as falhas são parciais e independentes, ou seja, alguns componentes falham enquanto outros continuam funcionando. Portanto, o tratamento de falhas é particularmente difícil.
 
 **Detecção de Falhas:** Algumas falhas podem ser detectadas, por exemplo, com somas de verificação, outras são mais difíceis, ou mesmo impossíveis.
 
 **Mascaramento de falhas:** É o processo de ocultar ou tornar falhas menos sérias.Dois exemplos são:retransmitir mensagens que não chegam e gravar dados de arquivos em dois discos.
 
+Além isso, diferente dos sistemas centralizados, onde há um único relógio global, em sistemas distribuídos, **cada máquina tem seu próprio tempo interno**, resultando em limitações na sincronização exata do tempo.
 
 ### 4.6 Concorrência:
 Em um sistema distribuído, tanto os serviços quanto os aplicativos fornecem recursos que podem ser compartilhados pelos clientes. Para uma organização, por exemplo, é muito mais eficiente compartilhar uma única impressora de alta performance ou um banco de dados central do que equipar cada estação individualmente.
@@ -180,7 +146,7 @@ Formado por um conjunto de nós de computadores simples e semelhantes (homogêne
 - Exemplo: cluster Beowulf.
 
 <div style="text-align: center;">
-  <img src="../../assets/pngs/98.png" alt="Inserção" />
+  <img src="../../../assets/pngs/98.png" alt="Inserção" />
 </div>
 
 #### 5.1.2 Sistemas de Computação em Grade:
@@ -204,7 +170,7 @@ Formado por máquinas totalmente heterogêneas de diferentes domínios administr
 *Obs: o middleware é formado pelas camadas de conectividade, recursos e coletiva.
 
 <div style="text-align: center;">
-  <img src="../../assets/pngs/99.png" alt="Inserção" />
+  <img src="../../../assets/pngs/99.png" alt="Inserção" />
 </div>
 
 ### 5.2 Sistemas de Informação Distribuídos
@@ -237,7 +203,7 @@ Uma transação, nesse caso chamada de transação aninhada,pode ser dividida em
 
 
 <div style="text-align: center;">
-  <img src="../../assets/pngs/99.png" alt="Inserção" />
+  <img src="../../../assets/pngs/99.png" alt="Inserção" />
 </div>
 
 #### 5.2.2 Integração de Aplicações Empresariais (EAI)

@@ -2,94 +2,106 @@
 
 ## 1. Introdução Sistemas Distribuídos
 
-- Mainframes.
-- Lei de Moore: microprocessadoes e redes de alta velocidade.
+Mainframes -> Lies de Moore -> Microprocessadoes e Redes de alta velocidade.
 
 ### 1.1 Conceito
 
 - Conceito Tanembaum: tem a visão do usuário
-
-> Um conjunto de computadores independente conectados entre si compartilhando processos e recursos e que se apresentam como um sistema único para os usuários.
-
-- Conceito Colouris:
-
-> Sistema no qual componentes localizados em computadores interligados em rede se comunicam e coordenam suas ações apenas passando mensagens.
+- Conceito Colouris: mais sobre comunicaçãp
 
 ### 1.2 Características
 
-- Simplificação para o usuário: veem como uma coisa só.
-- Escabilidade: aumentar mais CPUs facilmente.
-- Concorrência: varios processos au mesmo tempo.
-- Falta de um relógio global: cada pc tem seu relógio.
-- Falhas independentes:
+- Homogeneidade
+- Middleware.
+- Transparência.
+- Interfaces publicadas.
+- Interoperabilidade
+- Portabilidade
+- Extensibilidade.
+- Segurança
+- Escalabilidade
+- Mascaramento de Falhas
+- Concorrência;
 
-### 1.3 Descentralizados vs Distribuídos
+### 1.3 Finalidades
 
-**Descentralizados:** em vários pcs por necessidade, se centralziar quebra. Ex: IA, blockchain.
+1. Sistemas de Computação Distribuídos e de Alta Perfomance
+- 1.1 Sistemas de Computação de Cluster: 
+        - Homogeneo.
+        - Local
+- 1.2 Sistemas de Computação em Grade: 
+        - Diferente.
+        - Virtual
 
-**Descentralizados:** em varios pcs somente por estrategia, ser mais rapido e mais escalavel. 
+2. Sistema de Informação Distribuídos
+- 2.1 Sistemas de Processamento de Transações (SPT): integridade, bancários
+- 2.2 Integração de Aplicações Empresariais (EAI): comunicação, empresas
+- 2.3 Sistemas Distribuídos Ubíquos e Pervasivos: focam em invisibilidade, wifi
 
-### 1.4 Dificuldades
+## 2. Estilos Arquitetônicos 
+Organização do Software
 
-**Heterogeneidade:** realidade física contem diversos hardwares (heterogeneidade), os SDs tem que disfarçar isso.
+1. Arquitetura em Camadas.
+- 1.1 Arquitetura Cliente-Servidor
+- 1.2 Arquitetura em Múltiplas Camadas
 
-**Abertura do sistema:** deve conter suas interfacas publicadas.
+2. Arquitetura Baseada em Serviços
+- 2.1 Arquitetura Baseada em Objetos.
+- 2.2 Arquitetura Baseada em Microsserviços.
+- 2.3 Arquitetura Baseada em Recursos.
 
-**Interoperabilidade:** diferentes hardware conseguirem trabalhar entre si.
+3. Arquitetura Baseadas Publicar-Subscrever
+- 3.1 Baseada em Eventos
+- 3.2 Espaço de Dados Compartilhados
 
-**Portabilidade:** programas rodarem em diferentes pcs.
+### 2.1 Arquitetura em Camadas:
+Fluxo: requisições de cima para baixo, respostas de baixo para cima.
 
-**Extensibilidade:** o sistema deve permitir adicionar novos pcs sempre.
+#### 1. Cliente e Servidor
+- Cliente: é ativo, envia um requisição ao servidor.
+- Servidor: é passivo, esperando continuamente uma requisição para responder.
 
-**Segurança:** recursos intrínsecos devem ser confidenciais para pessoas de fora, continuar integros apos alteração e disponíveis quando necessários.
+**Cliente Gordo e Magro**
+- Cliente magro:
+    - Possui pouco código (só interface).
+    - Maioria do processamento e dados ficam no servidor.
+    - Fácil de gerenciar.
+    - Tendencia atual.
+- Cliente gordo: 
+    - possui  muito código.
+    - cuida da interface e parte do processamento.
+    - Díficl de gerenciar.
 
-**Escabilidade:** continuar funcionando eficientemente com o aumento de usuários e recursos.
+#### 2. Arquitetura de Múltiplas Camadas (IDP)
+- Nível de Interface/Aplicação: janelas gráficas q o usuario lida.
+- Nível de Processamento: lógica da aplicação
+- Nivel de Dados: banco de dados
 
-**Falhas:** devem ser parciasi.
+### 2.2 Arquitetura Baseada em Serviços
+Os sistemas viram entidades
 
-**Transparencia:** parecer para o usuário como um todo em relação a acesso, localização, concorrencia e etc.
+- Baseada em Objetos
+- Baseada em Microserviços
+- Baseada em Recursos
 
-### 1.5 Tipos
+### 2.3 Arquiteturas Publicar-Subscrever
+Há um middleware que faz a comunicação entre os sistemas.
 
-#### 1.5.1 Sistemas de Computação Distribuídos e de Alta Perfomance
-Focam em força bruta computacional. são divididos em:
+- Desacoplamento no Espaço: remetende não quem é o destinatario e vice-versa.
+- Descaoplamento no Tempo: remetendo e destinário nao precisam esta rodando ao mesmo tempo.
 
-**1. Sistemas de Computação de Cluster:** vários pcs homogeneos simples são conectados entre si numa rede local de alta velocidade formando um supercomputador.
+#### 1. Baseada em Eventos
 
-- Cada nó com o mesmo SO.
-- Há um nó mestre que distribui as tarefas.
+- Um processa publicador anuncia um evento.
+- Outros processos manifestam interesse.
+- Desacomplado no espaço.
+- Acoplado no tempo.
 
-**2. Sistemas de Computação em Grade:** formando por máquinas heterogêneas ao redor do mundo criando um supercomputador virtual.
+#### 2. Baseada em Dados Compartilhados
 
-- Permite a colaboração entre instituições.
-- Organizado em camadas: base, conectividade, recursos, coletiva e aplicação.
+- Há um repositorio persistente.
+- O processo publicador insere dados no repositorio.
+- Os processos fazem buscas no repositorio para achar dados que eles querem.
+- Desacoplado no espaço.
+- Desacoplado no tempo.
 
-#### 1.5.2 Sistema de Informação Distribuídos
-
-Sistemas de banco de dados gigantes. neles pare do processamento lógico ocorre tmb no pc do usuário.
-
-**1. Sistemas de Processamento de Transações (SPT):** foco em integridade em sistemas bancários, nao dar erro
-
-- Transações ACID: 
-    - Atômicas: como se fossem uma só (tudo ou nada).
-    - Consistentes:invariantes devem ser válidas antes e após.
-    - Isoladas: transações concorrentes são independentes.
-    - Duráveis: irreversíveis.
-
-**2. Integração de Aplicações Empresariais (EAI)**: foco na comunicação entre diferentes bancos de dados de uma empresa (na mesma lingua).
-
-- Usa RPC.
-- Usa IPC.
-- Desvantagem de possui forte acoplamento: chamador e chamado precisam estar ligados ao mesmo tempo. por isso foram substituidos pelo MOM.
-
-**3. Sistemas Distribuídos Ubíquos e Pervasivos:** focam em invisibilidade.
-
-- Processamento espalhado por diversos pequenos nós.
-- Celulares, sensores e smartwatches.
-- Pervasivos: discretos e ficam invisíveis organicamente ao ambiente.
-- Ubíquos: evolução dos pervasivos, além de serem invisíveis estão em disponiveis em qualuqer lugar e momento
-- Pilares:
-    - Distribuição: precisa estar na rede para acessar recursos.
-    - Sensibilidade ao contexto: sabe onde voce esta, o que esta fazendo, quem esta com vc.
-    - Autonomia/composicao adhoc: se autogerencia sozinho: exemplo wifi.
-    - Inteligencia: usa IA para mudanças brucas
