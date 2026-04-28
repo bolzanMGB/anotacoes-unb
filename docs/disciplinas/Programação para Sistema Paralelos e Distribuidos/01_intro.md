@@ -1,14 +1,13 @@
 # Introdução Sistemas Distribuídos
 
----
 
 ## 1. Introdução
 
 Até meados dos anos 80, o cenário da computação era dominado pelos Mainframes: máquinas gigantescas (do tamanho de salas inteiras) que exigiam infraestruturas complexas de refrigeração e orçamentos milionários. Por serem tão caros e raros, esses computadores operavam de forma isolada; as organizações possuíam apenas algumas unidades que não "conversavam" entre si.
 
-Essa lógica foi quebrada por dois avanços fundamentais: a dos microprocessados e das redes de alta velocidade
+Essa lógica foi quebrada por dois avanços fundamentais: a dos microprocessadores e das redes de alta velocidade
 
-Até então limitados a tarefas simples (como calculadoras), os microprocessadores deram um salto de potência graças à Lei de Moore. A miniaturização dos componentes permitiu colocar milhões de transistores em um único chip, reduzindo o tamanho físico e o consumo de energia, enquanto a velocidade de processamento disparava.
+Até então, limitados a tarefas simples (como calculadoras), os microprocessadores deram um salto de potência graças à Lei de Moore. A miniaturização dos componentes permitiu colocar milhões de transistores em um único chip, reduzindo o tamanho físico e o consumo de energia, enquanto a velocidade de processamento disparava.
 
 Assim, tornou-se muito mais eficiente e barato comprar 1.000 microcomputadores de mil dólares cada do que investir em um único Mainframe de milhões de dólares. Embora o Mainframe fosse potente, um conjunto de mil máquinas menores oferecia um poder de processamento somado muito maior por uma fração do preço.
 
@@ -23,7 +22,7 @@ O resultados dessas tecnologias foi a viabilidade ao decorrer dos anos de montar
 
 ## 1. Definição
 
-**Tanenbaum:** Um conjunto de computadores independentes conectados em rede em que os processos e recursos estão espalhados em diferente computadores e que se apresenta a seus usuários como um sistema único e coerente.
+**Tanenbaum:** Um conjunto de computadores independentes conectados entre sí via rede. Esse conjunto compartilha processos e recursos e se apresenta a seus usuários como um sistema único e coerente.
 
 - Consiste em componentes autônomos.
 - Usuários acham que estão tratando de um único sistema.
@@ -33,7 +32,7 @@ computadores interligados em rede se comunicam e coordenam suas ações apenas p
 
 - Não há visão do usuário nessa definição.
 
----
+
 
 ## 2. Características Importantes:
 
