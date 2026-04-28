@@ -46,7 +46,7 @@ computadores interligados em rede se comunicam e coordenam suas ações apenas p
 
 **Falhas independentes:** Um nó falha sem interromper o sistema todo.
 
----
+
 
 ## 3. Sistemas Descentralizados VS Sistemas Distribuídos
 
@@ -66,8 +66,8 @@ computadores interligados em rede se comunicam e coordenam suas ações apenas p
 | :--- | :--- | :--- |
 | **Centralizado** | Uma única máquina (Mainframe). | Controle total e simplicidade lógica. |
 | **Descentralizado** | Espalhado por **necessidade** (técnica, legal ou de confiança). | Autonomia, privacidade e falta de um "dono" central. |
-| **Distribuído** | Espalhado por **estratégia** (escala e performance). | **Transparência**: o usuário enxerga o sistema como uma máquina única. |
----
+| **Distribuído** | Espalhado por **estratégia** (escala e performance). | 
+
 
 ## 4. Metas/Desafios/Design Goals
 
@@ -76,7 +76,9 @@ computadores interligados em rede se comunicam e coordenam suas ações apenas p
 
 **Middleware:** Uma camada de software, situada entre uma camada de nível mais alto (usuários e aplicações) e uma subjacente (sistemas operacionais), que oferece um modelo computacional de sistema único. 
 
-![Inserção](../../assets/pngs/93.png){align=center }
+<div style="text-align: center;">
+  <img src="../../assets/pngs/93.png" alt="Inserção" />
+</div>
 
 ### 4.2 Abertura do Sistema
 
@@ -87,7 +89,7 @@ Um sistema distribuído deve ser aberto, deve oferecer fácil acesso a seus recu
 
 **Interoperabilidade:** Diferentes sistemas (de marcas diferentes) conseguem trabalhar juntos. 
 
-**Interoperabilidade:** Você pode pegar o seu código e rodá-lo em outro sistema operacional ou hardware que siga as mesmas regras, sem precisar reescrever tudo.
+**Portabilidade:** Você pode pegar o seu código e rodá-lo em outro sistema operacional ou hardware que siga as mesmas regras, sem precisar reescrever tudo.
 
 **Separação entre Mecanismo e Política:** A clara separação gera flexibilidade. Mecanismo é "como" algo é feito (ex: técnica de criptografia usada). Política é "o que" deve ser feito (ex: qual nível de segurança o usuário precisa ter).
 
@@ -95,7 +97,7 @@ Um sistema distribuído deve ser aberto, deve oferecer fácil acesso a seus recu
 
 ### 4.3 Segurança:
 
-Muitos dados e recursos em sistemas distribuídos tem alto valor intrínseco e devem ser protegidos Essa segurança abrange três componentes: **confidencialidade** (proteção da exposição do conteúdo para pessoas não autorizadas), **integridade** (proteção contra alteração ou dano) e **disponibilidade** (proteção contra interferência com os meios dea cesso aos recursos).
+Muitos dados e recursos em sistemas distribuídos tem alto valor intrínseco e devem ser protegidos Essa segurança abrange três componentes: **confidencialidade** (proteção da exposição do conteúdo para pessoas não autorizadas), **integridade** (proteção contra alteração ou dano) e **disponibilidade** (acessíveis quando necessários).
 
 ### 4.4 Escalabilidade
 Escalabilidade é a capacidade de um sistema continuar operando de formar eficiente mesmo com um aumento significativo no número de usuários e recursos. Principais desafios: controlar o custo dos recursos físicos, controlar a perda e gargalos de desempenho e impedir que os recursos de software se esgotem.
@@ -177,7 +179,9 @@ Formado por um conjunto de nós de computadores simples e semelhantes (homogêne
 - Usado em programação paralela, onde o um único programa é executado em várias máquinas.
 - Exemplo: cluster Beowulf.
 
-![Inserção](../../assets/pngs/98.png)
+<div style="text-align: center;">
+  <img src="../../assets/pngs/98.png" alt="Inserção" />
+</div>
 
 #### 5.1.2 Sistemas de Computação em Grade:
 
@@ -199,7 +203,9 @@ Formado por máquinas totalmente heterogêneas de diferentes domínios administr
 
 *Obs: o middleware é formado pelas camadas de conectividade, recursos e coletiva.
 
-![Inserção](../../assets/pngs/99.png){ align=center }
+<div style="text-align: center;">
+  <img src="../../assets/pngs/99.png" alt="Inserção" />
+</div>
 
 ### 5.2 Sistemas de Informação Distribuídos
 
@@ -225,12 +231,14 @@ Possuem como foco a integridade. Aplicações de banco de dados realizam operaç
 
 Uma transação, nesse caso chamada de transação aninhada,pode ser dividida em subtransações que são executadas em paralelo e que, por sua vez, também podem ser redivididas. Exemplo: Imagine que você está reservando uma viagem. A "Transação Pai" é a Viagem. As "Subtransações" (filhas) são: 1. Reservar Voo, 2. Reservar Hotel, 3. Alugar Carro.
 
-Rollback: Se a transação pai der errado, ou seja, se qualquer uma das subtransações der errado, todas as subtransações devem ser desfeitas. Nesse sentido, enquanto as subtransações estão rodando, os resultados delas são provisório e só se tornam permanentes/duráveis no banco de dados quando a transação pai termina com sucesso total.
+**Rollback:** Se a transação pai der errado, ou seja, se qualquer uma das subtransações der errado, todas as subtransações devem ser desfeitas. Nesse sentido, enquanto as subtransações estão rodando, os resultados delas são provisório e só se tornam permanentes/duráveis no banco de dados quando a transação pai termina com sucesso total.
 
-Monitor de Processamento de Transações (TP): Como há vários servidores envolvidos, no exemplo anterior um para o voo, outro para o hotel, o Monitor TP permite acessar esses diferentes bancos de dados e coordenar o êxito das subtransações.
+**Monitor de Processamento de Transações (TP):** Como há vários servidores envolvidos, no exemplo anterior um para o voo, outro para o hotel, o Monitor TP permite acessar esses diferentes bancos de dados e coordenar o êxito das subtransações.
 
 
-![Inserção](../../assets/pngs/100.png){ align=center }
+<div style="text-align: center;">
+  <img src="../../assets/pngs/99.png" alt="Inserção" />
+</div>
 
 #### 5.2.2 Integração de Aplicações Empresariais (EAI)
 
