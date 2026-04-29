@@ -2,7 +2,7 @@
 
 ## 1. Introdução Sistemas Distribuídos
 
-Mainframes -> Lies de Moore -> Microprocessadoes e Redes de alta velocidade.
+Mainframes -> leis de Moore -> Microprocessadoes e Redes de alta velocidade.
 
 ### 1.1 Conceito
 

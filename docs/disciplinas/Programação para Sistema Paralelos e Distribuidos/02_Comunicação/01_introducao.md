@@ -118,7 +118,3 @@ B) Padrões de Comunicação
     - 2.3.4 Push-Pull 
 
 
-
-tipos de falhas 
-trajsaprencais
-

@@ -94,8 +94,7 @@ Por
 
 É definida como a ocultação, para um usuário final ou para um programador de aplicativo, da separação dos componentes em um sistema distribuído, de modo que o sistema seja percebido como um todo, em vez de como uma coleção de componentes independentes. Há oito formas de transparência:
 
-**Transparência de Acesso:** Oculta diferenças na representação de dados e no modo de acesso a um
-recurso
+**Transparência de Acesso:** Oculta diferenças na representação de dados e no modo de acesso a um recurso
 
 **Transparência de Localização:** Oculta o lugar onde um recurso está localizado fisicamente.
 
@@ -107,9 +106,7 @@ recurso
 
 **Transparência de Concorrência:** Oculta que um recurso pode ser compartilhado por vários usuários concorrentes sem interferência mútua.
 
-**Transparência de Falha:** Oculta a falha e a
-posterior recuperação de um recurso, permitindo
-que a tarefa seja concluída.
+**Transparência de Falha:** Oculta a falha e a posterior recuperação de um recurso, permitindo que a tarefa seja concluída.
 
 **Transparência de Desempenho:** Permite que o sistema seja reconfigurado para melhorar o desempenho conforme a carga varia.
 
@@ -253,3 +250,57 @@ O mecanismo que permite esses pilares é o de **Composição Ad Hoc**, que diz q
 **Redes de Sensores:** Milhares de mini-sensores espalhados (em uma floresta para detectar fogo, por exemplo). Eles colaboram entre si para economizar bateria e só enviam o sinal principal quando algo importante acontece.
 
 **Computação Móvel:** Sistemas em carros ou dispositivos com GPS. A premissa aqui é que o equipamento muda de lugar o tempo todo, então ele precisa lidar com conexões que caem e voltam.
+
+
+# Tipos de Falhas em Sistemas Distribuídos
+
+## 1. Falha por Parada (Crash Failure)
+O processo simplesmente para de funcionar.
+
+- Não responde mais
+- Não envia mensagens
+
+Exemplo: servidor cai ou processo encerra
+
+---
+
+## 2. Falha por Omissão (Omission Failure)
+O processo falha ao enviar ou receber mensagens.
+
+Tipos:
+- Omissão de envio → não envia mensagem
+- Omissão de recebimento → não recebe mensagem
+
+Exemplo: pacote perdido na rede
+
+---
+
+## 3. Falha de Tempo (Timing Failure)
+O sistema responde fora do tempo esperado.
+
+- Resposta atrasada (timeout)
+- Resposta fora do limite de tempo
+
+Exemplo: chamada RPC demora demais
+
+---
+
+## 4. Falha de Resposta (Response Failure)
+O sistema responde, mas com erro.
+
+- Valor incorreto
+- Execução incorreta da operação
+
+Exemplo: função retorna resultado errado
+
+---
+
+## 5. Falha Arbitrária (Bizantina)
+O sistema pode apresentar qualquer tipo de comportamento.
+
+- Envia mensagens erradas
+- Envia informações diferentes para cada nó
+- Comportamento imprevisível ou malicioso
+
+Exemplo: nó comprometido ou com erro grave
+
