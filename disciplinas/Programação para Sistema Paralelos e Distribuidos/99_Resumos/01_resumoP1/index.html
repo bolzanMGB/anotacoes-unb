@@ -1,0 +1,4180 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Arquitetura - Anotações UnB</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#arquitetura" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="Anotações UnB" class="md-header__button md-logo" aria-label="Anotações UnB" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Anotações UnB
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Arquitetura
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Anotações UnB" class="md-nav__button md-logo" aria-label="Anotações UnB" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Anotações UnB
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estrutura de Dados 1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Estrutura de Dados 1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA1/ponteiros.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ponteiros
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA1/alocacao.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Alocação de Memória
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA1/recurcao.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Recurção
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA1/complexidade.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Análise de Complexidade
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Listas Encadeadas
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Listas Encadeadas
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA1/Listas Encadeadas/simplesEncadeada.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Listas Simplesmente Encadeadas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA1/Listas Encadeadas/duplaEncadeada.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Listas Duplamente Encadeadas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Algoritmos de Busca
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Algoritmos de Busca
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA1/Algoritmos de Busca/buscaLinear.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Busca Sequencial
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA1/Algoritmos de Busca/buscaBinaria.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Busca Binária
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Algoritmos de ordenação
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Algoritmos de ordenação
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA1/Algoritmos de ordenacao/introducao.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introdução
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA1/Algoritmos de ordenacao/selection.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Selection Sort
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA1/Algoritmos de ordenacao/bubble.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bubble Sort
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA1/Algoritmos de ordenacao/insertion.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Insertion Sort
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA1/Algoritmos de ordenacao/shell.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shell Sort
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA1/Algoritmos de ordenacao/merge.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Merge Sort
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA1/Algoritmos de ordenacao/quick.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Sort
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA1/Algoritmos de ordenacao/heap.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Heap Sort
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA1/Algoritmos de ordenacao/intro.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Intro Sort
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA1/Algoritmos de ordenacao/counting.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Counting Sort
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA1/Algoritmos de ordenacao/radix.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Radix Sort
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tipos Abstratos de dados (TAD)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tipos Abstratos de dados (TAD)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA1/Tipos Abstratos de Dados/filas.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Filas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA1/Tipos Abstratos de Dados/pilhas.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pilhas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA1/Tipos Abstratos de Dados/arvores.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Árvores Binárias
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA1/Tipos Abstratos de Dados/arvoreDebusca.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Árvores Binárias de Busca
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estrutura de Dados 2
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Estrutura de Dados 2
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA2/tabelaSimb.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tabela de Símbolos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA2/arvoreBin.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Árvore Binária de Busca
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA2/arvore23.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Árvore 2-3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA2/redblack.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Árvore Red Black
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA2/skipList.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skip List
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA2/hash.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tabela Hash List
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Grafos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Grafos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA2/Grafos/grafos.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introdução
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA2/Grafos/grafosDir.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Grafos Dirigidos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA2/Grafos/caminhoMin.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Algorítmos de Caminho Mínimos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA2/Grafos/arvoreGer.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Algorítmos de Árvores Geradoras Mínimas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fundamentos de Arquitetura de Computadores
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Fundamentos de Arquitetura de Computadores
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../FAC/introFAC.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Assembly MIPS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../FAC/processador.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arquitetura Processador MIPS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fundamentos de Sistemas Operacionais
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Fundamentos de Sistemas Operacionais
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../FSO/introFSO.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introdução
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../FSO/processos.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Processos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../FSO/escalonamento.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Escalonamento
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../FSO/threads.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Threads
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../FSO/corrida.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Condições de Corrida
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../FSO/unix.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fundamentos UNIX
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../FSO/gerenciaMem.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gerência de Memória
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../FSO/memoriaVirtual.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Memória Virtual
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../FSO/sistemaArquivos.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sistema de Arquivos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../FSO/gerencia.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gerência de Dispositivos de Entrada e Saída
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requisitos de Software
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Requisitos de Software
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../REQ/introREQ.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introdução
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../REQ/elicitacao.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Elicitação
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../REQ/modelagem.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Análise e Modelagem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../REQ/priorizacao.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Priorização
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../REQ/especificacao.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Especificação
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../REQ/gerencia.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gerência
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Banco de Dados 1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Banco de Dados 1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../BD1/mer.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelo Entidade Relacionamento (MER)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arquitetura e Desenho de Software
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Arquitetura e Desenho de Software
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_1" id="__nav_8_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Base
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Base
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ARQ/Base/desenho.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Desenho de Software
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ARQ/Base/BPMN.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BPMN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_2" id="__nav_8_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelagem
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Modelagem
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ARQ/Modelagem/dinamica.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dinâmica
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ARQ/Modelagem/estatica.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estática
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_3" id="__nav_8_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Padrões
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Padrões
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ARQ/Padões/intro.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introdução
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ARQ/Padões/comportamental.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comportamental
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ARQ/Padões/criacional.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Criacional
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ARQ/Padões/estrutural.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estrututal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fundamentos de Redes de Computadores
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Fundamentos de Redes de Computadores
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../REDES/introRED.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introdução
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../REDES/cisco.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introdução CISCO Packet Tracer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../REDES/cisco2.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Continuação CISCO Packet Tracer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../REDES/cabeamento.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cabeamento
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../REDES/transmissao.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transmissão de Dados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Qualidade de Software 1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Qualidade de Software 1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../QUAL/introQual.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introdução
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../QUAL/medicacao.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Medição
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../QUAL/processoAvaliacao.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Processo de Avaliação
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Redes Neurais
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Redes Neurais
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../NEURAIS/introNeurais.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introdução
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../NEURAIS/redesNeurais.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Camadas e tipos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../NEURAIS/convulacional.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Redes Convulacionais
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../NEURAIS/otimizadores.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Otimizadores
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../NEURAIS/parâmetros.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicialização dos Parâmetros
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../NEURAIS/recorrentes.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Redes Neurais Recorrentes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../NEURAIS/mnist.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MNIST
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../NEURAIS/reguladores.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reguladores
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-introducao-sistemas-distribuidos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Introdução Sistemas Distribuídos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Introdução Sistemas Distribuídos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-conceito" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Conceito
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-caracteristicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Características
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-finalidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Finalidades
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-estilos-arquitetonicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Estilos Arquitetônicos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Estilos Arquitetônicos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-arquitetura-em-camadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Arquitetura em Camadas:
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 Arquitetura em Camadas:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-cliente-e-servidor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Cliente e Servidor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-arquitetura-de-multiplas-camadas-idp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Arquitetura de Múltiplas Camadas (IDP)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-arquitetura-baseada-em-servicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Arquitetura Baseada em Serviços
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-arquiteturas-publicar-subscrever" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Arquiteturas Publicar-Subscrever
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 Arquiteturas Publicar-Subscrever">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-baseada-em-eventos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Baseada em Eventos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-baseada-em-dados-compartilhados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Baseada em Dados Compartilhados
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-arquiteturas-de-sistema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Arquiteturas de Sistema
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Arquiteturas de Sistema">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-distribuida-centralizada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Distribuida Centralizada
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#31-distribuida-descentralizadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Distribuida Descentralizadas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1 Distribuida Descentralizadas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-peer-to-peer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Peer-To-Peer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-bittorrent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. BitTorrent
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-arquiteturas-hibridas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Arquiteturas Híbridas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5middleware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.Middleware
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="arquitetura">Arquitetura</h1>
+<h2 id="1-introducao-sistemas-distribuidos">1. Introdução Sistemas Distribuídos</h2>
+<p>Mainframes -&gt; leis de Moore -&gt; Microprocessadoes e Redes de alta velocidade.</p>
+<h3 id="11-conceito">1.1 Conceito</h3>
+<ul>
+<li>Conceito Tanembaum: tem a visão do usuário</li>
+<li>Conceito Colouris: mais sobre comunicaçãp</li>
+</ul>
+<h3 id="12-caracteristicas">1.2 Características</h3>
+<ul>
+<li>Homogeneidade</li>
+<li>Middleware.</li>
+<li>Transparência.</li>
+<li>Interfaces publicadas.</li>
+<li>Interoperabilidade</li>
+<li>Portabilidade</li>
+<li>Extensibilidade.</li>
+<li>Segurança</li>
+<li>Escalabilidade</li>
+<li>Mascaramento de Falhas</li>
+<li>Concorrência;</li>
+</ul>
+<h3 id="13-finalidades">1.3 Finalidades</h3>
+<ol>
+<li>Sistemas de Computação Distribuídos e de Alta Perfomance</li>
+<li>1.1 Sistemas de Computação de Cluster: 
+        - Homogeneo.
+        - Local</li>
+<li>
+<p>1.2 Sistemas de Computação em Grade: 
+        - Diferente.
+        - Virtual</p>
+</li>
+<li>
+<p>Sistema de Informação Distribuídos</p>
+</li>
+<li>2.1 Sistemas de Processamento de Transações (SPT): <ul>
+<li>Integridade,.</li>
+<li>Sistemas bancários.</li>
+<li>Monitor TP controla as subtransações</li>
+</ul>
+</li>
+<li>2.2 Integração de Aplicações Empresariais (EAI): <ul>
+<li>Comunicação.</li>
+<li>Para empresas</li>
+</ul>
+</li>
+<li>2.3 Sistemas Distribuídos Ubíquos e Pervasivos: <ul>
+<li>Focam em invisibilidade.</li>
+<li>Wifi</li>
+</ul>
+</li>
+</ol>
+<h2 id="2-estilos-arquitetonicos">2. Estilos Arquitetônicos</h2>
+<p>Organização do Software</p>
+<ol>
+<li>Arquitetura em Camadas.</li>
+<li>1.1 Arquitetura Cliente-Servidor</li>
+<li>
+<p>1.2 Arquitetura em Múltiplas Camadas</p>
+</li>
+<li>
+<p>Arquitetura Baseada em Serviços</p>
+</li>
+<li>2.1 Arquitetura Baseada em Objetos.</li>
+<li>2.2 Arquitetura Baseada em Microsserviços.</li>
+<li>
+<p>2.3 Arquitetura Baseada em Recursos.</p>
+</li>
+<li>
+<p>Arquitetura Baseadas Publicar-Subscrever</p>
+</li>
+<li>3.1 Baseada em Eventos</li>
+<li>3.2 Espaço de Dados Compartilhados</li>
+</ol>
+<h3 id="21-arquitetura-em-camadas">2.1 Arquitetura em Camadas:</h3>
+<p>Fluxo: requisições de cima para baixo, respostas de baixo para cima.</p>
+<h4 id="1-cliente-e-servidor">1. Cliente e Servidor</h4>
+<ul>
+<li>Cliente: é ativo, envia um requisição ao servidor.</li>
+<li>Servidor: é passivo, esperando continuamente uma requisição para responder.</li>
+</ul>
+<p><strong>Cliente Gordo e Magro</strong>
+- Cliente magro:
+    - Possui pouco código (só interface).
+    - Maioria do processamento e dados ficam no servidor.
+    - Fácil de gerenciar.
+    - Tendencia atual.
+- Cliente gordo: 
+    - possui  muito código.
+    - cuida da interface e parte do processamento.
+    - Díficl de gerenciar.</p>
+<h4 id="2-arquitetura-de-multiplas-camadas-idp">2. Arquitetura de Múltiplas Camadas (IDP)</h4>
+<ul>
+<li>Nível de Interface/Aplicação: janelas gráficas q o usuario lida.</li>
+<li>Nível de Processamento: lógica da aplicação</li>
+<li>Nivel de Dados: banco de dados</li>
+</ul>
+<h3 id="22-arquitetura-baseada-em-servicos">2.2 Arquitetura Baseada em Serviços</h3>
+<p>Os sistemas viram entidades</p>
+<ul>
+<li>Baseada em Objetos: funções remotas</li>
+<li>Baseada em Microserviços</li>
+<li>Baseada em Recursos: identificar recurso e utilizar metodos get, post</li>
+</ul>
+<h3 id="23-arquiteturas-publicar-subscrever">2.3 Arquiteturas Publicar-Subscrever</h3>
+<p>Há um middleware que faz a comunicação entre os sistemas.</p>
+<ul>
+<li>Desacoplamento no Espaço: remetende não quem é o destinatario e vice-versa.</li>
+<li>Descaoplamento no Tempo: remetendo e destinário nao precisam esta rodando ao mesmo tempo.</li>
+</ul>
+<h4 id="1-baseada-em-eventos">1. Baseada em Eventos</h4>
+<ul>
+<li>Um processa publicador anuncia um evento.</li>
+<li>Outros processos manifestam interesse.</li>
+<li>Desacomplado no espaço.</li>
+<li>Acoplado no tempo.</li>
+</ul>
+<h4 id="2-baseada-em-dados-compartilhados">2. Baseada em Dados Compartilhados</h4>
+<ul>
+<li>Há um repositorio persistente.</li>
+<li>O processo publicador insere dados no repositorio.</li>
+<li>Os processos fazem buscas no repositorio para achar dados que eles querem.</li>
+<li>Desacoplado no espaço.</li>
+<li>Desacoplado no tempo.</li>
+</ul>
+<h2 id="3-arquiteturas-de-sistema">3. Arquiteturas de Sistema</h2>
+<h3 id="31-distribuida-centralizada">3.1 Distribuida Centralizada</h3>
+<ul>
+<li>Assimetria: processos cliente e um servidor.</li>
+<li>Distribuição vertical: distribuição do processamento em níveis (Interface/Lǵica/Dados).</li>
+</ul>
+<h3 id="31-distribuida-descentralizadas">3.1 Distribuida Descentralizadas</h3>
+<h4 id="1-peer-to-peer">1. Peer-To-Peer</h4>
+<ul>
+<li>Simetria: todos agem como cliente e servidor ao mesmo tempo.</li>
+<li>Distribuição horizontal: cada nó tem uma parte do sistema inteiro.</li>
+<li>Overlay-network: topologia virtual onde cada nó conhece somente alguns (precisa ir pulando).</li>
+</ul>
+<p><strong>P2P Estruturada</strong>
+- Regras matemáticas rígicas.
+- Topologia rigida.
+- Tabela hash (DHT).</p>
+<p><strong>P2P Não-Estruturadas</strong>
+- Não há regras rígidas.
+- Se conectam de forma aleatória
+- Muitas mensagens.
+- Flooding.
+- Ramdom Walk.</p>
+<h4 id="2-bittorrent">2. BitTorrent</h4>
+<ul>
+<li>P2P Não-Estruturado melhorado.</li>
+<li>Superpares: pcs mais potentes, sabem exatamente em qual nó um recursoe stá guardado.</li>
+</ul>
+<h3 id="4-arquiteturas-hibridas">4. Arquiteturas Híbridas</h3>
+<p>Aplicação real em empresas</p>
+<p><strong>Computação em Nuvem:</strong>
+- A empresa não lida com o servidor, ele fica em um data center gerenciado por terceiros
+- Serviço sob demanda e elasticidade rapida.
+- Serviço diponivel pela inernet em qualquer lugar.
+- Serviço mensurável.
+- Pooling de recursos.</p>
+<p><strong>Tipos de Serviço em nuvem:</strong>
+- IaaS: provedor te da o hardware virutal (máquina virtual).
+- PaaS: provedor te da o ambiente de desenvolvimento pronto (voce so precisa codar).
+- SaaS: provedor te da tudo, vc so usa (netflix).</p>
+<p><strong>Computação de Borda:</strong>
+- Para resolver a latenca.
+- Nao envia para nuvem, o dado é processado no lugar onde nasce.</p>
+<p><strong>Computação em Névoa:</strong>
+- Para resolver a latencia.
+- Nao envia para a nuvem, envia para um mini servidor loca.</p>
+<h3 id="5middleware">5.Middleware</h3>
+<p><strong>Sistemas abertos:</strong>
+- Um bom sistema distribuido é tambem um sistema aberto.
+- Um sistema com interfaces publicadas.
+- Possui um repositorio publico com suas regras e funcionamentos documentadas.</p>
+<p><strong>IDL</strong>
+- Linguagem neutra que faz uma ponte comum entre as outras linguagens
+- Interoperabilidade: comunicação entre diferentes maquinas.
+- Extensibilidade.</p>
+<p><strong>wrapper/broker</strong>
+- casca/mediadores que traduz um código antigo para IDL.</p>
+<h1 id="4-comunicacao">4. Comunicação</h1>
+<ol>
+<li>
+<p>RPC</p>
+</li>
+<li>
+<p>Por envio de mensagens</p>
+<ul>
+<li>1.1 Sockets</li>
+<li>1.2 MPI (Message-Parrsing Interface)</li>
+<li>1.3 MOM (Message-Oriented Middleware)<ul>
+<li>1.3.1 Filas</li>
+<li>1.3.1 Broker</li>
+<li>1.3.1 Protocolos (AMQP)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Multicasting</p>
+<ul>
+<li>3.1 Overlay-Network</li>
+<li>3.2 Flooding <ul>
+<li>3.2.1 Flooding TTL</li>
+<li>3.2.2 Flooding Probabilístico</li>
+</ul>
+</li>
+<li>3.3 Disseminação Epidêmica (Gossip)<ul>
+<li>3.1 Push </li>
+<li>3.1 Pull </li>
+<li>3.4 Push-Pull </li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="1-introducao">1. Introdução</h2>
+<p><strong>Modelo OSI</strong>
+- Modelo conceitual de comunicação em 7 camadas.
+- Possui protocolos: regem o formato das mensagens.
+    - Orientados a conexão: faz a conecão e depois envia
+    - Não orientados a conexão: somente envia.
+- FERTSAA.
+- Quando manda uma mensagem ela desce nas camadas.
+- Quando você recebe, ela sobe.</p>
+<hr />
+<h2 id="2-protocolos-middleware">2. Protocolos Middleware</h2>
+<p>Faz o papel da camada de sessão e apresentação.</p>
+<p><strong>Transiente X Persistente:</strong>
+- Transiente: middle so armazena a mensagem enquantoemissor e receptor estiverem online, depois é descartada.
+- Persistente: middleware armazena a mensagem até o destinatario receber. Receptor e emissor não precissam estar onlines ao mesmo tempo.</p>
+<p><strong>Síncrona X Assíncrona</strong>
+- Sincrona/Bloqueante: emissor é bloqueado durante a comunicação.
+- Assincrona/Não-Bloqueante: emissor não é bloqueado e pode realizar outros processos.</p>
+<hr />
+<h2 id="3-rpc-remote-procedure-call">3. RPC (Remote Procedure Call)</h2>
+<p>Fazer parecer que mensagens entre diferentes máquians estão acontecendo no mesmo PC. Bstrair.
+São transiente e assincronas.</p>
+<p><strong>Funcionamento:</strong></p>
+<ol>
+<li>Apendice/stub do cliente:</li>
+<li>Uma função local do PC1 chama ela.</li>
+<li>Ela faz o empacotamento/mashalling do dos parametros, montando a mensagem.</li>
+<li>Chama o SO local.</li>
+<li>
+<p>So loca, invez de ler os dadso, envia a mensagem pro SO do PC2.</p>
+</li>
+<li>
+<p>Apendice/stub do servidor:</p>
+</li>
+<li>SO do PC2 passa a mensagem pro stub do servidor.</li>
+<li>Stub do servidor faz o unmashalling/desempacotamente da mensagem.</li>
+<li>Chama o SO local.</li>
+<li>SO local le os dados (ou o que a função for).</li>
+<li>SO local manda a mensagem para função local.</li>
+<li>SEssa função faz o mashalling dnv.</li>
+<li>Chama o SO local e manda de volta para o PC1.</li>
+</ol>
+<h3 id="1-passagem-de-parametros-por-valor">1 Passagem de parametros por valor</h3>
+<ul>
+<li>Transforma os dados em uma cópia transmissível. </li>
+<li>o mashalling e unmarhsalling</li>
+</ul>
+<h3 id="2-por-referencia">2 Por referencia</h3>
+<p>dificil e proibidas no geral;</p>
+<hr />
+<h2 id="4-envio-de-mensagens-direto">4. Envio de mensagens direto</h2>
+<p>Não há abstração, os processo trocar mensagem de forma direta. </p>
+<h3 id="1-sockets">1. Sockets</h3>
+<ul>
+<li>Internet no geral.</li>
+<li>Canal bidirecional de comunicação</li>
+<li>Uso de comandos.</li>
+<li>É transiente</li>
+</ul>
+<h3 id="2-mpi-message-parsing">2. MPI (Message Parsing)</h3>
+<ul>
+<li>Para computação de alto desempenho.</li>
+<li>Redes fechadas e seguras.</li>
+<li>Redes possui varios grupos e cada grupo possui processos (ID duplo).</li>
+<li>Redes utilizam esse par de ID livremente.</li>
+<li>É transiente</li>
+</ul>
+<h3 id="3-mom-messa-oriented-middlewaer">3. MOM (Messa Oriented Middlewaer)</h3>
+<ul>
+<li>Persistente e assincronas.</li>
+<li>Middleware armazena as mensagens.</li>
+<li>Nao bloqueante.</li>
+<li>Nao precisa estar online ao mesmo tempo.</li>
+<li>Duram minutos, nao segundos.</li>
+<li>Suas implementações são:</li>
+</ul>
+<h4 id="31-filas-de-mensagens">3.1 Filas de Mensagens</h4>
+<ul>
+<li>Os sistemas conversam diretamente.</li>
+<li>O middleware orgazina as mensagems em filas.</li>
+<li>consumidor processa no seu proprio ritmo.</li>
+</ul>
+<h4 id="32-brokers">3.2 Brokers</h4>
+<ul>
+<li>O sistema mandama a mensagem pro Broker e ela vai formadno e organizando as filas.</li>
+<li>É um gerenciador de filas em ambientes com varios sistemas.</li>
+</ul>
+<h4 id="33-amqp-advanced-message-queuing-protocol">3.3 AMQP (Advanced Message Queuing Protocol)</h4>
+<p>Padrão para o envio de mensagens</p>
+<hr />
+<h2 id="4-multicasting">4. multicasting</h2>
+<p>Mensagem de um sistema para varios outros, nao um a um.</p>
+<h3 id="41-overlay-network">4.1 Overlay Network</h3>
+<ul>
+<li>Nós se organizam em uma árvore.</li>
+<li>Um nó quer mandar uma mensager e vira a raiz.</li>
+<li>Os ros que querem receber se juntam nele formando uma árvore.</li>
+<li>Nó raiz envia mensagem para poucos (dois) e esses dois repassam para cada ramo da arvore.</li>
+</ul>
+<p><strong>Problema (Link Stress)</strong></p>
+<ul>
+<li>Rede Overlay não é formada seguindos os enlaces (cabos) físcos.</li>
+<li>Uma mensagem pode acabar passando pelo mesmo caminho várias vezes (Link Stress).</li>
+</ul>
+<h3 id="42-flooding">4.2 Flooding</h3>
+<ul>
+<li>Quando nao da para fazer uma arvore.</li>
+<li>Um nó recebe a mensagem e envia para todos seus vizinhos.</li>
+<li>Se ele ja recebeu ele ignora</li>
+<li>Mais simples.</li>
+<li>
+<p>Pode gerar desperdicio de mensagens</p>
+</li>
+<li>
+<p>Time to Live (TTL)</p>
+</li>
+<li>Otimização</li>
+<li>Define número maximo que nos que a menxagem pode percorrer.</li>
+<li>
+<p>Diminui o trafego</p>
+</li>
+<li>
+<p>FLooding Probabilísitico</p>
+</li>
+<li>Em vez de transmitir sempre, cada nó tem uma chance de transmiit.</li>
+<li>Diminui a garantia de alcance total</li>
+</ul>
+<h3 id="42-gossip">4.2 Gossip</h3>
+<ul>
+<li>Nao envia para todos os vizinho</li>
+<li>Envia para alguns nós aleatorios.</li>
+<li>Esses nos infectados fazem a mesma coisa.</li>
+<li>
+<p>Ate todos estiverem informados</p>
+</li>
+<li>
+<p>Push</p>
+</li>
+<li>Nós infectados mandam para outros nós.</li>
+<li>
+<p>Bom no inicio</p>
+</li>
+<li>
+<p>Pull</p>
+</li>
+<li>Nós nao infectados tomam a uniciativa.</li>
+<li>Conversa com outro nó e pergunta se ele esta infectado</li>
+<li>
+<p>Bom no final</p>
+</li>
+<li>
+<p>Push/Pull</p>
+</li>
+<li>Push no inicio</li>
+<li>Pull no final.</li>
+</ul>
+<h1 id="5-coordenacao">5. Coordenação</h1>
+<h2 id="1-sincronizacao-de-relogios">1. Sincronização de Relogios</h2>
+<p><strong>Cristal de Quartzo</strong>
+- Todo computador possui um.
+- Esse cristal gera uma vibração estável ao recber um tensão eletrica.
+- A cada X vibraões temo uma unidade de tempo (clock tick).
+- Clock Skew/Drift: com o tempo o cristal de quartzo sofre variações que resulta em pequenas variações no clock tick que se acumulam gerando disparidade.
+- Mesmo relogios preciso, o clock skew é invevitabel. entao depender dele n é uma boa opção</p>
+<p><strong>Algoritmo de Cristian</strong>
+- Há uma variação de tempo enetre a requisão e a respostas.
+- O pc teria como referencia um servidor de tempo muito preciso.
+- A hora atual seria o tempo desse servidor menos o tempo que levou para receber a resposta apos a requisição.</p>
+<p><strong>Netowork Time Protocol</strong>
+- Organização em camadas <em>estratos</em>, cada maquina sabe em quem confiar</p>
+<h2 id="2-relogios-logicos">2. Relógios Lógicos</h2>
+<p><strong>Relogio de Lamport</strong>
+- Processos possuem contadores que aumentam a cada evento interno que concluem.
+- Timestamp é o valor atual desse contador
+- No caso de eventos como enviar mensagens, o receptor vai pegar o maior timestamp (o próprio ou da pessoa que enviou) e somar mais um.
+- Eles são locais, ter um timestamp menor não significa que o processo ocorreu antes;</p>
+<h2 id="3-relogios-vetoriais">3. Relógios Vetoriais</h2>
+<ul>
+<li>Consegue marcar o quanto o processo conhece dos eventos dos outros processos.</li>
+<li>Cada processo possui uma lista de N posições, uma para cada processo do sistema, que representa contadores.</li>
+<li>Caso houver um evento interno, o processo aumenta o seu próprio contador.</li>
+<li>Caso houver uma interação</li>
+</ul>
+<h2 id="5-exclusao-mutua">5. Exclusao Mutua</h2>
+<ul>
+<li>Impedir que vários processos usem o mesmo recurso critico ao mesmo tempo.</li>
+<li>Algoritmos de permissão:<ul>
+<li>O acesso é feito por requissões, que pode ser negadas ou aceitas</li>
+<li>Desvantagem: muitasa mensagem</li>
+</ul>
+</li>
+<li>Algoritmot de ficha:<ul>
+<li>Procesos formam uma estrutura, quem esta com a ficha pode acessar.</li>
+<li>Desvantagem: temq  ter um algoritmo de recuperação caso o nó com a ficha cair </li>
+</ul>
+</li>
+</ul>
+<h3 id="1-algoritmo-centralizado">1. Algoritmo Centralizado</h3>
+<ul>
+<li>Há um processo coordenador, os outros processos perguntam se podem acessar.</li>
+<li>Se não tiver ngm acessando, ele aceita.</li>
+<li>Se alguem tiver acessando, ele nega e o processa vai pro final da fila.</li>
+<li>Poucas mensagens, fácil implementacao, justo, sem starvation</li>
+</ul>
+<h3 id="2-algoritmo-distribuido-de-ricart-agrawala">2. Algoritmo Distribuido de Ricart Agrawala</h3>
+<ul>
+<li>Não tem coordenador, é necessario ter OK de todos.</li>
+<li>Ele pergunta pra todo mundo se querem usar.</li>
+<li>Se nao esta usando da OK.</li>
+<li>Se esta usando da OK após liberar o acesso.</li>
+<li>Se quer usar, só da OK se tiver time stamp maior que o dele.</li>
+<li>Evita deadlock</li>
+<li>Muitas mensagens, se um cair ja era</li>
+</ul>
+<h3 id="3-algortimo-token-ring">3. Algortimo Token-Ring</h3>
+<ul>
+<li>Organizados em um anel.</li>
+<li>Se nao quer usar, passa a ficha.</li>
+<li>So pode usar se tiver com a ficha.</li>
+<li>Se quem tiver com a ficha cair ja era</li>
+</ul>
+<h3 id="3-algortitmo-descentralizado">3. Algortitmo Descentralizado</h3>
+<ul>
+<li>O recursos vai possuir varios coordenadores.</li>
+<li>Pra entrar emc ontato com eles é atraves de uma tabela hash.</li>
+<li>Se vc quer acessar, vc manda uma mensagem para os coordenadores.</li>
+<li>Os coordenadores dizem sim para a primeira pessoa que chegou neles.</li>
+<li>Pros outros é não e tem q esperar um pouco pra madnar dnv.</li>
+<li>Eles reiniciam o voto caso cairem e quando desocupar o recurso.</li>
+<li>É necessario tem mais da metade dos coordenadores.</li>
+<li>Resolve o problema do coordenador cair.</li>
+<li>Complexo, muita consulta , nao resolve starvaiton.</li>
+</ul>
+<h1 id="6-algoritmos-de-selecao">6. Algoritmos de seleção</h1>
+<h2 id="61-bully">6.1 Bully</h2>
+<ul>
+<li>Maior identificador vence.</li>
+<li>Não o timestamp.</li>
+<li>Uma eleição é iniciada qnd percebe q ta sem coordenador.</li>
+<li>Ele envia mensagem pros mais forte.</li>
+<li>Se tiver alguem vivo, eles dao OK.</li>
+<li>Se tiver OK vc é desclassificado.</li>
+<li>qUEM DEU OK DA ELECTION, ATE SOBRAR MAIS NGM.</li>
+<li>Simples, termina com clareza.</li>
+<li>Depende de mensagem, tem que saber quem ta vivo</li>
+</ul>
+<h2 id="62-algoritmo-de-anel">6.2 Algoritmo de Anel</h2>
+<ul>
+<li>QUem possui maior identificador.</li>
+<li>Porem há uma estrutura cíclica.</li>
+<li>Percebe que o coordenador morreu e grita ELECTION.</li>
+<li>Passa e os nos vivos escrevem seus IDs.</li>
+<li>Quando voltar ao inicio, o maior ID é o vencedor.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": [], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,3957 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>02 aritmetica - Anotações UnB</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#8-aritmetica" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="Anotações UnB" class="md-header__button md-logo" aria-label="Anotações UnB" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Anotações UnB
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              02 aritmetica
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Anotações UnB" class="md-nav__button md-logo" aria-label="Anotações UnB" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Anotações UnB
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estrutura de Dados 1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Estrutura de Dados 1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA1/ponteiros.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ponteiros
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA1/alocacao.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Alocação de Memória
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA1/recurcao.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Recurção
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA1/complexidade.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Análise de Complexidade
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Listas Encadeadas
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Listas Encadeadas
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA1/Listas Encadeadas/simplesEncadeada.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Listas Simplesmente Encadeadas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA1/Listas Encadeadas/duplaEncadeada.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Listas Duplamente Encadeadas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Algoritmos de Busca
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Algoritmos de Busca
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA1/Algoritmos de Busca/buscaLinear.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Busca Sequencial
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA1/Algoritmos de Busca/buscaBinaria.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Busca Binária
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Algoritmos de ordenação
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Algoritmos de ordenação
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA1/Algoritmos de ordenacao/introducao.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introdução
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA1/Algoritmos de ordenacao/selection.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Selection Sort
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA1/Algoritmos de ordenacao/bubble.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bubble Sort
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA1/Algoritmos de ordenacao/insertion.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Insertion Sort
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA1/Algoritmos de ordenacao/shell.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shell Sort
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA1/Algoritmos de ordenacao/merge.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Merge Sort
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA1/Algoritmos de ordenacao/quick.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Sort
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA1/Algoritmos de ordenacao/heap.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Heap Sort
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA1/Algoritmos de ordenacao/intro.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Intro Sort
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA1/Algoritmos de ordenacao/counting.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Counting Sort
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA1/Algoritmos de ordenacao/radix.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Radix Sort
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tipos Abstratos de dados (TAD)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tipos Abstratos de dados (TAD)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA1/Tipos Abstratos de Dados/filas.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Filas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA1/Tipos Abstratos de Dados/pilhas.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pilhas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA1/Tipos Abstratos de Dados/arvores.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Árvores Binárias
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA1/Tipos Abstratos de Dados/arvoreDebusca.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Árvores Binárias de Busca
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estrutura de Dados 2
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Estrutura de Dados 2
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA2/tabelaSimb.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tabela de Símbolos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA2/arvoreBin.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Árvore Binária de Busca
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA2/arvore23.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Árvore 2-3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA2/redblack.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Árvore Red Black
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA2/skipList.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skip List
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA2/hash.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tabela Hash List
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Grafos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Grafos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA2/Grafos/grafos.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introdução
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA2/Grafos/grafosDir.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Grafos Dirigidos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA2/Grafos/caminhoMin.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Algorítmos de Caminho Mínimos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../EDA2/Grafos/arvoreGer.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Algorítmos de Árvores Geradoras Mínimas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fundamentos de Arquitetura de Computadores
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Fundamentos de Arquitetura de Computadores
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../FAC/introFAC.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Assembly MIPS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../FAC/processador.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arquitetura Processador MIPS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fundamentos de Sistemas Operacionais
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Fundamentos de Sistemas Operacionais
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../FSO/introFSO.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introdução
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../FSO/processos.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Processos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../FSO/escalonamento.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Escalonamento
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../FSO/threads.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Threads
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../FSO/corrida.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Condições de Corrida
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../FSO/unix.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fundamentos UNIX
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../FSO/gerenciaMem.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gerência de Memória
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../FSO/memoriaVirtual.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Memória Virtual
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../FSO/sistemaArquivos.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sistema de Arquivos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../FSO/gerencia.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gerência de Dispositivos de Entrada e Saída
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requisitos de Software
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Requisitos de Software
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../REQ/introREQ.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introdução
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../REQ/elicitacao.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Elicitação
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../REQ/modelagem.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Análise e Modelagem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../REQ/priorizacao.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Priorização
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../REQ/especificacao.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Especificação
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../REQ/gerencia.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gerência
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Banco de Dados 1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Banco de Dados 1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../BD1/mer.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelo Entidade Relacionamento (MER)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arquitetura e Desenho de Software
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Arquitetura e Desenho de Software
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_1" id="__nav_8_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Base
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Base
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ARQ/Base/desenho.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Desenho de Software
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ARQ/Base/BPMN.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BPMN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_2" id="__nav_8_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modelagem
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Modelagem
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ARQ/Modelagem/dinamica.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dinâmica
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ARQ/Modelagem/estatica.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estática
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_3" id="__nav_8_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Padrões
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Padrões
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ARQ/Padões/intro.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introdução
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ARQ/Padões/comportamental.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Comportamental
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ARQ/Padões/criacional.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Criacional
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ARQ/Padões/estrutural.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estrututal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fundamentos de Redes de Computadores
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Fundamentos de Redes de Computadores
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../REDES/introRED.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introdução
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../REDES/cisco.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introdução CISCO Packet Tracer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../REDES/cisco2.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Continuação CISCO Packet Tracer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../REDES/cabeamento.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cabeamento
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../REDES/transmissao.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transmissão de Dados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Qualidade de Software 1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Qualidade de Software 1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../QUAL/introQual.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introdução
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../QUAL/medicacao.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Medição
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../QUAL/processoAvaliacao.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Processo de Avaliação
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Redes Neurais
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Redes Neurais
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../NEURAIS/introNeurais.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introdução
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../NEURAIS/redesNeurais.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Camadas e tipos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../NEURAIS/convulacional.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Redes Convulacionais
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../NEURAIS/otimizadores.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Otimizadores
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../NEURAIS/parâmetros.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicialização dos Parâmetros
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../NEURAIS/recorrentes.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Redes Neurais Recorrentes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../NEURAIS/mnist.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MNIST
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../NEURAIS/reguladores.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reguladores
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#8-aritmetica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Aritmética
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Aritmética">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-operadores-customizados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 Operadores Customizados
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.1 Operadores Customizados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#811-precedencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1.1 Precedência:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#812-tipo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1.2 Tipo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#812-exemplos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1.2 Exemplos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-operadores-de-igualdade-e-unificacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 Operadores de Igualdade e Unificação
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.2 Operadores de Igualdade e Unificação">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#821-operador-de-unificacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2.1 Operador de Unificação (=)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#822-operador-de-identidade-literal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2.2 Operador de Identidade Literal (==)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#823-operador-de-igualdade-aritmetica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2.3 Operador de Igualdade Aritmética (=:=)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-operador-de-atribuicao-aritmetica-is" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 Operador de Atribuição Aritmética (is)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#84-operadores-de-diferenca-e-nao-unificacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4 Operadores de Diferença e Não-Unificação
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#85-operadores-de-comparacao-numerica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.5 Operadores de Comparação Numérica
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-funcoes-aritmeticas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 Funções Aritméticas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#84-predicados-com-multiplas-semanticas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4 Predicados com múltiplas semânticas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.4 Predicados com múltiplas semânticas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#841-implementacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4.1 Implementação
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>02 aritmetica</h1>
+
+<h2 id="8-aritmetica">8. Aritmética</h2>
+<p>Operadores são predicados que suportam, além da pré-fixada padrão, as notações infixada ou pós-fixada.</p>
+<h3 id="81-operadores-customizados">8.1 Operadores Customizados</h3>
+<p>Operadores são predicados que suportam, além da pré-fixada padrão, as notações infixada ou pós-fixada.</p>
+<p>Há operadores padrões em prolog, porém podemos nos mesmos declarar operadores através da sintaxe:</p>
+<blockquote>
+<p>:- op(Precedencia, Tipo, Nome).</p>
+</blockquote>
+<p>Além disso, podemos citar todos os operados com</p>
+<blockquote>
+<p>current_op(P, T, O).</p>
+</blockquote>
+<p>e pagar um operador definindo a precedência dele como 0:</p>
+<blockquote>
+<p>:- op(0, xfx, nome_do_operador).</p>
+</blockquote>
+<h4 id="811-precedencia">8.1.1 Precedência:</h4>
+<p>Define a ordem de importância. Varia de 0 a 1200, quanto menor, maior a força.</p>
+<ul>
+<li>Exemplo: A multiplicação (<em>) tem precedência 400 e a soma (+) tem 500. Por isso, em 2 + 3 * 4, o Prolog resolve primeiro o </em>.</li>
+</ul>
+<h4 id="812-tipo">8.1.2 Tipo</h4>
+<p>Usa de letras para representar o operador (f) e os argumentos (x e y).</p>
+<p><strong>1. Posição</strong> 
+F representa onde o nome do predicado aparece. Exemplos:</p>
+<p><div class="highlight"><pre><span></span><code><span class="nv">Prefixado</span><span class="s s-Atom">:</span> <span class="s s-Atom">fx</span><span class="p">,</span> <span class="s s-Atom">fy</span><span class="p">.</span>
+<span class="p">:-</span> <span class="nf">op</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="s s-Atom">fx</span><span class="p">,</span> <span class="s s-Atom">nota</span><span class="p">).</span>
+<span class="s s-Atom">?-</span> <span class="s s-Atom">nota</span> <span class="mf">10.</span>
+
+<span class="nv">Infixado</span><span class="s s-Atom">:</span> <span class="s s-Atom">xfx</span><span class="p">,</span> <span class="s s-Atom">xfy</span><span class="p">,</span> <span class="s s-Atom">yfx</span><span class="p">.</span>
+<span class="p">:-</span> <span class="nf">op</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="s s-Atom">xfx</span><span class="p">,</span> <span class="s s-Atom">ganha_de</span><span class="p">).</span> 
+<span class="s s-Atom">?-</span> <span class="s s-Atom">pedra</span> <span class="s s-Atom">ganha_de</span> <span class="s s-Atom">tesoura</span><span class="p">.</span>
+
+<span class="nv">Pós</span><span class="o">-</span><span class="nn">fixado</span><span class="p">:</span> <span class="s s-Atom">xf</span><span class="p">,</span> <span class="s s-Atom">yf</span><span class="p">.</span>
+<span class="p">:-</span> <span class="nf">op</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="s s-Atom">xf</span><span class="p">,</span> <span class="s s-Atom">eh_bonito</span><span class="p">).</span> 
+<span class="s s-Atom">?-</span> <span class="s s-Atom">joao</span> <span class="s s-Atom">eh_bonito</span><span class="p">.</span>
+</code></pre></div>
+<strong>2. Associatividade</strong></p>
+<p>X é rígido, Y é flexível</p>
+<p><strong>2.1 Infixo Rígido (xfx):</strong> Não pode repetir o operador na mesma frase.</p>
+<div class="highlight"><pre><span></span><code><span class="p">:-</span> <span class="nf">op</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="s s-Atom">xfx</span><span class="p">,</span> <span class="s s-Atom">mae_de</span><span class="p">).</span>
+
+<span class="s s-Atom">ana</span> <span class="s s-Atom">mae_de</span> <span class="s s-Atom">bia</span><span class="p">.</span>
+<span class="s s-Atom">true</span><span class="p">.</span>
+
+<span class="s s-Atom">ana</span> <span class="s s-Atom">mae_de</span> <span class="s s-Atom">bia</span> <span class="s s-Atom">mae_de</span> <span class="s s-Atom">caio</span><span class="p">.</span>
+<span class="nv">ERRO</span>
+</code></pre></div>
+<p><strong>2.2 Infixo Associativo à Direita(xfy):</strong> O y está na direita, então ele permite que o operador se repita "empilhando" para a direita.</p>
+<p>Exemplo: se temos um operador "e" que é xfy, então "sol e chuva e vento" é lido como e(sol, e(chuva, vento)).</p>
+<p>Exemplo: Se temo um operador "+" que é yfx, então "1 + 2 + 3" é lido como: +(+(3,2),1).</p>
+<p><strong>2.2 Infixo Associativo à Esquerda(yfx):</strong> O y está na esquerda, então ele "empilha" para a esquerda.</p>
+<p>Exemplo: se temos um operador "e" que é xfy, então "sol e chuva e vento" é lido como e(e(sol,chuva), vento).</p>
+<p>Exemplo: Se temo um operador "+" que é yfx, então "1 + 2 + 3" é lido como: +(+(1, 2), 3).</p>
+<h4 id="812-exemplos">8.1.2 Exemplos</h4>
+<p><strong>Jokenpô</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1">% Precedência 700 (comum para comparações)</span>
+<span class="c1">% Tipo xfx (Infixado, não permite &#39;pedra ganha_de tesoura ganha_de papel&#39;)</span>
+
+<span class="p">:-</span> <span class="nf">op</span><span class="p">(</span><span class="mi">700</span><span class="p">,</span> <span class="s s-Atom">xfx</span><span class="p">,</span> <span class="s s-Atom">ganha_de</span><span class="p">).</span>
+
+<span class="s s-Atom">pedra</span> <span class="s s-Atom">ganha_de</span> <span class="s s-Atom">tesoura</span><span class="p">.</span>
+<span class="s s-Atom">tesoura</span> <span class="s s-Atom">ganha_de</span> <span class="s s-Atom">papel</span><span class="p">.</span>
+<span class="s s-Atom">papel</span> <span class="s s-Atom">ganha_de</span> <span class="s s-Atom">pedra</span><span class="p">.</span>
+
+
+<span class="nf">venceu</span><span class="p">(</span><span class="nv">Jogador1</span><span class="p">,</span> <span class="nv">Jogador2</span><span class="p">)</span> <span class="p">:-</span>
+    <span class="nv">Escolha1</span> <span class="s s-Atom">ganha_de</span> <span class="nv">Escolha2</span><span class="p">,</span>
+    <span class="nf">escreve_resultado</span><span class="p">(</span><span class="nv">Jogador1</span><span class="p">,</span> <span class="nv">Escolha1</span><span class="p">,</span> <span class="nv">Jogador2</span><span class="p">,</span> <span class="nv">Escolha2</span><span class="p">).</span>
+</code></pre></div>
+<h3 id="82-operadores-de-igualdade-e-unificacao">8.2 Operadores de Igualdade e Unificação</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Operador</th>
+<th style="text-align: left;">Nome</th>
+<th style="text-align: left;">O que faz?</th>
+<th style="text-align: left;">Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>=</code></td>
+<td style="text-align: left;">xfx</td>
+<td style="text-align: left;">Tenta unificar de acordo com a aridade</td>
+<td style="text-align: left;"><strong>Unificação</strong>: Tenta tornar os termos iguais (vincula variáveis).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>==</code></td>
+<td style="text-align: left;">xfx</td>
+<td style="text-align: left;">Verifica a igualdade literal</td>
+<td style="text-align: left;"><strong>Identidade</strong>: Verdadeiro se os termos são exatamente iguais (sem vincular).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>=:=</code></td>
+<td style="text-align: left;">xfx</td>
+<td style="text-align: left;">Verifica igualdade matematica. Não funciona com variáveis</td>
+<td style="text-align: left;"><strong>Igualdade Aritmética</strong>: Os valores numéricos são iguais?</td>
+</tr>
+</tbody>
+</table>
+<h4 id="821-operador-de-unificacao">8.2.1 Operador de Unificação (=)</h4>
+<p>Ele tenta unificar os dois lados. É um processo de tentativa de tornar os dois termos idênticos, inclusive atribuindo valores a variáveis se necessário.</p>
+<div class="highlight"><pre><span></span><code><span class="s s-Atom">?-</span> <span class="nv">X</span> <span class="o">=</span> <span class="nv">Y</span><span class="p">.</span>
+<span class="nv">X</span> <span class="o">=</span> <span class="nv">Y</span><span class="p">.</span>
+
+<span class="s s-Atom">?-</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">+</span> <span class="mf">2.</span>
+<span class="s s-Atom">true</span><span class="p">.</span>
+
+<span class="s s-Atom">?-</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">=</span> <span class="mf">4.</span>
+<span class="s s-Atom">false</span><span class="p">.</span>
+
+<span class="s s-Atom">?-</span> <span class="mi">2</span> <span class="o">+</span> <span class="nv">X</span> <span class="o">=</span> <span class="nv">Y</span> <span class="o">+</span> <span class="s s-Atom">a</span><span class="p">.</span>
+<span class="nv">X</span> <span class="o">=</span> <span class="s s-Atom">a</span><span class="p">,</span>
+<span class="nv">Y</span> <span class="o">=</span> <span class="mf">2.</span>
+
+<span class="s s-Atom">?-</span> <span class="nv">X</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">+</span> <span class="mf">2.</span>
+<span class="nv">X</span> <span class="o">=</span> <span class="mi">2</span><span class="o">+</span><span class="mf">2.</span>
+</code></pre></div>
+<h4 id="822-operador-de-identidade-literal">8.2.2 Operador de Identidade Literal (==)</h4>
+<p>Ele verifica a equivalência estrita. Ele não tenta mudar nada; ele apenas olha para os dois lados e pergunta: "Vocês são exatamente iguais agora?"</p>
+<div class="highlight"><pre><span></span><code><span class="s s-Atom">?-</span> <span class="nv">X</span> <span class="o">==</span> <span class="nv">Y</span><span class="p">.</span>
+<span class="s s-Atom">false</span><span class="p">.</span>
+
+<span class="s s-Atom">?-</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">2</span> <span class="o">+</span> <span class="mf">2.</span>
+<span class="s s-Atom">true</span><span class="p">.</span>
+
+<span class="s s-Atom">?-</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">==</span> <span class="mf">4.</span>
+<span class="s s-Atom">false</span><span class="p">.</span>
+
+<span class="s s-Atom">?-</span> <span class="mi">2</span> <span class="o">+</span> <span class="nv">X</span> <span class="o">==</span> <span class="nv">Y</span> <span class="o">+</span> <span class="s s-Atom">a</span><span class="p">.</span>
+<span class="s s-Atom">false</span>
+</code></pre></div>
+<h4 id="823-operador-de-igualdade-aritmetica">8.2.3 Operador de Igualdade Aritmética (=:=)</h4>
+<p>É um operador de comparação. ELe não guarda os valores, apenas verifica se os dois cálculos chegam ao mesmo número.</p>
+<div class="highlight"><pre><span></span><code><span class="s s-Atom">?-</span> <span class="nv">X</span> <span class="o">=:=</span> <span class="nv">Y</span><span class="p">.</span>
+<span class="nv">ERROR</span>
+
+<span class="s s-Atom">?-</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">=:=</span> <span class="mi">2</span> <span class="o">+</span> <span class="mf">2.</span>
+<span class="s s-Atom">true</span><span class="p">.</span>
+
+<span class="s s-Atom">?-</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">=:=</span> <span class="mf">4.</span>
+<span class="s s-Atom">true</span><span class="p">.</span>
+
+<span class="s s-Atom">?-</span> <span class="mi">2</span> <span class="o">+</span> <span class="nv">X</span> <span class="o">=:=</span> <span class="nv">Y</span> <span class="o">+</span> <span class="s s-Atom">a</span><span class="p">.</span>
+<span class="s s-Atom">false</span>
+</code></pre></div>
+<h3 id="83-operador-de-atribuicao-aritmetica-is">8.3 Operador de Atribuição Aritmética (is)</h3>
+<p>Ele se comporta como uma unificação do "=" com o "=:=" e possui dois usos:</p>
+<ul>
+<li>Com uma variável na esquerda: ele olha para o lado direito, resolve o cálaculo e colocar o resultado na variável da esquerda.</li>
+<li>Com números na esquerda: ele vai checar se o resultado do lado direito é igual o da esquerda.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="s s-Atom">?-</span> <span class="nv">X</span> <span class="o">is</span> <span class="mi">2</span> <span class="o">+</span> <span class="mf">2.</span>
+<span class="nv">X</span> <span class="o">=</span> <span class="mf">4.</span>
+
+<span class="s s-Atom">?-</span> <span class="mi">2</span> <span class="o">is</span> <span class="mf">2.</span>
+<span class="s s-Atom">true</span><span class="p">.</span>
+
+<span class="s s-Atom">?-</span> <span class="mi">4</span> <span class="o">is</span> <span class="mi">2</span> <span class="o">+</span> <span class="mf">2.</span>
+<span class="s s-Atom">true</span><span class="p">.</span>
+
+<span class="s s-Atom">?-</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">is</span> <span class="mf">4.</span>
+<span class="s s-Atom">false</span><span class="p">.</span>
+
+<span class="s s-Atom">?-</span> <span class="k">_</span> <span class="o">is</span> <span class="mi">1</span> <span class="o">+</span> <span class="mf">1.</span>
+<span class="s s-Atom">true</span><span class="p">.</span>
+</code></pre></div>
+<h3 id="84-operadores-de-diferenca-e-nao-unificacao">8.4 Operadores de Diferença e Não-Unificação</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Operador</th>
+<th style="text-align: left;">Tipo</th>
+<th style="text-align: left;">Precedência</th>
+<th style="text-align: left;">Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>\=</code></td>
+<td style="text-align: left;">xfx</td>
+<td style="text-align: left;">700</td>
+<td style="text-align: left;"><strong>Não Unificável</strong>: Verdadeiro se os termos não podem ser unificados.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>\==</code></td>
+<td style="text-align: left;">xfx</td>
+<td style="text-align: left;">700</td>
+<td style="text-align: left;"><strong>Não Idêntico</strong>: Verdadeiro se os termos não são estritamente iguais.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>=\=</code></td>
+<td style="text-align: left;">xfx</td>
+<td style="text-align: left;">700</td>
+<td style="text-align: left;"><strong>Diferença Aritmética</strong>: Os valores numéricos são diferentes?</td>
+</tr>
+</tbody>
+</table>
+<h3 id="85-operadores-de-comparacao-numerica">8.5 Operadores de Comparação Numérica</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Operador</th>
+<th style="text-align: left;">Tipo</th>
+<th style="text-align: left;">Precedência</th>
+<th style="text-align: left;">Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>&gt;</code></td>
+<td style="text-align: left;">xfx</td>
+<td style="text-align: left;">700</td>
+<td style="text-align: left;">Maior que</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>&lt;</code></td>
+<td style="text-align: left;">xfx</td>
+<td style="text-align: left;">700</td>
+<td style="text-align: left;">Menor que</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>&gt;=</code></td>
+<td style="text-align: left;">xfx</td>
+<td style="text-align: left;">700</td>
+<td style="text-align: left;">Maior ou igual que</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>=&lt;</code></td>
+<td style="text-align: left;">xfx</td>
+<td style="text-align: left;">700</td>
+<td style="text-align: left;">Menor ou igual que</td>
+</tr>
+</tbody>
+</table>
+<h3 id="83-funcoes-aritmeticas">8.3 Funções  Aritméticas</h3>
+<p>Ao invés de atar o resultado a uma variável, elas retornam o valor das suas operações. Para usá-los, é necessário:</p>
+<ol>
+<li>Carregar a biblioteca de aritmética:</li>
+</ol>
+<blockquote>
+<p>se_module(library(arithmetic))</p>
+</blockquote>
+<ol>
+<li>Definifir a função aritmética:</li>
+</ol>
+<blockquote>
+<p>:- arithmetic_function(nome_funcao/N).</p>
+</blockquote>
+<ol>
+<li>Definir a variávela a ser retornada:</li>
+</ol>
+<blockquote>
+<p>:- arithmetic_function(nome_variavel/N).</p>
+</blockquote>
+<p><strong>Exemplo:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">:-</span> <span class="nf">use_module</span><span class="p">(</span><span class="nf">library</span><span class="p">(</span><span class="s s-Atom">arithmetic</span><span class="p">)).</span>
+
+<span class="c1">% Declara os predicados como funções aritmética. Note que a aridade declarada</span>
+<span class="c1">% é uma unidade menor do que a aridade usada na definição do predicado, e que a</span>
+<span class="c1">% última variável conterá o valor de &#39;retorno&#39;</span>
+<span class="p">:-</span> <span class="nf">arithmetic_function</span><span class="p">(</span><span class="s s-Atom">number_of_lines</span><span class="o">/</span><span class="mi">1</span><span class="p">).</span>
+<span class="p">:-</span> <span class="nf">arithmetic_function</span><span class="p">(</span><span class="s s-Atom">juros_simples</span><span class="o">/</span><span class="mi">3</span><span class="p">).</span>
+
+<span class="nf">number_of_lines</span><span class="p">(</span><span class="nv">N</span><span class="p">,</span> <span class="nv">Res</span><span class="p">)</span> <span class="p">:-</span> <span class="nv">Res</span> <span class="o">is</span> <span class="mi">2</span><span class="s s-Atom">^</span><span class="nv">N</span><span class="p">.</span>
+
+<span class="nf">juros_simples</span><span class="p">(</span><span class="nv">M</span><span class="p">,</span> <span class="nv">J</span><span class="p">,</span> <span class="nv">T</span><span class="p">,</span> <span class="nv">Res</span><span class="p">)</span> <span class="p">:-</span>
+    <span class="nv">Res</span> <span class="o">is</span> <span class="nv">M</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="nv">J</span> <span class="o">*</span> <span class="nv">T</span><span class="p">).</span>
+
+<span class="c1">% Terminal</span>
+<span class="s s-Atom">?-</span> <span class="nv">X</span> <span class="o">is</span> <span class="mi">1</span> <span class="o">+</span> <span class="nf">number_of_lines</span><span class="p">(</span><span class="mi">4</span><span class="p">).</span>
+<span class="nv">X</span> <span class="o">=</span> <span class="mf">17.</span>
+<span class="s s-Atom">?-</span> <span class="nv">X</span> <span class="o">is</span> <span class="nf">juros_simples</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mi">60</span><span class="p">).</span>
+<span class="nv">X</span> <span class="o">=</span> <span class="mf">4000.0</span><span class="p">.</span>
+</code></pre></div>
+<h3 id="84-predicados-com-multiplas-semanticas">8.4 Predicados com múltiplas semânticas</h3>
+<p>A bidirecionalidade é uma das características principais do prolog. Nele, não definimos funções, e sim relações que funcionam de acordo com os argumentos passados. Por exemplo:</p>
+<div class="highlight"><pre><span></span><code><span class="s s-Atom">?-</span> <span class="nf">succ</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="nv">S</span><span class="p">).</span>
+<span class="nv">S</span> <span class="o">=</span> <span class="mf">3.</span>
+
+<span class="s s-Atom">?-</span> <span class="nf">succ</span><span class="p">(</span><span class="nv">S</span><span class="p">,</span><span class="mi">2</span><span class="p">).</span>
+<span class="nv">S</span> <span class="o">=</span> <span class="mf">1.</span>
+</code></pre></div>
+<h4 id="841-implementacao">8.4.1 Implementação</h4>
+<p>O predicado var/1 retornar verdadeiro se a varíavel é livre, e o predicado nonvar retorna verdadeiro se já foi atada previamente na consulta. Exemplo:</p>
+<div class="highlight"><pre><span></span><code><span class="nf">celsius_fahrenheit</span><span class="p">(</span><span class="nv">C</span><span class="p">,</span> <span class="nv">F</span><span class="p">)</span> <span class="p">:-</span>
+    <span class="p">((</span><span class="nf">var</span><span class="p">(</span><span class="nv">C</span><span class="p">),</span> <span class="nf">var</span><span class="p">(</span><span class="nv">F</span><span class="p">))</span> <span class="s s-Atom">-&gt;</span> 
+        <span class="nf">instantiation_error</span><span class="p">(</span><span class="s s-Atom">&#39;Ao menos uma variável deve estar atada&#39;</span><span class="p">)</span> 
+    <span class="p">;</span> 
+        <span class="s s-Atom">true</span><span class="p">),</span>
+    <span class="p">(</span><span class="nf">nonvar</span><span class="p">(</span><span class="nv">C</span><span class="p">)</span> <span class="s s-Atom">-&gt;</span> 
+        <span class="nv">F</span> <span class="o">is</span> <span class="nv">C</span><span class="o">*</span><span class="mi">9</span><span class="o">/</span><span class="mi">5</span> <span class="o">+</span> <span class="mi">32</span> 
+    <span class="p">;</span> 
+        <span class="nv">C</span> <span class="o">is</span> <span class="p">(</span><span class="nv">F</span> <span class="o">-</span> <span class="mi">32</span><span class="p">)</span><span class="o">*</span><span class="mi">5</span><span class="o">/</span><span class="mi">9</span><span class="p">).</span>
+
+<span class="c1">% Exemplos de consultas</span>
+<span class="s s-Atom">?-</span> <span class="nf">celsius_fahrenheit</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="nv">F</span><span class="p">).</span>
+<span class="nv">F</span> <span class="o">=</span> <span class="mf">104.</span>
+<span class="s s-Atom">?-</span> <span class="nf">celsius_fahrenheit</span><span class="p">(</span><span class="nv">C</span><span class="p">,</span> <span class="mi">104</span><span class="p">).</span>
+<span class="nv">C</span> <span class="o">=</span> <span class="mf">40.</span>
+<span class="s s-Atom">?-</span> <span class="nf">celsius_fahrenheit</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">).</span>
+<span class="s s-Atom">false</span><span class="p">.</span>
+<span class="s s-Atom">?-</span> <span class="nf">celsius_fahrenheit</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="nv">F</span><span class="p">).</span>
+<span class="nv">F</span> <span class="o">=</span> <span class="mf">89.6</span><span class="p">.</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": [], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
