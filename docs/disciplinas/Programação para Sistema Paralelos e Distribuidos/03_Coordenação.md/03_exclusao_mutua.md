@@ -78,7 +78,9 @@ Nesse modelo, os processos estão organizados em anel e uma ficha de acesso circ
 - O processo que posusi o token pode falhar.
 - Dai precisa de um mecanismo para detectar a perda e reconstruir o anel.
 
-imagem 112
+<div style="text-align: center;">
+  <img src="../../../assets/pngs/112.png" alt="Inserção" />
+</div>
 
 ### 5.4 Algortimo Descentralizado
 

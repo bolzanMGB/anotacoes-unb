@@ -1,4 +1,3 @@
-
 ## 3. Relógios Lógicos
 
 Toda sincronia anterior era baseada em um relógio real medindo o tempo. Porém,ter relógios perfeitamente sincronizados é impossivel, sempre haverá algum clock skew mínimo. Assim, usar "horário" para decidir ordem de eventos é arriscado. Imagine:
