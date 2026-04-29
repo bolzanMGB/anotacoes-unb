@@ -105,9 +105,7 @@ recurso
 
 **Transparência de Replicação:** Oculta a existência de múltiplas cópias de um recurso para aumentar a disponibilidade.
 
-**Transparência de Concorrência:** Oculta que
-um recurso pode ser compartilhado por vários
-usuários concorrentes sem interferência mútua.
+**Transparência de Concorrência:** Oculta que um recurso pode ser compartilhado por vários usuários concorrentes sem interferência mútua.
 
 **Transparência de Falha:** Oculta a falha e a
 posterior recuperação de um recurso, permitindo

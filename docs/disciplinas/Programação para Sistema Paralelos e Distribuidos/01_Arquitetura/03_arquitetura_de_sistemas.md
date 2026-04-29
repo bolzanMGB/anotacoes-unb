@@ -49,7 +49,10 @@ Neste modelo, a rede segue uma topologia (desenho) matemática rígida, como um 
 
 **Tabela de Hash Distribuída (DHT):** É o mecanismo que faz a rede funcionar. O sistema usa uma função matemática (Hash) para dar um ID único para cada arquivo e também um ID único para cada máquina (nó) na rede. O arquivo é sempre guardado na máquina cujo ID seja mais próximo ou correspondente ao ID do arquivo.
 
-imagem 104
+<div style="text-align: center;">
+  <img src="../../../assets/pngs/104.png" alt="Inserção" />
+</div>
+
 
 #### 2.1.2 Redes P2P Não-Estruturadas
 
