@@ -25,7 +25,9 @@ O nome “Bully” vem dessa lógica: o nó mais alto acaba “empurrando” os 
 - Depende de mensagens ELECTION, OK e COORDINATOR.
 - Assume que os nós conseguem identificar corretamente quem está ativo.
 
-imagem 113
+<div style="text-align: center;">
+  <img src="../../../assets/pngs/113.png" alt="Inserção" />
+</div>
 
 
 #### 6.2 Algoritmo Anel
