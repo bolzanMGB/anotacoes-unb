@@ -1,4 +1,3 @@
-
 ### 6. Algoritmos de Eleição
 
 Em muitos sistemas, é necessário escolher dinamicamente um coordenador. Isso acontece quando o coordenador atual falha ou quando o sistema precisa reorganizar sua liderança. 
@@ -9,9 +8,9 @@ Os algoritmos de eleição são baseados em uma rede de overlay em nós e resolv
 
 Nele, o nó com maior identificador vence. Note que não é maior timestamp, e sim ID. O ID é atribuido pelo administrador do sistema e geralmente indica potência. Funcionamento:
 
-
 - Um nó percebe que o coordenador não responde e inicia uma eleição **(ELECTION)** enviando uma mensagem para os nós maiores que ele.
-- Se alguém responder **OK**, significa que há um nó mais forte vivo, e esse nó se torna o candidato a coordenadoraté chegar a alguem maior.
+- Se alguém responder **OK**, significa que há um nó mais forte vivo e você é desclassificado.
+- Processos que derem OK também dao ELECTION.
 - Quando ninguém mais responder, achou-se o maior e anuncia-se o vencedor **(COORDINATOR)**.
 
 O nome “Bully” vem dessa lógica: o nó mais alto acaba “empurrando” os demais até assumir a coordenação. 

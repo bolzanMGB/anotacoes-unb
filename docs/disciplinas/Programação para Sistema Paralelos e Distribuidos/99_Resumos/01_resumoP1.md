@@ -406,8 +406,42 @@ Mensagem de um sistema para varios outros, nao um a um.
 - Se esta usando da OK após liberar o acesso.
 - Se quer usar, só da OK se tiver time stamp maior que o dele.
 - Evita deadlock
-- Muitas mensagens, s eum cair ja era
+- Muitas mensagens, se um cair ja era
 
 ### 3. Algortimo Token-Ring
+- Organizados em um anel.
+- Se nao quer usar, passa a ficha.
+- So pode usar se tiver com a ficha.
+- Se quem tiver com a ficha cair ja era
 
 ### 3. Algortitmo Descentralizado
+
+- O recursos vai possuir varios coordenadores.
+- Pra entrar emc ontato com eles é atraves de uma tabela hash.
+- Se vc quer acessar, vc manda uma mensagem para os coordenadores.
+- Os coordenadores dizem sim para a primeira pessoa que chegou neles.
+- Pros outros é não e tem q esperar um pouco pra madnar dnv.
+- Eles reiniciam o voto caso cairem e quando desocupar o recurso.
+- É necessario tem mais da metade dos coordenadores.
+- Resolve o problema do coordenador cair.
+- Complexo, muita consulta , nao resolve starvaiton.
+
+# 6. Algoritmos de seleção
+
+## 6.1 Bully
+- Maior identificador vence.
+- Não o timestamp.
+- Uma eleição é iniciada qnd percebe q ta sem coordenador.
+- Ele envia mensagem pros mais forte.
+- Se tiver alguem vivo, eles dao OK.
+- Se tiver OK vc é desclassificado.
+- qUEM DEU OK DA ELECTION, ATE SOBRAR MAIS NGM.
+- Simples, termina com clareza.
+- Depende de mensagem, tem que saber quem ta vivo
+
+## 6.2 Algoritmo de Anel
+- QUem possui maior identificador.
+- Porem há uma estrutura cíclica.
+- Percebe que o coordenador morreu e grita ELECTION.
+- Passa e os nos vivos escrevem seus IDs.
+- Quando voltar ao inicio, o maior ID é o vencedor.

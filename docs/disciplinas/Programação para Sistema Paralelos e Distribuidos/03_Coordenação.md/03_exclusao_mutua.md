@@ -102,5 +102,6 @@ Deste modo, esse algoritmo impede o problema do coordenador se tornar um gargolo
 
 **Desvantagem:** 
 
+- Nao resolve starvation
 - Alta complexidade de coordenação.
 - Alto custo de consultas.
