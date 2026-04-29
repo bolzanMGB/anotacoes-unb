@@ -252,55 +252,45 @@ O mecanismo que permite esses pilares é o de **Composição Ad Hoc**, que diz q
 **Computação Móvel:** Sistemas em carros ou dispositivos com GPS. A premissa aqui é que o equipamento muda de lugar o tempo todo, então ele precisa lidar com conexões que caem e voltam.
 
 
-# Tipos de Falhas em Sistemas Distribuídos
+## 6. Tipos de Falhas em Sistemas Distribuídos
 
-## 1. Falha por Parada (Crash Failure)
+### 6.1. Falha por Parada (Crash Failure)
 O processo simplesmente para de funcionar.
 
 - Não responde mais
 - Não envia mensagens
-
 Exemplo: servidor cai ou processo encerra
 
----
 
-## 2. Falha por Omissão (Omission Failure)
+### 6.2. Falha por Omissão (Omission Failure)
 O processo falha ao enviar ou receber mensagens.
 
 Tipos:
 - Omissão de envio → não envia mensagem
 - Omissão de recebimento → não recebe mensagem
+- Exemplo: pacote perdido na rede
 
-Exemplo: pacote perdido na rede
-
----
-
-## 3. Falha de Tempo (Timing Failure)
+### 6.3 Falha de Tempo (Timing Failure)
 O sistema responde fora do tempo esperado.
 
 - Resposta atrasada (timeout)
 - Resposta fora do limite de tempo
+- Exemplo: chamada RPC demora demais
 
-Exemplo: chamada RPC demora demais
 
----
-
-## 4. Falha de Resposta (Response Failure)
+### 6.4 Falha de Resposta (Response Failure)
 O sistema responde, mas com erro.
 
 - Valor incorreto
 - Execução incorreta da operação
+- Exemplo: função retorna resultado errado
 
-Exemplo: função retorna resultado errado
 
----
-
-## 5. Falha Arbitrária (Bizantina)
+### 6.5 Falha Arbitrária (Bizantina)
 O sistema pode apresentar qualquer tipo de comportamento.
 
 - Envia mensagens erradas
 - Envia informações diferentes para cada nó
 - Comportamento imprevisível ou malicioso
-
-Exemplo: nó comprometido ou com erro grave
+- Exemplo: nó comprometido ou com erro grave
 
