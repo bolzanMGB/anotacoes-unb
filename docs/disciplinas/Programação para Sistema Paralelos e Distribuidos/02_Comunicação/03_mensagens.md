@@ -8,7 +8,7 @@ Esse modelo pode ser classificado como transiente e persistente e, por oferecer 
 
 ## 2. Sockets
 
-Um socket é um canal bidirecional de comunicação entre dois processos, que permite enviar e receber dados pela rede. Podem ser via:
+Um socket é um canal bidirecional TRANSIENTE de comunicação entre dois processos, que permite enviar e receber dados pela rede. Podem ser via:
 
 **TCP:** Com conexão, mais confiável e organizado. Usado em HTTP.
 

@@ -75,10 +75,10 @@ Essas camadas são:
 Nos sistemas distribuídos, na prática, o middleware simplifica a comunicação, abstrai detalhes de protocolo e pode assumir parte do papel que, no modelo OSI, seria distribuído entre sessão e apresentação. Tanenbaum destaca essa camada como essencial para construir transparência e facilitar o desenvolvimento.
 
 ### 2.4 Comunicação Persistente vs Transiente
+**Transiente:** A mensagem só existe e é armazenada enquanto emissor e receptor estão ativos e a infraestrutura consegue transmiti-la. Se houver falha, a mensagem pode ser descacrtada. Exemplo: sockets.
 
 **Persistente:** A mensagem fica armazenada pelo middleware de comunicação até o que o destinatário receba, assim o emissor e receptor não precisam estar online ao mesmo tempo. Exemplo: email.
 
-**Transiente:** A mensagem só existe e é armazenada enquanto emissor e receptor estão ativos e a infraestrutura consegue transmiti-la. Se houver falha, a mensagem pode ser descacrtada. Exemplo: sockets.
 
 ### 2.5 Comunicação Assíncrona vs Síncrona
 
