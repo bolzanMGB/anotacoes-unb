@@ -132,9 +132,7 @@ O cálculo SK é um sistema computacional minimalista onde:
 - Os parênteses apenas controlam a ordem de avaliação.
 
 **Combinador K:** Ignora o segundo argumento e retorna o primeiro.
-> Kxy = x
-
-
+> $$\mathbf{Kxy = x}$$
 
 **Combinador S:**
 
@@ -149,12 +147,12 @@ No cálculo SK, a avaliação das expressões ocorre da esquerda para a direita,
 
 **Exemplo:**
 
-> $KAB = A$
+> $$\mathbf{K \ A \ B = A}$$
 
 O combinador K recebe dois argumentos e retorna apenas o primeiro, descartando o segundo.
 
 **Outro exemplo:**
 
-> $Sfgx = f(x)(g(x))$
+> $$\mathbf{S \ f \ g \ x = f(x)(g(x))}$$
 
 Primeiro o argumento $x$ é aplicado em $f$ e $g$, depois os resultados são combinados.
