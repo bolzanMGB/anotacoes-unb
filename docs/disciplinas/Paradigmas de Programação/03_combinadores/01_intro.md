@@ -132,13 +132,13 @@ O cálculo SK é um sistema computacional minimalista onde:
 - Os parênteses apenas controlam a ordem de avaliação.
 
 **Combinador K:** Ignora o segundo argumento e retorna o primeiro.
-> $$\mathbf{Kxy = x}$$
+> $$\mathbf{K \ x \ y = x}$$
 
 **Combinador S:**
 
 Aplica o mesmo argumento em duas funções diferentes.
 
-> $$\mathbf{Sfgx = f(x)(g(x))}$$
+> $$\mathbf{S \ x \ y \ z = x z (y z)}$$
 
 ### 2.4 Redução Beta
 
@@ -156,3 +156,36 @@ O combinador K recebe dois argumentos e retorna apenas o primeiro, descartando o
 > $$\mathbf{S \ f \ g \ x = f(x)(g(x))}$$
 
 Primeiro o argumento $x$ é aplicado em $f$ e $g$, depois os resultados são combinados.
+
+## 3. Cálculo Lambda ($\lambda$)
+
+Enquanto Schönfinkel baseava-se em combinadores, Alonzo Church propôs, na década de 1930, o cálculo $\lambda$ para formalizar a noção de computabilidade. É considerado a menor linguagem de programação do mundo, focada em regras de transformação e no esquema de definição de funções. Qualquer função computável em uma máquina de Turing pode ser expressa no cálculo $\lambda$.  
+
+### 3.1 Termos Lambda
+O conjunto das expressões, denotado por $\Lambda$, possui apenas três regras fundamentais baseadas em variáveis (pertencentes a um conjunto $V$): 
+
+1. **Variável:** $x \in V \Rightarrow x \in \Lambda$ (expressão atômica).  
+
+2. **Aplicação:** $M, N \in \Lambda \Rightarrow M N \in \Lambda$ (equivale à avaliação de $M(N)$).  
+
+3. **Abstração:** $M \in \Lambda, x \in V \Rightarrow \lambda x.M$ (equivale à definição de uma função $f(x) = M$).  
+
+### 3.2 Variáveis Livres e Atadas
+
+1. **Atada (Bound):** A abstração $\lambda x.M$ "ata" a variável $x$ ao termo $M$.  
+
+2. **Livre (Free):** Uma variável que não é precedida por um símbolo $\lambda$ que a una à expressão. Em $\lambda x.xy$, $x$ é atada e $y$ é livre.
+
+### 3.3 Axiomas de Redução e Conversão
+
+O cálculo possui regras estritas para processar computações:
+
+1. **Conversão-$\alpha$:** Permite renomear uma variável atada para evitar colisões de nome. 
+> $$\mathbf{\lambda x.M \equiv_\alpha \lambda y.(M[x:=y])}$$
+
+2. **Redução-$\beta$:** Estabelece a aplicação da função através da substituição. O termo aplicado substitui as variáveis livres correspondentes. 
+> $$\mathbf{(\lambda x.M)N \equiv_\beta M[x:=N]}$$
+
+3. **Conversão-$\eta$:** Elimina redundâncias quando o propósito é apenas repassar um argumento. Se $x$ não é livre em $M$.
+> $$\mathbf{\lambda x.Mx \equiv_\eta M }$$
+   
