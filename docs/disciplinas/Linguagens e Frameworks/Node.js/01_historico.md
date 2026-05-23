@@ -37,3 +37,40 @@ Em 2008, o Google lançou o V8. Ele trouxe a técnica de compilação JIT (Just-
 O V8 foi essencial para viabilizar o modelo não-bloqueante do Node.js. Como o processamento da lógica ficou muito rápido, a thread principal (o Event Loop) não perde tempo com cálculos lentos. O Node.js delega as operações de I/O - como ler arquivos, consultar banco de dados ou receber dados de sensores - para o sistema operacional através da biblioteca libuv. Assim, a thread principal fica livre imediatamente para continuar processando outras requisições enquanto aguarda o resultado da operação de I/O. Quando a tarefa termina, o sistema operacional avisa o Node, que executa a função de retorno (callback).
 
 Em 2009, Ryan Dahl utilizou o V8 para o processamento do código e a biblioteca libuv (escrita em C++) para gerenciar as operações de sistema. Juntos, eles formam o ambiente de execução que permite rodar JavaScript diretamente no servidor.
+
+## 3. Funcionamento Básico do Node
+
+O Node.js é **orientado a eventos** e executa o JavaScript em uma única thread principal **(Single-Thread)** controlada pelo **Event Loop**. Em vez de criar uma nova thread para cada requisição, como acontece em arquiteturas tradicionais, o Node trabalha com um sistema de filas e operações assíncronas.
+
+O Event Loop é um loop infinito responsável por gerenciar eventos e tarefas da aplicação. Entre essas tarefas podem estar:
+- requisições HTTP;
+- callbacks;
+- timers;
+- Promises;
+- respostas de banco de dados;
+- eventos de I/O;
+- WebSockets;
+- eventos do frontend, como cliques e interações do usuário.
+
+Essas tarefas entram em filas internas e o Event Loop fica continuamente percorrendo essas filas, executando uma tarefa por vez na thread principal.
+
+Quando uma operação de I/O é iniciada — como acessar um banco de dados, ler um arquivo ou esperar dados de um sensor — o Node.js delega essa operação para o sistema operacional/libuv. Enquanto aguarda a resposta, a thread principal não fica bloqueada; ela continua livre para processar outras tarefas da fila.
+
+Dessa forma, mesmo utilizando apenas uma thread principal para executar JavaScript, ao evitar o desperdício de recursos causado pela espera de operações de I/O o Node consegue lidar com muitas conexões simultâneas de maneira eficiente.
+
+**Exemplificação:**
+
+**1. Modelo Tradicional:** Uma nova thread é criada para cada requisição. Enquanto elas ficam paradas esperando o retorno das operações de I/O, elas ficam bloqueadas ocupando memória e recursos do sistema. 
+
+- Cliente A faz uma requisição, criando uma thread A que vai chamar o SO e ficar esperando a resposta.
+- Cliente B faz outra requisição, criando uma nova thread B que também vai ficar esperando.
+- Quando a resposta chega, a thread continua a execução da requisição e depois é reutilizada ou encerrada.
+
+**2. Modelo Node:** Há uma fila de tarefas pendentes onde novas requisições vão sendo adicionadas e um loop infinito (Event Loop), gerenciado por uma única thread principal, vai iterar essa fila executando as tarefas uma por vez.
+
+- Cliente A faz uma requisição que entra pra fila.
+- Cliente B faz uma requisição que entra pra fila.
+- A thread atende o Cliente A, chama o SO e inicia a operação de I/O e registra um callback.
+- Sem esperar a resposta, a thread continua vai para próxima tarefa da fila, que pode ser atender o Cliente B.
+- Quando o SO retorna a resposta da operação, o callback correspondente é colocado na fila de eventos.
+- Quando a thread termina a tarefa atual, o Event Loop executa o próximo callback da fila.

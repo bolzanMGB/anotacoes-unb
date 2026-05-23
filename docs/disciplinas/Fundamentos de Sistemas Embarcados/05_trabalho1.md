@@ -1,148 +1,202 @@
-# Trabalho 1: Controle de Cruzamentos de Trânsito com Câmeras LPR
+#
 
-## 1. Contexto
-Desenvolver um sistema de controle e monitoramento de cruzamentos de sinais de trânsito. Esse sistema vai ser enviado a uma Raspberry Pi, que está conectada numa ESP32,onde o sistema de trânsito esta sendo simulado. 
+## 1. Controle dos semáforos/faixa de pedestre
 
-Na ESP32, está rodando um código que simula uma lógica de tráfego com carros virtuais, pistas, semáforos, radares, faixas de pedreste e etc, que é transmitida e visualizada em uma interface (dashboard).
+### 1.1 Cruzamento 1
 
-Assim, A ESP32 também simula que os carros e o sistema são reais usando eletricidade. Quando um carro virtual, por exemplo, passa pelo sensor no simulador, a ESP32 manda 3.3V no pino físico da GPIO da Raspberry Pi.
+**Semáforos:**
 
-## 2. Arquitetura do Sistema
+- Há três bits, cada um representando um led e relacionado com um pino GPIO físico da RPI.
 
+<center>
 
-```
-┌──────────────────────────────────────────────────────────────┐
-│                     Raspberry Pi                             │
-│                                                              │
-│  ┌─────────────────┐     TCP/IP     ┌────────────────────┐   │
-│  │ Servidor Central│◄──────────────►│ Servidor Dist. 1   │   │
-│  │                 │     TCP/IP     ├────────────────────┤   │
-│  │  (Monitora e    │◄──────────────►│ Servidor Dist. 2   │   │
-│  │   Coordena)     │                └────────────────────┘   │
-│  └────────┬────────┘                        │                │
-│           │ RS485 MODBUS                    │ GPIO           │
-└───────────┼─────────────────────────────────┼────────────────┘
-            │                                 │
-            ▼                                 ▼
-┌───────────────────────────────────────────────────────────────┐
-│                          ESP32                                │
-│                                                               │
-│  Câmeras LPR (MODBUS slave)    Semáforos / Sensores / Botões  │
-│  0x11 · 0x12 · 0x13 · 0x14    (GPIO — entradas e saídas)      │
-│                                                               │
-│  Widget ThingsBoard (MQTT)                                    │
-│  → Modo Noite/Dia  · Carro de Emergência                      │
-└───────────────────────────────────────────────────────────────┘
-```
+   | Item               | GPIO RPi (Saída) |
+   |--------------------|:----------------:|
+   | LED Verde (Bit 0)  | 17               |
+   | LED Amarelo (Bit 1)| 18               |
+   | LED Vermelho (Bit 2)| 23              |
 
-**1. Servidores Distribuídos**
+</center>
 
-Atuam lidando diretamente com o hardware: 
+- No cruzamento 1, o controle se da enviando sinais que ascendem ou desligam esses bits.
+- O comportamento é:
+   - Verde (10s) → 
+   - Amarelo (2s) → 
+   - Vermelho (10s) → 
 
-- RPI envia um código de 3 bits, através dos pinos GPIO, para a ESP32 via GPIO, enviando códigos de 3 bits da ESP32 para a RPi.
-- Sensores do simulador ou botões do dashboard mandam bits em nível alto para os pinos da GPIO, que é detectado pela RPi através de código do usuário. 
+**Botões de Pedestres:**
 
-Eles realizam o tratamento de sensores e interrupções, reportando estados e eventos de forma assíncrona ao Central. Há dois servidores distribuídos e cada um controla um cruzamento, sendo que cada cruzamento possui:
+- São ativados apenas manualmente pelo dashboard.
+- O comportamento é:
+   - Se o semáforo está verde e o tempo mínimo (5 s) já passou: muda imediatamente para amarelo;
+   - Se o semáforo está verde e o tempo mínimo não passou: aguarda o tempo mínimo e então muda para amarelo;
+   - Se o semáforo já está amarelo ou vermelho: o botão não tem efeito adicional.
 
-- 2 semáforos.
-- 2 botões de pedestre.
-- 2 sensores de velocidade.
-- 2 câmeras LPR (License Plate Recognition) de velocidade.
+<center>
 
-**2. Servidor Central**
-
-É a parte exterior a simulação. Ele recebe dados dos cruzamento e manda respostas para eles, envia esses dados oa dashboard e faz a integração de protocolos distintos
-
-## 3. Funcionamento
+| Botão                             | Modelo | GPIO RPi (Entrada) |
+|-----------------------------------|:------:|:------------------:|
+| Pedestre Principal — Modelo 1     | M1     | 1                  |
+| Pedestre Cruzamento — Modelo 1    | M1     | 12                 |
 
 
+</center>
+
+### 1.2 Cruzamento 2
+
+**Semáforos e Faixas**
+
+- Também há tres leds, cada led ligado a um pino GPIO.
+- Esses pinos sao bits: podem ser 0 ou 1.
+
+<center>
+
+   | Bit | GPIO RPi (Saída) |
+   |:---:|:----------------:|
+   | 0   | 24               |
+   | 1   | 8                |
+   | 2   | 7                |
+
+</center>
+
+- RPI n controla um a um, ela manda um comando para os três de uma vez.
+- Há 8 combinações: o resultados desse número binário de três bits vai de 0 a 7.
+
+<center>
+
+   | Código | Via Principal | Via Cruzamento | Ped. Principal | Ped. Cruzamento |
+   |:------:|:-------------:|:--------------:|:--------------:|:---------------:|
+   | 000     | Amarelo       | Amarelo        | Desligado      | Desligado       |
+   | 001     | Verde         | Vermelho       | Vermelho       | Verde           |
+   | 010     | Amarelo       | Vermelho       | Vermelho       | Vermelho        |
+   | 011     | Amarelo       | Vermelho       | Vermelho       | Desligado       |
+   | 100     | Vermelho      | Vermelho       | Vermelho       | Vermelho        |
+   | 101     | Vermelho      | Verde          | Verde          | Vermelho        |
+   | 110     | Vermelho      | Amarelo        | Vermelho       | Vermelho        |
+   | 111     | Vermelho      | Amarelo        | Desligado      | Vermelho        |
+
+</center>
+
+- A RPI vai mandar essas combinações para o pinos, controlando os semáforos.
+- A ESP vai ficar de olho nesses pinos e a partir deles abrir/fechar os semáforos/faixas.
+
+**Botoes de pedestre**
+- O ciclo acima é rodado.
+- Se o pedestre apertar o botão no dashboard:
+   - Botão Pedestre Principal: Se o sinal da via principal está verde e o tempo mínimo já passou, antecipa a mudança para amarelo;
+   - Botão Pedestre Cruzamento: Se o sinal da via de cruzamento está verde e o tempo mínimo já passou, antecipa a mudança para amarelo.
+
+<center>
+
+   | Botão                             | Modelo | GPIO RPi (Entrada) |
+   |-----------------------------------|:------:|:------------------:|
+   | Pedestre Principal — Modelo 2     | M2     | 25                 |
+   | Pedestre Cruzamento — Modelo 2    | M2     | 22                 |
+
+</center>
+
+## 2. Sensores de velocidade e Câmeras LPR
 
 
+### 2.1 Sensores de Velocidade
+- Há 2 sensores por cruzamento.
+- Cada sensor usa dois pinos GPIO.
 
-### 2.3 Funcionamento Geral
+<center>
+
+| Sensor | Cruzamento | GPIO RPi A | GPIO RPi B |
+|:------:|:----------:|:----------:|:----------:|
+| 1      | 1          | 16         | 20         |
+| 2      | 1          | 21         | 27         |
+| 3      | 2          | 11         | 0          |
+| 4      | 2          | 5          | 6          |
+
+</center>
+
+- Quando um carro passa, a ESP joga um pulso no Pino A
+- Quando o carro termina de passar ele jogo outro pulso no Pino B.
+- Servidor distribuído calcula a diferença de tempo entre os dois pulsos.
+- A cada 2 segundos o SD manda o número de veículos por sensor ao SC.
+- Se a velocidade for maior que 60, o SD manda imediatamente o id do sensor e a velocidade para o SC.
+
+### 2.2 Câmeras LPR
+
+- Há duas câmeras por cruzamento na ESP.
+- Cada câmera ligada com um sensor de velocidade.
+- Elas ficam no modo de espera.
+- Só tiram foto ao receber um comando do SC que passou um carro em velocidade alta.
+- Cada câmera possui um endereço MODBUS.
+
+<center>
+
+| Dispositivo                        | Endereço MODBUS | Funções suportadas      |
+|------------------------------------|:---------------:|-------------------------|
+| Câmera LPR — Sensor 1              | 0x11            | 0x03 leitura / 0x10 escrita |
+| Câmera LPR — Sensor 2              | 0x12            | 0x03 / 0x10             |
+| Câmera LPR — Sensor 3              | 0x13            | 0x03 / 0x10             |
+| Câmera LPR — Sensor 4              | 0x14            | 0x03 / 0x10             |
+| Estado do Sistema                  | 0x20            | 0x03 leitura            |
+
+</center>
+
+- Cada câmera possui os seguintes registers
+
+<center>
+
+| Offset | Tamanho | Descrição                                | Tipo/Formato                            |
+|:------:|:-------:|------------------------------------------|-----------------------------------------|
+| 0      | 1       | **Status**                               | 0=Pronto, 1=Processando, 2=OK, 3=Erro   |
+| 1      | 1       | **Trigger de Captura** (escrever 1 para disparar) | 0=Idle; escrever 1 inicia captura |
+| 2      | 4       | **Placa [8 chars]**                      | 4 registradores (2 bytes cada) — ASCII  |
+| 6      | 1       | **Confiança (%)**                        | 0–100                                   |
+| 7      | 1       | **Código de Erro**                       | 0=nenhum                                |
+
+</center>
+
+**Fluxo de Multa:**
+
+- SD identifica um carro em alta velocidade.
+- SD envia o ID do sensor e a velocidade para o SC via TCP.
+- SC manda um pacote MODBUS de Escrita para para câmera ligada com esse sensor
+   - Comando para tirar foto: muda o Triger da câmera para 1,
+- SC fica lendo em loop o Status da Câmera.
+- Quando der 2, o SC le a Placa e a Confiança.
+- SC recebe os bytes da placa, converte para texto e salva no arquivo multas.log.
+- SC envia outro pacote MODBUS mudando o Trigger para 0.
 
 
-## 3. Conexões GPIO (RPi -> ESP32)
+## 3. Estado do Sistema
 
-### 3.1 Controle de Semáforos (RPi → ESP32)
-### 3.2 Sensores de Velocidade (ESP32 → RPi)
-### 3.2 Botões de Pedestre (ESP32 → RPi)
-
-## 4. Integração RS485 (MODBUS RTU)
-
-### 4.1 Endereços dos Dispositivos
-### 4.2 Mapa de Registradores das Câmeras LPR 
-### 4.3 Mapa de Registradores do Estado do Sistema 
-
-## 5. Requisitos do Sistema
-
-### 5.1 Servidores Distribuídos
-
-Código que deve controlar as responsabilidades de:
-
-**1. Controlar os semáforos via GPIO obedecendo a temporização.**
-2. **Controlar os botões de pedestre** via GPIO: ao detectar o acionamento, antecipar a mudança de estado do semáforo correspondente (respeitando o tempo mínimo de verde já decorrido);
-3. **Medir a velocidade dos veículos** via GPIO (sensores A e B): calcular a velocidade a partir do intervalo de tempo entre os pulsos, contar a passagem de cada veículo;
-4. **Reportar ao Servidor Central** (via TCP/IP, a cada 2 segundos) a contagem de veículos por sensor;
-5. Ao detectar veículo **acima de 60 km/h**, enviar imediatamente aviso (*push*) ao Servidor Central com: `{cruzamento, sensor_id, velocidade_kmh, timestamp}`;
-6. Obedecer comandos do Servidor Central para **modo noturno** (amarelo intermitente) e **modo de emergência** (via principal verde, cruzamento vermelho);
-7. Configurar-se automaticamente para o cruzamento 1 ou 2 a partir de um **arquivo de configuração** (pinos, porta TCP, etc.).
+- É um bloco de memoria na ESP
+- SC le a cada 200ms os registradores.
+- Serve para o SC descobrir se:
+   - Modo noturno foi ativado
+   - Há um veículo de emergência.
 
 
-### 5.2 Servidor Central
+<center>
 
-O código do Servidor Central deve atender as seguintes responsabilidades:
+| Offset | Tamanho | Campo               | Codificação                                                                 |
+|:------:|:-------:|---------------------|-----------------------------------------------------------------------------|
+| 0      | 1       | `active`            | 0 = sem emergência, 1 = emergência em curso                                 |
+| 1      | 1       | `road`              | 0 = nenhuma, 1 = via principal (`main`), 2 = via auxiliar (`cross`)         |
+| 2      | 1       | `direction`         | 0 = nenhuma, 1 = leste, 2 = oeste, 3 = norte, 4 = sul                       |
+| 3      | 1       | `intersection_id`   | 0 = ambos / não se aplica, 1 = cruzamento 1, 2 = cruzamento 2               |
+| 4      | 1       | `vehicle_type`      | 0 = nenhum, 1 = ambulância, 2 = bombeiros, 3 = polícia                      |
+| 5      | 1       | `signal_group`      | 0 = nenhum, 1 = sinal principal (abrir verde), 2 = sinal auxiliar           |
+| 6      | 1       | `timed_out`         | 0 = OK, 1 = último ciclo estourou o tempo máximo (incidente registrado)     |
+| 7      | 1       | `unattended_count`  | Total acumulado de emergências não atendidas a tempo (16 bits)              |
+| 8      | 1       | `elapsed_s_x10`     | Tempo decorrido do ciclo atual em **décimos de segundo** (e.g. 123 = 12.3s) |
+| 9      | 1       | `max_time_s_x10`    | Tempo máximo aceitável em décimos de segundo (calculado pelo widget)        |
+| 10     | 1       | `night_mode`        | `0` = modo Dia | `1` = modo Noite        |
 
-1. **Manter conexão TCP/IP** com os dois Servidores Distribuídos;
-2. **Ler periodicamente** (via MODBUS RS485, endereço 0x20) o estado Noite/Dia e o estado de Emergência;
-3. Ao detectar **modo noturno**, comandar ambos os Servidores Distribuídos para ativar o **amarelo intermitente**;
-4. Ao detectar **veículo de emergência**, comandar ambos os cruzamentos para **abrir passagem** na via principal até o evento ser encerrado;
-5. Ao receber aviso de infração de velocidade de um Servidor Distribuído, **acionar a câmera LPR** correspondente via MODBUS RS485 e **registrar a multa** (placa, velocidade, câmera, timestamp, valor da multa) em arquivo de log;
-6. Manter **histórico de passagens** de veículos por cruzamento e via;
-7. Prover **interface** (terminal ou web) com as seguintes informações por cruzamento:
-   - Fluxo de tráfego por sensor (carros/min);
-   - Velocidade média por sensor (km/h);
-   - Total de infrações de velocidade e respectivas multas;
-   - Comandos manuais em que o usuário possa controlar o estado dos semáforos e o modo noturno (piscar amarelo);  
-8. **Armazenar de modo persistente** (arquivo) o estado atual para que possa ser reestabelecido em caso de reinicialização.
+</center>
 
+**Fluxo de Emergência**
 
-### 5.3 Requisitos Gerais
-
-1. Em qualquer linguagem, deve haver instruções explícitas de como instalar e executar o sistema;
-2. Para C/C++, é mandatório o uso de **Makefile** com todas as dependências no projeto;
-3. Cada serviço deve poder ser **iniciado independentemente** e aguardar a conexão dos demais;
-4. Qualquer queda de comunicação deve ser **reestabelecida automaticamente** sem perda de função;
-5. O código deve ser modular com arquitetura bem definida. Programas completos em arquivo único terão a nota de arquitetura em Zero.
-5. O repositório deve conter um arquivo **README** descrevendo a instalação, configuração e uso.
-
-
-## 6. Detalhes de Implementação
-
-### 6.1 Cálculo de Velocidade
-
-O sensor de velocidade possui dois pinos (A e B). Na passagem de um veículo:
-
-- O pino A é ativado (borda de subida) primeiro;
-- O pino B é ativado (borda de subida) após um intervalo $\Delta t$;
-- A velocidade é calculada por:
-
-$$v = \frac{2\;\text{m}}{\Delta t} \times 3{,}6 \quad [\text{km/h}]$$
-
-No simulador, $\Delta t$ varia entre **15 ms** (≈ 480 km/h) e **300 ms** (≈ 24 km/h).
-
-### 6.2 Modo Noturno
-
-Quando ativado, o Servidor Distribuído deve alternar o código dos semáforos entre o estado **0** (amarelo) e o estado **4** (vermelho total / apagado) com período de **2 segundoa** (1s em cada estado), simulando o pisca-pisca amarelo.
-
-### 6.3 Modo de Emergência
-
-Quando ativado, os Servidores Distribuídos devem manter a respevtiva via liberada (sinal verde) até receber a desativação do Servidor Central.
-
-### 6.4 Registro de Multas (Log)
-
-O arquivo de log deve conter, para cada multa:
-
-```
-timestamp | cruzamento | sensor | velocidade (km/h) | câmera MODBUS | placa | confiança (%) | Valor da Multa
-```
+- SC lê active = 1.
+- SC ordem via TCP para o SD afetado.
+- SC abre o verde ordenado e trava o sinal aberto
+- SC lê active = 0.
+- Semáforo é descongelado.
+ 
