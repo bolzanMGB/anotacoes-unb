@@ -1,8 +1,6 @@
-# Desenvolvendo aplicações web
+# Aplicação Web com Node puro
 
-## 1. Node Puro
-
-### 1.2 Estrutura básica 
+## 1. Estrutura básica 
 
 ```js
 var http = require('http');
@@ -32,7 +30,7 @@ server.listen(3000);
 **Comportamento das Rotas:** Como o código foi escrito em linha reta e sem nenhuma estrutura de decisão (if/else), nós definimos apenas uma resposta padrão. Por isso, independentemente do endereço (URL) que digitarmos no navegador, mesmo que a rota não exista, o servidor sempre vai ignorar o caminho, carimbar o Status 200 e exibir o "Hello World!".
 
 
-### 1.2 Criar Rotas
+## 2. Criar Rotas
 
 ```js
 var http = require('http');
@@ -58,7 +56,7 @@ var server = http.createServer(function(request, response){
 ```
 Com `request.url` podemos definir rotas através de laços.
 
-### 1.3 Separando HTML do JS
+## 3. Separando HTML do JS
 
 `index.html`
 ```html
@@ -71,12 +69,11 @@ var http = require('http');
 var fs = require('fs');
 
 var server = http.createServer(function(request, response){
-    fs.readFile(__dirname + '/index.html', function(err, html){
+    fs.readFile(__dirname + '/index.html', function(erro, html){
         response.writeHeader(200, {'Content-Type': 'text/html'});
         response.write(html);
         response.end();
         if (erro) throw erro;
-        console.log(arquivo);
     });
 });
 

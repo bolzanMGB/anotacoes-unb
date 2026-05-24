@@ -40,7 +40,7 @@ Em 2009, Ryan Dahl utilizou o V8 para o processamento do código e a biblioteca 
 
 ## 3. Funcionamento Básico do Node
 
-O Node.js é **orientado a eventos** e executa o JavaScript em uma única thread principal **(Single-Thread)** controlada pelo **Event Loop**. Em vez de criar uma nova thread para cada requisição, como acontece em arquiteturas tradicionais, o Node trabalha com um sistema de filas e operações assíncronas.
+O Node.js é **orientado a eventos** e executa o JavaScript em uma única thread principal **(Single-Thread)** controlada pelo **Event Loop**. Em vez de criar uma nova thread para cada requisição, como acontece em arquiteturas tradicionais, o Node trabalha com uma **fila de eventos** e operações assíncronas.
 
 O Event Loop é um loop infinito responsável por gerenciar eventos e tarefas da aplicação. Entre essas tarefas podem estar:
 - requisições HTTP;
@@ -52,7 +52,7 @@ O Event Loop é um loop infinito responsável por gerenciar eventos e tarefas da
 - WebSockets;
 - eventos do frontend, como cliques e interações do usuário.
 
-Essas tarefas entram em filas internas e o Event Loop fica continuamente percorrendo essas filas, executando uma tarefa por vez na thread principal.
+Essas tarefas entram em filas internas e o Event Loop fica continuamente percorrendo essas filas, verificando se existe um novo evento e o executando um por vez na thread principal.
 
 Quando uma operação de I/O é iniciada — como acessar um banco de dados, ler um arquivo ou esperar dados de um sensor — o Node.js delega essa operação para o sistema operacional/libuv. Enquanto aguarda a resposta, a thread principal não fica bloqueada; ela continua livre para processar outras tarefas da fila.
 
