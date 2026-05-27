@@ -1,4 +1,4 @@
-# Introdução 
+# Realidade Virtual 
 
 ## 1. Definições e Classificações
 
@@ -62,29 +62,19 @@ Ambiente Virtual é o mundo, por exemplo, de um video-game (GTA 5).
   <img src="../../assets/pngs/90.png" alt="A">
 </p>
 
-## 3. Imersão e Presença
 
-### 3.1 Imersão: 
+## 3. Realidade Virtual
 
-Indica o nível de ilusão de uma diferente realidade proporcionada pelo RV ao usuário. Ela é definida por parâmetro de visão e parâmetros gerais. Os principais são:
+### 3.1 Histórico
 
-**1. Qualidade de Imagem:** Indica o nível de realismo de texturas e imagens imagens no RV. 
+**1950s (Morton Heilig):** Um cineasta criou o Sensorama, uma cabine analógica imersiva que oferecia visão estéreo, sons, odores, vibração e vento simulado.  
 
-**2. Campo de Visão:** Literalmente o campo de visão do usuário dentro do RV.
+**1960s (Ivan Sutherland):** Um engenheiro criou o primeiro capacete de Realidade Virtual (HMD) apelidado de "A Espada de Dâmocles" e fez testes de telepresença acoplando o visor a câmeras físicas.  
 
-**3. Estereoscopia:** Possibilidade ou não de prover visão estereoscópica.
+**1980s (Jaron Lanier):** O cientista e artista cunhou o termo comercial "Realidade Virtual". 
 
-**4. Rastreamento:** Precisão, grau de liberdade, tempo de reposta dos movimentos do usuário.
 
-### 3.2 Presença:
-É o estado mental. É a ilusão psicológica em si que o usuário tem de estar no ambiente virtual. Há 4 tipos de ilusão de presença:
-
-**1. Espacial:** Sentir-se em determinado local.
-**2. Corporal:** Sentir que tem um corpo.
-**3. Física:** Poder interagir com os elementos do cenário.
-**4. Social:** Poder se comunicar com os personagens do ambiente.
-
-## 2. Tipos de Realidade Virtual
+### 3.2 Tipos de Realidade Virtual
 
 **1. Realidade Virtual Não-Imersiva:**
 
@@ -104,23 +94,70 @@ Usuário não está com sua visão 100% isolada do mundo real e utiliza disposit
 
 Usuário está com sua visão 100% isolada do mundo real. Incluem o uso de óculos VR.
 
-        - Ray-Casting: distância (bom), tremor (ruim), botoes (bom).
-        - Toque Direto: naturalidade (bom), distância (ruim), feedback-tátil (ruim), fadiga (ruim).
+
+### 3.3 Imersão e Presença
+
+#### 3.3.1 Imersão: 
+
+Indica o nível de ilusão de uma diferente realidade proporcionada pelo RV ao usuário. Ela pode ser medida matematicamente através de parâmetros de visão e parâmetros gerais, como:
+
+**1. Qualidade de Imagem:** Indica o nível de realismo de texturas e imagens imagens no RV. 
+
+**2. Campo de Visão:** Literalmente o campo de visão do usuário dentro do RV.
+
+**3. Estereoscopia:** Possibilidade ou não de prover visão estereoscópica.
+
+**4. Rastreamento:** Precisão, grau de liberdade, tempo de reposta dos movimentos do usuário.
+
+#### 3.3.2 Presença:
+
+É o estado mental. É a ilusão psicológica em si que o usuário tem de estar no ambiente virtual. Há 4 tipos de ilusão de presença:
+
+**1. Espacial:** Sentir-se em determinado local.
+**2. Corporal:** Sentir que tem um corpo.
+**3. Física:** Poder interagir com os elementos do cenário.
+**4. Social:** Poder se comunicar com os personagens do ambiente.
+
+### 3.4 Formas de Interação, Seleção e Apontamento
+
+**1. Ray-Casting:** Funciona como uma "caneta-laser" que sai mão ou controle.
+
+- Vantagens:
+  - Excelente para interagir com objetos a longas distâncias
+  - Boa confirmação de clique.
+- Desvantagens:
+  - Tremor natural das mãos humanas.
+  - Difícil acertar alvos muito pequenos que estão longe.
+
+**2. Mãos Virtuais:** Usuário usa suas próprias mãos físicas.
+
+- Vantagens:
+  - Mais natural e intuitivo.
+- Desvantagens:
+  - Ruim para objetos fora do alcance do braço.
+  - Fadiga muscular.
+  - Falta de feedback tátil.
+
+**3. Gaze + Pinch:** Utiliza Eye-Tracking para selecionar e gestos com a mão para clicar.
+
+- Utilizado no Apple Vision Pro.
+- Elimina o tremor e fadiga dos braços
 
 
 
-## 2. Triângulo da RV
+### 3.5 Triângulo da RV
+Utilizado para definir se um sistema é uma aplicação de RV de verdade.
 
-- Imersão:
+**1. Imersão:** Quanto o sistema consegue isolar os sentidos do usuário sentidos do mundo real e substituí-los por estímulos digitais.
 
-- Interação:
+**2. Interação:** Capacidade do sistema de responder em tempo real às ações dos usuários. Ele não pode ser passivo.
 
-- Imaginação:
+**3. Imaginação:** Capacidade do usuário aceitar a simulação como um ambiente real.
 
 
-## 3. Desafios
+### 3.6 Desafios
 
-**1. Uncanny Valley:** Aversão quando o realismo se aproxima muito de pessoas reais
+**1. Uncanny Valley:** Aversão quando o realismo se aproxima muito de pessoas reais, porém ainda meio robótico.
 
 **2. Fidelidade:** é o grau de exatidão que o sistema de VR replica o mundo real. Não necessariamente precisa de fotorrealismo. É dividida em três dimensões:
 
@@ -130,9 +167,3 @@ Usuário está com sua visão 100% isolada do mundo real. Incluem o uso de ócul
 
 **3. Ergonomia:** Grau de conforto físico dos equipamentos: peso, tamanho, ajustes dos óculos e etc.
 
-
-## 4. Realidade Aumentada
-
-- A RV transporta o usuário para um outro ambiente virtual.
-- A RA transporta elementos virtuais para o espaço real.
-- A interação entre o mundo e os elementos virtuais é mais natural e não precisa de treinamento/adaptação.
