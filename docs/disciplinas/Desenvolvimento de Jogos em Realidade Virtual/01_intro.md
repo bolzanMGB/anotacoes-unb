@@ -55,6 +55,7 @@ Ambiente Virtual é o mundo, por exemplo, de um video-game (GTA 5).
 
 - Realidade Aumentada.
 - Virtualidade Aumentada.
+- Realidade Virtual.
 - Ambiente Virtual.
 
 <p align="center">

@@ -1,0 +1,5 @@
+Criação da Conexão WebSocket e Integração Base com Firebase
+Estruturação dos DTOs Base para Telemetria e Mapeamento
+Implementação de Validação no Gateway e Filtro de Exceções de WebSocket
+Criação de Endpoints HTTP (Getters) para Consulta Histórica de Corridas
+Implementação de Handlers/Broadcast em Tempo Real para o Front-end
