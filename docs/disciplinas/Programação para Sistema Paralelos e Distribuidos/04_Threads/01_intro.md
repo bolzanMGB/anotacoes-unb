@@ -116,6 +116,8 @@ $$\mathbf{Speedup = \frac{T_{serial}}{T_{paralelo}}}$$
 
 **2. Eficiência:** É a razão entre o Speedup e o número de processadores. Indica o o rendimento do núcleo. O gráfico de eficiência pode ser:
 
+$$\mathbf{Eficiência = \frac{Speedup}{N}}$$
+
 - Superlinear: E > 1.
 - Linear: E = 1.
 - Sublinear: 0 < E < 1.
