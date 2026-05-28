@@ -80,8 +80,58 @@ Programação Paralela é a execução coordenada de tarefas para a solução de
     - PVM (Parallel Virtual Machine).
 
 
-## 4. Funcionamento das threads
+## 4. Threads
+
+### 4.1 Funcionamento das threads
 
 **Processos vs Threads:**
 
 Um processo carrega o ambiente, ou seja, o espaço de endereçamentos, arquivos. etc. Já uma thread corresponde ao estado de execução de um processo. Um processos pode ter uma ou várias threads.
+
+**Visão Unificada do Kernel Linux**
+
+Independente da forma como processos e threads são criados, a diferenciação de threads e processos somente existe para o programador. Para o kernel do Linux, toda linha de execução é representada internadamente pela mesma estrutura de dados: a `task_struct`. Por baixo dos panos todas as formas de criar processos/threads usam a mesma chamada `clone()`, o que diferencia um do outro são os parâmetros passados.
+
+### 4.2 Criações de Threads
+
+**1. Suporte Nativo:**
+
+Há um modelo de baixo nível para criar processos. Todo SO possui comando nativos para conversar diretamente com o Kernel do SO. Ele vai ser o responsável por administrar esses processos.
+
+Alguns comandos são: `fork()`, `getpid()` e `kill()`
+
+**2. Bibliotecas de Alto Nível (OpenMP)**
+
+Para poupar o programador de ter que lidar com a complexidade de chamadas de sistemas manualmente, há diversos frameworks que fornecem abstração para criação de threads. Somente é necessário dizer o que dever ser rodado em paralelo.
+
+O principal framework é o `OpenMP`. As threads geradas por ele compartilham o mesmo espaço de memória.
+
+## 5. Avaliação de Desempenho
+
+Threads ocasionam concorrência e aumento da complexidade. Desde modo nem todo código possuem necessidade serem paralelizados. A medida que o problema aumenta pode ser que o overhead de comunicação diminua e eficiência Há diversas formas de mensurar o ganho de tempo real com o uso de threads:
+
+**1. Speedup:** É a razão entre o tempo do programa serial original e o tempo paralelo.
+
+$$\mathbf{Speedup = \frac{T_{serial}}{T_{paralelo}}}$$
+
+**2. Eficiência:** É a razão entre o Speedup e o número de processadores. Indica o o rendimento do núcleo. O gráfico de eficiência pode ser:
+
+- Superlinear: E > 1.
+- Linear: E = 1.
+- Sublinear: 0 < E < 1.
+- Retorno negativo: E < 0.
+
+**7. Lei de Amdahl:**
+
+- S é uma parte que precisa ser executada serialmente
+
+## 6. Medindo Desempenho
+
+- É necessário rodar mais de uma vez.
+- `3 a 10 vezes` é uma quantidade aceita pela maioria da comunidade científica.
+
+**Ferramentas/Programas para medir desepenho**
+
+1. `/usr/bin/time`.
+
+2. `perf stat -r 3`

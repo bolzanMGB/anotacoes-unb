@@ -24,7 +24,7 @@ Ambiente Virtual é o mundo, por exemplo, de um video-game (GTA 5).
 
 **3. Realidade Virtual (VR):**
 
-É quando o usuário está situado em um ambiente real porém sua visão está 100% isolada do mundo real. Exemplos:
+É quando o usuário está situado em um ambiente real porém sua visão está 100% isolada do mundo real. Ele é transportado para o mundo virtual.Exemplos:
 
 - MetaQuest.
 - PlayStation VR.
@@ -114,8 +114,11 @@ Indica o nível de ilusão de uma diferente realidade proporcionada pelo RV ao u
 É o estado mental. É a ilusão psicológica em si que o usuário tem de estar no ambiente virtual. Há 4 tipos de ilusão de presença:
 
 **1. Espacial:** Sentir-se em determinado local.
+
 **2. Corporal:** Sentir que tem um corpo.
+
 **3. Física:** Poder interagir com os elementos do cenário.
+
 **4. Social:** Poder se comunicar com os personagens do ambiente.
 
 ### 3.4 Formas de Interação, Seleção e Apontamento
