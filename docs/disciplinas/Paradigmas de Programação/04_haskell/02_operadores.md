@@ -27,6 +27,10 @@ Prelude> 5 - 3
 # Multiplicação
 Prelude> 3 * 4
 12
+
+# Raiz
+Prelude> sqrt 4
+2.0
 ```
 
 ### 3. Operadores de Divisão:
@@ -154,13 +158,24 @@ ghci> x
 
 ```
 
-**3. Definição de Tipos**
+**3. Definição de Tipos (::)**
 
 Funciona como uma igualdade de tipo
 
 ```bash
-# arquivo.hs
 banana :: String
-
 # lê-se a variável vazia é do tipo String
+```
+
+**4. Definição de Funções (->)**
+
+Indica a entrada e saída de uma função. Se utilizar mais de uma argumento deve-se colocar mais setas.
+
+```bash
+
+devolve :: int -> int
+devolve x = x
+
+somar :: Int -> Int -> Int
+somar a b = a + b
 ```

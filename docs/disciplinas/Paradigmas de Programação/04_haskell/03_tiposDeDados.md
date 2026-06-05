@@ -102,4 +102,11 @@ ghci>  X = 10
 
 ## 5. Tuplas
 
-Agrupa valores de tipos diferentes 
+Agrupa valores de tipos diferentes. É delimitada por parenteses e os elementos são separados por vírgulas.
+
+```bash
+ghci> aluno = ("Joao", 18, 1.80, True)
+ghci> aluno
+("Joao",18,1.8,True)
+```
+
