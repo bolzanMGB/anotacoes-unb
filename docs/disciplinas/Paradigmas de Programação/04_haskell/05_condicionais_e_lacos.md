@@ -69,3 +69,22 @@ statusDoDia numeroDia
 ## 2. Laços
 
 Não existe laços kkk é necessário utilizar de Recursão.
+
+**1. Capitalizar as palavras de uma string**
+
+```haskell
+import Data.Char
+
+lower [] = [] -
+lower (x:xy) = toLower x : lower xy
+
+cap [] = []
+cap (x:xy) = toUpper x : lower xy
+
+capitalizar [] = [] 
+capitalizar (x:xy) = cap x : capitalizar xy
+
+ghci> capitalizar ["GAMA","AnAa", "famA"]
+["Gama","Anaa","Fama"]
+ghci> 
+```

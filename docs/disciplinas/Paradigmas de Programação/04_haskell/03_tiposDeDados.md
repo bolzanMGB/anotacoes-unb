@@ -27,6 +27,7 @@ Prelude> 'a'
 ```
 
 **2. String:**
+
 É uma lista compostas por caracteres delimitada por aspas duplas.
 
 ```bash
@@ -35,6 +36,7 @@ Prelude> "Exemplo de String"
 Prelude> "ABC" == ['A', 'B', 'C']
 True
 ```
+
 **3. Bool:**
 
 Representa valores lógicos: `True` ou `False`.

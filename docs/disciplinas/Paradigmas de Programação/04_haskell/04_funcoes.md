@@ -64,7 +64,7 @@ ghci> tail "palavra"
 "alavra"
 ```
 
-**3. [a, b] ++ [c, d]**
+**3. [a, b] ++ [c, d] e concat["a", "b", "c"]**
 
 ```bash
 ghci> [1,2] ++ [2,3]
@@ -72,6 +72,9 @@ ghci> [1,2] ++ [2,3]
 
 ghci> "Gama" ++ "Brasilia"
 "GamaBrasilia"
+
+ghci> concat["a", "b", "c"]
+["abc"]
 ```
 
 **4. [a, b] \\ [c, d]**
@@ -158,6 +161,41 @@ ghci> filter (\x -> x > 3) [1, 2, 3, 4, 5, 6]
 [4, 5, 6]
 ```
 
+**3. break (\entrada -> saida) [a, b, c]**
+
+Quebra a lista em duas onde o primeiro elemento da verdadeiro.
+
+```bash
+ghci> break even [1, 1, 2, 3, 5, 8]
+([1, 1], [2, 3, 5, 8])
+```
+
+**4. all (\entrada -> saida) [a, b, c] e any (\entrada -> saida)**
+
+All Retorna True se der True para todos. ny se pelo menos um deles dar True.
+
+```bash
+ghci> all even [1,2,3]
+False
+ghci> all even [2,4,6]
+True
+
+ghci> any even [1,2,3]
+True
+ghci> any even [1,3,5]
+False
+```
+
+**5. takeWhile (\entrada -> saida) [a, b, c] e dropWhile (\entrada -> saida)**
+
+Take while retorna enquanto for True. dropWhile retorna quando começar a dar False.
+
+```bash
+Prelude Data.Char> takeWhile isUpper "FGAmaDF"
+"FGA"
+Prelude Data.Char> dropWhile isUpper "FGAmaDF"
+"maDF
+```
 ### 2.4 Funções Matemáticas em Listas
 
 **1. sum [x,y,z]**
@@ -273,6 +311,27 @@ ghci> unlines ["Linha 1", "Linha 2"]
 "Linha 1\nLinha 2\n"
 ```
 
+### 3.4 Cons (:)
+
+**1. Utilizado para criar listas/strings.**
+
+- A esquerda dele tem um elemento e na direita uma lista. 
+- Ele insere o elemento no início da lista.
+
+```bash
+ghci> 1 : [2, 3, 4]
+[1,2,3,4]
+
+ghci> 1 : 2 : 3 : 4
+[1,2,3,4]
+```
+
+**2. Desmontar uma Lista/String**
+
+```bash
+pegaOPrimeiro (x:xs) = "O primeiro da lista é: " ++ x
+pegaOPrimeiro []     = "A lista está vazia!"
+```
 ## 4. Variáveis Locais
 
 **1. Usando let:**
@@ -311,5 +370,12 @@ ghci> analisaIMC 50 1.70
 "Magro"
 ```
 
+## 5. Uso do $
 
+o `$` tem a menor precedência possível em haskell. Ele é utilizado para não precisar usar parenteses. Exemplo:
+
+```bash
+main = print (sqrt (abs (-25)))
+main = print $ sqrt $ abs (-25)
+```
 
