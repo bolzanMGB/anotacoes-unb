@@ -272,3 +272,44 @@ ghci> lines "Linha 1\nLinha 2"
 ghci> unlines ["Linha 1", "Linha 2"]
 "Linha 1\nLinha 2\n"
 ```
+
+## 4. Variáveis Locais
+
+**1. Usando let:**
+
+```bash
+nome_da_funcao par1 par2 ... parN = let var1 = value1
+                                        var2 = value2
+                                        ...
+                                        varM = valueM
+                                    in expressao
+```
+
+**2. Usando where:**
+
+```bash
+nomeFuncao par1 par2 ... parN = expressao
+                                where var1 = value2 
+                                      var2 = value2
+                                      ...
+                                      varN = valueN
+```
+
+**3. Exemplo:**
+
+```haskell
+analisaIMC peso altura = if imc >= 25 then "Gordo"
+		                 else if (imc < 25) && (imc >= 18.5) then "Normal"
+                         else "Magro"
+                         where imc = peso / altura ** 2
+
+ghci> analisaIMC 80 1.70
+"Gordo"
+ghci> analisaIMC 65 1.70
+"Normal"
+ghci> analisaIMC 50 1.70
+"Magro"
+```
+
+
+
