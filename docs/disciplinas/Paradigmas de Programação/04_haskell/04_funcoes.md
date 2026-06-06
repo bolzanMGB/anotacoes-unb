@@ -370,12 +370,5 @@ ghci> analisaIMC 50 1.70
 "Magro"
 ```
 
-## 5. Uso do $
 
-o `$` tem a menor precedência possível em haskell. Ele é utilizado para não precisar usar parenteses. Exemplo:
-
-```bash
-main = print (sqrt (abs (-25)))
-main = print $ sqrt $ abs (-25)
-```
 

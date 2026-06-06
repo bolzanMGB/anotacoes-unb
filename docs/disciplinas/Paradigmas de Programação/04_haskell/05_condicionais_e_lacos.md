@@ -88,3 +88,50 @@ ghci> capitalizar ["GAMA","AnAa", "famA"]
 ["Gama","Anaa","Fama"]
 ghci> 
 ```
+
+**2. Listar array de alunos que tem nota maior que 5**
+
+```haskell
+type Nome = String
+type Nota = Float
+
+data Aluno = Aluno Nome Nota deriving (Show)
+
+a1 = Aluno "Pedro" 4
+a2 = Aluno "Julio" 5
+a3 = Aluno "Joao" 6
+
+alunos = [a1,a2,a3]
+
+
+listarAprovados [] = []
+listarAprovados (Aluno nome nota:xy)
+	| nota >= 5 = Aluno nome nota : listarAprovados xy
+	| otherwise = listarAprovados xy 
+
+ghci> listarAprovados alunos
+[Aluno "Julio" 5.0,Aluno "Joao" 6.0]
+```
+
+## 3. Reduções
+
+Pegam uma lista de vários elementos e a reduz a um único valor final.
+
+```haskell
+foldx (operacao) valorInicial lista
+```
+
+Pode ser:
+
+- `foldl`: faz a operações começando da esquerda.
+- `foldr`: faz a operações começando da direita.
+
+Exemplo:
+
+
+```bash
+ghci> foldr (+) 0 [1..4]
+10
+ghci> foldr (-) 0 [1..4]
+-2
+```
