@@ -10,7 +10,7 @@
 | $a \lor b$ | a ou b | Falso apenas se a e b são ambos falsos |
 | $a \land b$ | a e b | Verdadeiro apenas se a e b são ambos verdadeiros |
 | $a \to b$ | se a, então b | Falso apenas se a é verdadeiro e b é falso |
-| $a \sim b$ | a é equivalente a b | Verdadeiro se ambos têm o mesmo valor lógico |
+| $a \sim b$ | se, e somente se, a, então b | Verdadeiro se ambos têm o mesmo valor lógico |
 
 ### 1.2 Redução Tradicional (Linguagens de Programação)
 
@@ -27,7 +27,7 @@
 
 ### 1.3 Redução de Whitehead e Russel
 
-> Usando os primitivos  $\overline{a}$ e $\lor$.
+Usando apenas os primitivos  $\overline{a}$ e $\lor$.
 
 |    Operação    | Equivalência                                                                                     |
 | :------------: | :----------------------------------------------------------------------------------------------- |
@@ -42,8 +42,8 @@
 
 Usando os primitivos:
 
-> - Negação Conjunta (↓): Verdadeiro somente quando ambas preposições são falsas.
-> - Negação Disjunta (↑): Falsa somente quando ambas preposições são verdadeiras.
+- Negação Conjunta (↓): Verdadeiro somente quando ambas preposições são falsas.
+- Negação Disjunta (↑): Falsa somente quando ambas preposições são verdadeiras.
 
 |    Operação    | Equivalência                                                                             |
 | :------------: | :--------------------------------------------------------------------------------------- |
