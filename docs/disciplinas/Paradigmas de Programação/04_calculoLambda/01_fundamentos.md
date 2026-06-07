@@ -92,7 +92,7 @@ Muda o nome de uma variável ligada sem mudar o significado da função.
 
 **Exemplo:**
 
-$$\mathbf{\lambda x.xy \equiv_{\alpha} \lambda z.(M[x:=x])}$$
+$$\mathbf{\lambda x.xy \equiv_{\alpha} \lambda z.(xy[x:=z])}$$
 
 $$\mathbf{\lambda z.zy}$$
 
