@@ -21,8 +21,7 @@ soma = sum lista
 
 ## 2. Características
 
-A programação funcional trata a comutação como a valoração de funções matemáticas e possui fundamento no **Cálculo Lambda**. As principais
-características que ancoram a linguagem incluem:
+A programação funcional trata a comutação como a valoração de funções matemáticas e possui fundamento no **Cálculo Lambda**. As principais características que ancoram a linguagem incluem:
 
 **1. Variáveis imutáveis:**
 
@@ -31,6 +30,7 @@ características que ancoram a linguagem incluem:
 - Não levam problemas de concorrência.
 
 **2. Funções de primeira classe:**
+
 - Funções são tratadas como tipos de dados:
     - Podem ser passada como argumento em outras funções.
     - Podem ser guardadas em estrutura de dados.
@@ -45,18 +45,66 @@ características que ancoram a linguagem incluem:
 **4. Valoração não-estrita:**
 
 - Expressões são calculadas apenas quando são requisitadas, não quando são atribuídas.
-- A Tipagem de Dados é Forte e Estática: o tipo dos dados são conhecidos antes da execução. Assim, alguns erros nem são compilados, já são identificados antes de serem executados.
 
-**5. Lazy-Evaluation:**
+**5. Tipagem de Dados Forte e Estática:** 
+
+- Regras são estritas e resolvidas em tempo de compilação.
+- Se houver erros, eles são reconhecidos na hora da compilação, não na execução.
+
+**6. Lazy-Evaluation:**
 - No caso de um operador And, por exemplo, se a primeira expressão for False, Haskell não avalia a segunda expressão, pois o resultado final será obrigatoriamente False.
 
-currying
+## 3. Mecanismos
 
-pattern matching
+**1. Currying**
 
-identação
+- Todas as funções em Haskell só recebem um único parâmetro.
+- O funcionamento de uma função com três parâmetros é:
+    - Recebe primeiro parâmetro e devolve uma nova função.
+    - Essa nova função recebe o segundo parâmetros e devolve outra função.
+    - Essa terceira função recebe o último parâmetro e devolve o resultado.
 
-## 3. Como usar
+Ao passar apenas alguns parâmetros e salvar essa função em uma variável, essa nova função agora só precisa dos parâmetros restantes. Exemplo:
+
+```bash
+ghci> take 3 [1,2,3,4,5]
+[1,2,3]
+ghci> take3 take 3
+ghci> take3 [1,2,3,4,5]
+[1,2,3]
+```
+
+**2. Composição de Funções**
+
+Inspirado na matemática, o operador de ponto permite encadear funções. O resultado (retorno) da função à direita vira automaticamente o parâmetro de entrada da função à esquerda
+
+```bash
+ghci> capCount = length . filter (isUpper . head) . words
+ghci> capCount "Paradigmas de Programação" 
+2
+```
+
+**3. Operador de Aplicação:**
+
+o `$` tem a menor precedência possível em haskell. Ele é utilizado para não precisar usar parenteses. Exemplo:
+
+```bash
+main = print (sqrt (abs (-25)))
+main = print $ sqrt $ abs (-25)
+```
+
+**4. Pattern Matching**
+
+Quando você define uma função usando Pattern Matching, o programa confronta a entrada com os padrões de cima para baixo, na sequência em que foram escritos. Ele para e executa a primeira linha que "casar" perfeitamente com o argumento recebido.  Um excelente exemplo é a função matemática de fatorial:  Haskell-- Padrão 1: Se a entrada for exatamente 0, retorne 1.
+
+```bash
+factorial 0 = 1
+
+-- Padrão 2: Se a entrada for qualquer outro número 'n', aplique a recursão.
+factorial n = n * factorial (n - 1)
+```
+
+## 4. Como usar
 
 **1. Instalação:**
 
