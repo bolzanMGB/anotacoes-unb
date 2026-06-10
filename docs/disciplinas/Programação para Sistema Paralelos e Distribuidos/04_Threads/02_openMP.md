@@ -54,7 +54,7 @@ Aqui todas as threads vao executar ao mesmo tempo uma tarefa. Se você tiver 4 t
 ```
 
 2. Loop paralelo
-Aqui as interações do laço for são divididas entre as threads, proporcionando uma execução mais rápida.
+Aqui as interações do laço for são divididas entre as threads, proporcionando uma execução mais rápida. A diretiva ``#pragma omp parallel` deve estar grudada com o for.
 
 ```C
 #pragma omp parallel
@@ -474,3 +474,71 @@ A função `#pragma omp parallel for num_threads(x) schedule(runtime)` permite e
 - **dynamic:** tarefas imprevisíveis e desequilibradas porém com volume menor.
 - **guided:** tarefas imprevisíveis e desiquilibradas porém com volume gigante.
 
+## 9. Sections
+
+Com o `#pragma omp parallel` conseguimos fazer a mesma tarefa com diferentes threads. Com o `#pragma omp parallel for` conseguimos otimizar interações de um loop ao executá-las simultaneamente entre threads.
+
+Com o `#pragma omp sections` conseguimos paralelizar tarefas completamente diferentes ao mesmo tempo, como por exemplo, na cena inicial de um jogo, carregar o cenário e tocar a música de abertura ao mesmo tempo. 
+
+- Cada `#pragma omp section` roda apenas uma vez, é exclusico de uma thread.
+- Ao utilizar `#pragma omp sections`, qualquer sintaxe dentro uma `sections` que não esteja dentro de uma `section` vai dar erro de compilação.
+- Para contornar isso podemos usar o `#pragma omp parallel section`, dai áreas fora de uma `section` são na verdade executadas por todas as threads.
+
+**Exemplo:**
+
+```C
+#define _GNU_SOURCE
+#include <unistd.h>
+#include <stdio.h>
+#include <omp.h>
+
+int main()
+{
+    printf("Iniciando! %d\n", omp_get_thread_num());
+    #pragma omp parallel
+    {
+        #pragma omp sections
+        {
+            #pragma omp section
+            {
+                printf("Ola mundo! %d\n", omp_get_thread_num());
+            }
+            #pragma omp section
+            {
+                printf("Ola de outra thread! %d\n", omp_get_thread_num());
+            }
+            #pragma omp section
+            {
+                printf("Fim da thread! %d\n", omp_get_thread_num());
+            }
+        }
+        printf("Fim... %d\n", omp_get_thread_num());
+    }
+    return 0;
+}
+```
+
+## 10. Tasks
+
+Nas `tasks`, ao contraário das `sections`,  a thread ao chegar na linha não roda o código na hora, ela:
+
+- Empacota a tarefa e joga numa fila de tarefas.
+- Imediatamente passa para a próxima linha do código.
+
+Esse bloco de código vai ser executado depois por uma thread ociosa. É importante que o acesso ao bloco da task seja feito por uma única thread, se não a task vai ser feita n vezes, sendo n o número de threads nesse pragma parallel.
+
+```C
+#pragma omp parallel
+{
+    #pragma omp single // Apenas uma thread entra para começar a gerar as tarefas, se não
+    {
+        #pragma omp task
+        fazer_tarefa_A(); // Vai para a fila, alguma thread vai pegar
+
+        #pragma omp task
+        fazer_tarefa_B(); // Vai para a fila, outra thread vai pegar
+
+        #pragma omp taskwait // Espera A e B terminarem para prosseguir
+    }
+}
+```
