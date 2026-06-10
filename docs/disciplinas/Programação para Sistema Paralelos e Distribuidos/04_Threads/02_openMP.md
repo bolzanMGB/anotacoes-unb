@@ -44,7 +44,7 @@ O O OpenMP é um dos frameworks é um dos modelos de programação paralelas mai
 ## 4. Funções principais
 
 1. Bloco paralelo
-
+Aqui todas as threads vao executar ao mesmo tempo uma tarefa. Se você tiver 4 threads e nesse bloco colocar um printf ("Hello"), vai ser printados 4 hellos.
 ```C
 #pragma omp parallel
 {
@@ -54,6 +54,7 @@ O O OpenMP é um dos frameworks é um dos modelos de programação paralelas mai
 ```
 
 2. Loop paralelo
+Aqui as interações do laço for são divididas entre as threads, proporcionando uma execução mais rápida.
 
 ```C
 #pragma omp parallel
@@ -122,6 +123,51 @@ $ ./a.out
 0 of 4 - hello world!
 3 of 4 - hello world!
 ```
+## 7. Número de threads
+
+Podemos usar `omp_set_num_threads(n)` para setar um número fixo de threads.
+
+Se não usarmos ele, podemos definir o número de threads após compilar o código e antes de executá-lo com `export OMP_NUM_THREADS=n`
+
+```C
+#include <stdio.h>
+#include <omp.h>
+
+int main (){
+
+    omp_set_num_threads(2);
+    #pragma omp parallel
+    {
+        int id = omp_get_thread_num();
+        int total =  omp_get_num_threads();
+        printf("thread %d/%d\n", id, total);
+    }
+    return 0;
+}
+
+/// bash
+$ gcc -fopenmp teste.c
+$ ./a.out
+thread 0/2
+thread 1/2
+
+# sem o set
+$ gcc -fopenmp teste.c
+$ export OMP_NUM_THREADS=5 
+$ ./a.out
+thread 2/5
+thread 1/5
+thread 3/5
+thread 4/5
+thread 0/5
+```
+
+**2. export OMP_NUM_THREADS=n**
+Seta um número padrão que pode ser alterado
+
+```C
+
+````
 
 ## 6. Dados compartilhados vs Dados privados
 
@@ -160,34 +206,57 @@ Thread 1 -> shared: 999 | private: 2 | firstprivate: 301
 
 ## 7. Sincronização
 
-**1. reduction:**
-
-- Serve para acumular valores em loop.
-- Sem que as threads atropelem o resultado uma das outras.
-- É criado uma cópia privada da variável para cada thread.
-- No final o OpemMP junta os resultados.
+Aqui temos um grande problema. Quandos threads acessam variáveis globais (declaradas fora do escopo do pragma) pode ocorrer delas alterarem essa variável ao mesmo tempo, resultando em uma diferença ao rodar o código várias vezes. Talvez iso seja perceptível com baixos números, porém com altos isso muda bastante.
 
 ```C
-int soma = 0;
+#include <stdio.h>
+#include <stdlib.h>
+#include <omp.h>
 
-// O (+:soma) diz: crie cópias e, no fim, junte tudo somando
-#pragma omp parallel for reduction(+:soma)
-for (int i = 0; i < 1000; i++) {
-    soma += i; 
+
+int main()
+{
+    srand(123);
+    int *vet = malloc(400000000 * sizeof(int));
+    for (int i = 0; i < 400000000; i++)
+        vet[i] = rand() % 50;
+
+    int n = 1;
+    int q_n = 0;
+
+    #pragma omp parallel 
+    {
+        #pragma omp for
+        for (int i = 0; i < 400000000; i++)
+            {
+                if (vet[i] == n)
+                    q_n++;
+            }
+    }
+   
+    printf("q_n = %d\n", q_n);
+    return 0;
 }
-// Aqui, 'soma' tem o resultado perfeito e seguro
+
+/// bash
+$ ./t.exe
+q_n = 6352056
+$ ./t.exe
+q_n = 6458356
 ```
 
-**3. critical**
+**1. critical**
 
-- Serve para as threads acessarem o bloco uma por vez.
+- Threads formam uma fila na frente do trecho.
+- Trecho é delimitado por {}, caso sem ele é somente a próxima instrução.
+- Cada thread acessa uma por vez (serializado).
 - Garante exclusão mútua.
-- É formado uma fila para acessar.
+- Pode ser mais lento
 
 int contador_erros = 0;
 
 ```C
-#pragma omp parallel
+#pragma omp parallel 
 {
     // O OpenMP tranca a porta para todas as outras threads
     #pragma omp critical
@@ -200,12 +269,32 @@ int contador_erros = 0;
 }
 ```
 
+**2. reduction (operação:variavel)**
+
+- Threads acessam simultâneamente o trecho.
+- Age em uma só variável.
+- Porém, cada uma possui uma cópia privada da variável.
+- No final o OpemMP junta os resultados.
+- A operação para juntar pode ser, soma, subtração etc.
+- Mais rápido que critical
+
+```C
+int soma = 0;
+
+// O (+:soma) diz: crie cópias e, no fim, junte tudo somando
+#pragma omp parallel for reduction(+:soma)
+for (int i = 0; i < 1000; i++) {
+    soma += i; 
+}
+// Aqui, 'soma' tem o resultado perfeito e seguro
+```
+
 **3. atomic:**
-- Semelhante a critical, porém focada em uma única linha de código.
+- Semelhante a critical, porém focada em uma única linha de código simples.
 - Não cria travas.
 - Usa o hardware, mais precisa.
 
-**2.single**
+**4.single**
 
 - Serve para somente uma única thread (geralmente a Master Thread) acesse a região.
 - Há uma barreira implícita.
@@ -214,7 +303,7 @@ int contador_erros = 0;
 
 ```C
 #pragma omp parallel
-{
+{        
     // Todas as threads fazem isso em paralelo
     fazer_calculo_pesado();
 
@@ -229,11 +318,11 @@ int contador_erros = 0;
 }
 ```
 
-**3. master**
+**5. master**
 - Mesma coisa da single.
 - Porém sempre será a thread 0 que vai acessar a região.
 
-**4. barrier:**
+**6. barrier:**
 
 - Serve como um ponto de encontro ou linha de largada.
 - Força todas as thread esperarem até que todas tenham chegado nesse ponto do código.
@@ -252,6 +341,136 @@ int contador_erros = 0;
     calcular_etapa_2(vizinho);
 }
 ```
-## 8.
 
+## 8. Escalonamento de Loops
+Como o OpenMP divide as interações do loop entre as threads? 
+
+### 8.1 static
+As interações são divididas em blocos de tamanho fixo e distribuídas em um padrão round-robin antes da execução do loop. Há rodadas, caso alguem terminar primerio é necessário esperar todos terminarem para inicia sua próxima rodada.
+
+**Exemplo:**
+
+Há um loop com 12 interações, 3 threads e blocos de chunks de 3, então:
+
+```bash
+1. Rodada
+- O bloco com as iterações [0, 1] vai para a Thread 0.
+- O bloco com as iterações [2, 3] vai para a Thread 1.
+- O bloco com as iterações [4, 5] vai para a Thread 2.
+
+2ª Rodada (O ponteiro volta para o começo da fila):
+- O bloco com as iterações [6, 7] vai para a Thread 0.
+- O bloco com as iterações [8, 9] vai para a Thread 1.
+- O bloco com as iterações [10, 11] vai para a Thread 2.
+```
+
+*Exemplo Prático:
+
+```C
+#include <stdio.h>
+#include <omp.h>
+#include <unistd.h> 
+
+int main()
+{
+#pragma omp parallel for num_threads(4) schedule(static,1) //schedule(static,4)
+    for (int i = 0; i < 8; i++)
+    {
+        sleep(1);
+        printf("Thread %d calculando %d\n", omp_get_thread_num(), i);
+    }
+    return 0;
+}
+
+/// bash static 2
+$ ./t.exe
+Thread 1 calculando 2
+Thread 1 calculando 3
+Thread 3 calculando 6
+Thread 3 calculando 7
+Thread 0 calculando 0
+Thread 0 calculando 1
+Thread 2 calculando 4
+Thread 2 calculando 5
+
+/// bash static 4
+$ ./t.exe
+Thread 1 calculando 4
+Thread 1 calculando 5
+Thread 1 calculando 6
+Thread 1 calculando 7
+Thread 0 calculando 0
+Thread 0 calculando 1
+Thread 0 calculando 2
+Thread 0 calculando 3
+```
+
+### 8.2 dynamic
+
+OpenMP não define quem faz o que antes de executar. As tarefas ficam numa fila e as threads vão pegando pacotes de x tarefas conforme vão terminando até acabar a fila. Em vez de esperar todo mundo terminar (como seria no estático),  vira uma corrida de quem é mais rápido.
+
+**Exemplo:
+
+Há um loop com 16 interações, 3 threads e blocos de chunks de 3, então:
+
+```bash
+1. Largada:
+- Thread 0 pega o Pacote A [0, 1, 2]
+- Thread 1 pega o Pacote B [3, 4, 5]
+- Thread 2 pega o Pacote C [6, 7, 8]
+
+2. Meio do Caminho
+Thread 1 tinha uma conta fácil e terminou primeiro que todo mundo:
+- Thread 1 pega o Pacote D [9, 10, 11]
+
+Logo depois, a Thread 2 termina o dela. Ela corre na fila e pega o Pacote E:
+- Thread 2 pega o Pacote E [12, 13, 14]
+
+E a Thread 0, que pegou um trabalho demorado, finalmente termina agora. Ela vai até a fila e pega o último pacote que sobrou:
+- Thread 0 pega o Pacote F [15]
+```
+
+**Exemplo prático**
+
+```C
+#include <stdio.h>
+#include <omp.h>
+
+int main()
+{
+#pragma omp parallel for num_threads(4) schedule(dynamic,2)
+    for (int i = 0; i < 8; i++)
+    {
+        printf("Thread %d calculando %d\n", omp_get_thread_num(), i);
+    }
+    return 0;
+}
+
+/// bash
+
+$ ./t.exe
+Thread 1 calculando 2
+Thread 1 calculando 3
+Thread 1 calculando 6
+Thread 1 calculando 7
+Thread 3 calculando 4
+Thread 3 calculando 5
+Thread 2 calculando 0
+Thread 2 calculando 1
+```
+
+## 8.3 guided
+
+Também funciona com filas conforme vão terminando, porém o tamanho dos blocos começa grande e vai diminuindo ao longo do tempo.
+
+- O tamanho do próximo bloco é o número de iterações que sobraram na fila dividido pelo número de threads.
+- Economiza tempo de processador das threads ficarem indo e voltando a fila perguntando o que fazer.
+
+### 8.4 Onde usar cada um?
+
+A função `#pragma omp parallel for num_threads(x) schedule(runtime)` permite escolher o tipo da hora de executar com `export OMP_SCHEDULE=static`.
+
+- **static:** Tarefas previsíveis e uniformes de qualquer tamanho
+- **dynamic:** tarefas imprevisíveis e desequilibradas porém com volume menor.
+- **guided:** tarefas imprevisíveis e desiquilibradas porém com volume gigante.
 
