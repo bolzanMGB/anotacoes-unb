@@ -6,16 +6,176 @@ No OpenMP, a programação paralela se dá na mesma região de memória (compart
 
 No MPI, a programação paralela se dá em diferentes espações de memória (distribuída, diferentes máquinas) e a comunicação entre esses processos independentes ocorre através da troca explícita de mensagens.
 
-## 2. Estrutura Básica de um Programa MPI
+Nele as trocas de mensagens ocorrem dentro de um Comunicador, que seria basicamente uma "sala de chat" entre processos. O `MPI_COMM_WORLD` é o comunicador global. Ele engloba todos os processos da execução atual, que são identificados por ranks. Também é possível criar subgrupos dentro do comunicador global.
 
-**1. MPI_Init(&argc, &argv)**
+Ao executar um programa MPI `nome.c` com `mpirun`, você indica o número de processos que vão ser criados e todos eles vão executar em paralelo o mesmo código a partir da função main dentro do comunicador `MPI_COMM_WORLD`.
 
-Inicializa o ambiente e deve ser chamada antes de qualquer outra função MPI.
+## 2. Como rodar
 
-**2. MPI_Comm_rank(MPI_COMM_WORLD, &num_procs)**
+**1. Pacotes necessários**
 
-Descobre o identificado único (rank) do processo atual dentro do comunicador global;.
+```bash
+sudo apt update
+sudo apt install build-essential openmpi-bin openmpi-common libopenmpi-dev
+```
+
+**2. Compilar**
+
+```bash
+mpicc nome_programa.c -o programa_mpi
+```
+
+**3. Executar**
+
+```bash
+mpirun -np 4 ./programa_mpi
+```
+
+## 3. Estrutura Básica de um Programa MPI
+
+**1. ret = MPI_Init(&argc, &argv)**
+
+Ele inicializa o ambiente criando o comunicador global `MPI_COMM_WORLD`. Ele retorna se a inicialização foi bem-sucedida ou não:
+
+- MPI_SUCCESS: Valor 0, tudo ocorreu certo.
+- Valor diferente de 0: Deu errado.
+
+**2. MPI_Comm_rank(MPI_COMM_WORLD, &rank)**
+
+Descobre o identificador do processo atual e coloca dentro de uma variável, no caso rank.
+
+**3. MPI_Comm_size(MPI_COMM_WORLD, &num_procs)**
+
+Descobre o número de processos dentro de um comunicado e coloca dentro de uma variável, no caso num_procs.
 
 **3. MPI_Finalize()**
 
 Encerra o ambiente.
+
+**4. MPI_Abort(MPI_COMM_WORLD, ret)**
+
+Força a interrupção de todos os procesos associados com um determinado comunicardor, geralmente o global MPI_COMM_WORLD.
+
+
+### 3.1. Exemplo 1: Hello World Básico
+
+```c
+#include <stdio.h>
+#include "mpi.h"
+
+int main (int argc, char *argv[]){
+   int rank;
+    int num_procs;
+    int ret;
+
+    ret = MPI_Init(&argc, &argv);
+    if (ret != MPI_SUCCESS){
+        MPI_Abort (MPI_COMM_WORLD, ret);
+    }
+
+    MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+    MPI_Comm_size(MPI_COMM_WORLD, &num_procs);
+    
+    printf ("Hello World do processo %d/%d\n", rank, num_procs);
+
+    MPI_Finalize();
+    return 0;
+}
+
+$ mpirun -np 4 ./programa
+Hello World do Processo 1/4
+Hello World do Processo 2/4
+Hello World do Processo 3/4
+```
+
+## 4. Comunicação Ponto a Ponto
+
+**1. MPI_Send(msg, ret+1, MPI_CHAR, dst, tag, MPI_COMM_WORLD)**
+
+Envia uma mensagem com certos parâmetros (M,S,T,D,T,C):
+
+- 1. msg: Indica o ponteiro para onde os dados que serão enviados estão.
+- 2. ret+1: Indica o tamanho da mensagem mais 1 (o \0 que indica o fim da string).
+- 3. tipo: Indica o tipo de dado da mensagem, pode ser MPI_CHAR, MPI_INT e MPI_FLOAT.
+- 4. dst: Indica o rank do destino.
+- 5. tag: Indica a tag, serve para identificar o assunto ou categoria da mensagem.
+- 6. comunicador: Indica o comunicador pra onde a mensagem vai.
+
+
+**2. MPI_Recv(msg, 200, MPI_CHAR, org, tag, MPI_COMM_WORLD, &status)**
+
+Recebe uma mensagem com certos parâmetros:
+
+- 1. msg: Ponteiro para onde MPI vai gravar a mensagem que recebeu.
+- 2. 200: Tamnho máximo da mensage.
+- 3. tipo: Tipo da mensagem que vai ser recebida.
+- 4. org: Rank de origem/remetente.
+- 5. tag: Tag que pode ser recebida.
+- 6. comunicado: Comunicador de onde a mensagem veio.
+- 7. &status: Onde o MPI vai anotar os metadados da mensagem após ela ser entregue.
+
+**3. MPI_Status status**
+
+Assim como integer, string etc, ele também é uma estrutura de dados. Ele armazena os metadados de uma mensagem recebida após uma receção, é o recebido de entrega. Ele possui:
+
+- `status.MPI_SOURCE`: Rank do processo que enviou a mensagem.
+- `status.MPI_TAG`: Tag que veio com a mensagem.
+- `status.MPI_ERROR`: Código de erro se algo deu errado.
+
+
+### 4.1 Exemplo 1: Send e Recv
+
+```c
+#include <stdio.h>
+#include "mpi.h"
+#include <string.h>
+
+int main (int argc, char *argv[]){
+
+    int ret;
+    ret = MPI_Init (&argc, &argv);
+
+    int rank;
+    MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+
+    int num_procs;
+    MPI_Comm_size(MPI_COMM_WORLD, &num_procs);
+
+    char msg [200];
+    int tag = 0;
+    MPI_Status status;
+
+    if (ret != MPI_SUCCESS){
+        MPI_Abort(MPI_COMM_WORLD, ret);
+    }
+
+    if (rank != 0){
+        int dst = 0;
+        int size = sprintf (msg, "Mensagem do Processo %d/%d\n", rank, num_procs) + 1;
+        MPI_Send(msg, size, MPI_CHAR, dst, tag, MPI_COMM_WORLD);
+        printf ("Sou o processo %d/%d, Acabei de Enviar para o 0/%d\n", rank, num_procs, num_procs);
+    } 
+
+    MPI_Barrier(MPI_COMM_WORLD);
+    
+    if (rank == 0){
+        printf ("Sou o processo %d/%d, Recebi essas mensagens:\n", rank, num_procs);
+        for (int dst = 1; dst < num_procs; dst++){
+            MPI_Recv (msg, 200, MPI_CHAR, dst, tag, MPI_COMM_WORLD, &status);
+            printf ("%s", msg);
+        }
+    }
+
+    MPI_Finalize();
+    return 0;
+}
+
+$ mpirun -np 4 ./programa
+Sou o processo 2/4, Acabei de Enviar para o 0/4
+Sou o processo 1/4, Acabei de Enviar para o 0/4
+Sou o processo 3/4, Acabei de Enviar para o 0/4
+Sou o processo 0/4, Recebi essas mensagens:
+Mensagem do Processo 1/4
+Mensagem do Processo 2/4
+Mensagem do Processo 3/4
+```
