@@ -64,7 +64,7 @@ Força a interrupção de todos os procesos associados com um determinado comuni
 #include "mpi.h"
 
 int main (int argc, char *argv[]){
-   int rank;
+    int rank;
     int num_procs;
     int ret;
 
@@ -179,3 +179,113 @@ Mensagem do Processo 1/4
 Mensagem do Processo 2/4
 Mensagem do Processo 3/4
 ```
+
+## 5. Informações
+
+**1. char nome [MPI_MAX_PROCESSOR_NAME]**
+
+Macro que representa o tamanho máximo em caracteres que o nome de uma máquina pode ter.
+
+**2. MPI_Get_processor_name(name, &ret)**
+
+Pega o hostname da máquina onde o processo, que está em ret, está rodando e colocando dentro de uma variável.
+
+
+**3. MPI_Get_version(&ver, &subver);**
+
+Pega a versão e subversão do MPI que está rodando em coloca em variáveis.
+
+**4. t_init = MPI_Wtime();**
+
+Retorna um double do tempo do relógio local da máquina. Usado para medir quanto tempo demorou algo.
+
+## 6. Ordem de Envio e Recepção
+
+Se um processo X enviar uma mensagen n1 e depois uma mensagen m2 para o processo Y, a mensagem n1 sempre vai chegar primeiro que a n2.
+
+## 6.1 Exemplo: Mostra a Ordem de Envio
+
+```c
+#include <stdio.h>
+#include "mpi.h"
+#include <string.h>
+
+#define n_msgs 3
+// MSTDTC
+int main (int argc, char * argv[]){
+    
+    double t_fim;
+    int ret = MPI_Init (&argc, &argv);
+    double t_inicio = MPI_Wtime();
+
+    int rank;
+    MPI_Comm_rank (MPI_COMM_WORLD, &rank);
+
+    int num_procs;
+    MPI_Comm_size (MPI_COMM_WORLD, &num_procs);
+
+    MPI_Status status;
+    int tag = 0;
+    char msg [200];
+
+    if (ret != MPI_SUCCESS){
+        MPI_Abort(MPI_COMM_WORLD, ret);
+    }
+
+    if (rank != 0){
+        int dst = 0;
+
+        for (int i = 0; i < n_msgs; i++){
+            sprintf (msg, "Mensagem %d do processo %d/%d\n", i, rank, num_procs);
+            int size = strlen(msg) + 1;
+            MPI_Send (msg,size,MPI_CHAR,dst,tag,MPI_COMM_WORLD);
+        } 
+    }
+    else{
+        char name [MPI_MAX_PROCESSOR_NAME];
+        MPI_Get_processor_name(name, &ret);
+
+        int ver; 
+        int subver;
+        MPI_Get_version(&ver, &subver);
+
+        printf("Sou o Processo 0, estou rodando em %s na versão %d.%d e recebi:\n", name, ver, subver);
+        for (int org = 1; org < num_procs; org++){
+            for (int j = 0; j < n_msgs; j++){
+                MPI_Recv (msg,200,MPI_CHAR,org,tag,MPI_COMM_WORLD,&status);
+                printf ("%s",msg);
+            }
+        }
+        t_fim = MPI_Wtime();
+        printf ("Tempo gasto = %3.6lf ms\n", (t_fim - t_inicio) * 1000.0);
+    }
+
+    MPI_Finalize();
+    return 0;
+}
+
+// bash
+$ mpirun -np 4 ./programa 
+Sou o Processo 0, estou rodando em DESKTOP-KRL991S na versão 3.1 e recebi:
+Mensagem 0 do processo 1/4
+Mensagem 1 do processo 1/4
+Mensagem 2 do processo 1/4
+Mensagem 0 do processo 2/4
+Mensagem 1 do processo 2/4
+Mensagem 2 do processo 2/4
+Mensagem 0 do processo 3/4
+Mensagem 1 do processo 3/4
+Mensagem 2 do processo 3/4
+Tempo gasto = 0.355700 ms
+```
+
+## 7. Recv MPI_ANY_SOURCE e MPI_ANY_TAG
+
+**1. MPI_ANY_SOURCE**
+
+Em vez de especificar a origem de onde vai receber mensagens, podemos deixar aberto. Assim, recebemos a mensagem que chegar primerio.
+
+**2. MPI_ANY_TAG**
+
+A mensagem a ser recebido pode ter qualquer tag.
+
