@@ -289,3 +289,78 @@ Em vez de especificar a origem de onde vai receber mensagens, podemos deixar abe
 
 A mensagem a ser recebido pode ter qualquer tag.
 
+## 8. MPI_Bcast (&MSG, SIZE, TYPE, ORIGIN, COMMUNICATOR)
+
+Envia uma mensagem a partir de um único processo para todos os outros. Somente o processo origin envia, os outros recebem. 
+
+
+```c
+// Início
+Processo 0 -> msg = "Hello do Processo 0"
+Processo 0 -> msg = ""
+Processo 1 -> msg = ""
+
+// Fim
+Processo 0 -> msg = "Hello do Processo 0"
+Processo 0 -> msg = "Hello do Processo 0"
+Processo 1 -> msg = "Hello do Processo 0"
+```
+
+- MSG: Ponteiro para onde o dado que vai ser enviado está e onde vai ser guardado nos processos que vão receber.
+- SIZE: tamanho em int da mensage.
+- TYPE: Tipo: MPI_CHAR, MPI_INT etc.
+- ORIGIN: Rank do processo emissor.
+- COMMUNICATOR: canal onde os processos estão.
+
+
+## 9. MPI_Gather (V,AS,T,D,AR,T,D,C) VSTDRTRC
+
+Coleta X elementos de um vetor de cada proceso e os junta em um outro vetor no processo raiz.
+
+```c
+// Inicio
+Processo 0 -> vet[A,B] vet2[]
+Processo 2 -> vet[C,D]
+Processo 2 -> vet[E,F]
+
+// Fim
+Processo 0 -> vet[A,B] vet2[]
+Processo 2 -> vet[C,D]
+Processo 2 -> vet[E,F]
+```
+
+- V: Ponteiro para o endereço do dado a ser coletado.
+- AS: Quantidade de elementos nesse endereço que vão ser enviados;
+- T: Tipo do dado coletado.
+- D: Array de destino onde os dados vão ser juntados na raiz.
+- AR: Quantidade de elementos que vão ser recebidos por processo.
+- T: Tipo dos dados recebidos.
+- R: Rank do processo raiz.
+- C: Comunicator onde vai ocorrer
+
+## 10. MPI_Scatter(V, AS, T, D, AR, T, R, C) VSTDRTRC
+
+Oposto do gather: pega um array com X elementos de um processo raiz e o distribui para os outro procesos
+
+```c
+// Início
+Processo 0 -> vet['A''B','C']
+Processo 1 -> letra = '' 
+Processo 2 -> letra = '' 
+Processo 3 -> letra = '' 
+
+// Fim
+Processo 0 -> vet['A''B','C']
+Processo 1 -> letra = 'A' 
+Processo 2 -> letra = 'B' 
+Processo 3 -> letra = 'C' 
+```
+
+- V: Vetor que será dividido.
+- AS: Amount sent, quantos elementos enviados por processos.
+- T: Tipo dos elementos.
+- D: Variavel de destino nos processos.
+- AR: Amount Recv, quantos elementos são recebidos.
+- T: Tipo dos elementos.
+- R: Raiz que possui o array.
+- C: Comunicador.
