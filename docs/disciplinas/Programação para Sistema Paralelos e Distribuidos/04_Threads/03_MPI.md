@@ -289,7 +289,7 @@ Em vez de especificar a origem de onde vai receber mensagens, podemos deixar abe
 
 A mensagem a ser recebido pode ter qualquer tag.
 
-## 8. MPI_Bcast (&MSG, SIZE, TYPE, ORIGIN, COMMUNICATOR)
+## 8. MPI_Bcast (V, S, T, D, C)
 
 Envia uma mensagem a partir de um único processo para todos os outros. Somente o processo origin envia, os outros recebem. 
 
@@ -313,7 +313,7 @@ Processo 1 -> msg = "Hello do Processo 0"
 - COMMUNICATOR: canal onde os processos estão.
 
 
-## 9. MPI_Gather (V,AS,T,D,AR,T,D,C) VSTDRTRC
+## 9. MPI_Gather (V,S,T,D,R,T,D,C) VSTDRTRC
 
 Coleta X elementos de um vetor de cada proceso e os junta em um outro vetor no processo raiz.
 
@@ -338,7 +338,7 @@ Processo 2 -> vet[E,F]
 - R: Rank do processo raiz.
 - C: Comunicator onde vai ocorrer
 
-## 10. MPI_Scatter(V, AS, T, D, AR, T, R, C) VSTDRTRC
+## 10. MPI_Scatter(V, S, T, D, R, T, R, C) VSTDRTRC
 
 Oposto do gather: pega um array com X elementos de um processo raiz e o distribui para os outro procesos
 
@@ -365,7 +365,7 @@ Processo 3 -> letra = 'C'
 - R: Raiz que possui o array.
 - C: Comunicador.
 
-## 3. MPI_Reduce(V, D, N, T, O, R, C)
+## 12. MPI_Reduce(V, D, N, T, O, R, C)
 
 Mesmo coisa do scatter porém não apenas coleta os dados, e sim os combina em um só número e guarda em uma variável. Pode ser:
 
@@ -396,7 +396,7 @@ P3: nums [7, 8]
 - R = Root (processo que recebe o resultado).
 - C = Comunicador.
 
-## 4. MPI_Allreduce (V, D, N, T, O, C)
+## 12. MPI_Allreduce (V, D, N, T, O, C)
 
 Mesma coisa do Reduce, porém envia para o vetor de destino de todos os processos (assim o bcast), não possui raiz.
 
@@ -412,4 +412,39 @@ P0: nums [1, 2], total [9, 12]
 P1: nums [3, 4], total [9, 12]
 P2: nums [5, 6], total [9, 12]
 P3: nums [7, 8], total [9, 12]
+```
+## 13. MPI_Scan (V, D, N, T, O, C)
+
+É um allreduce, porém o valor recebido pelos processos é acumulativo até ele mesmo.
+
+```bash
+# Ínicio
+P0: nums [1], total [] 
+P1: nums [3], total [] 
+P2: nums [5], total [] 
+P3: nums [7], total [] 
+
+# Fim (com MPI_SUM)
+P0: nums [1], total [1]
+P1: nums [3], total [4]
+P2: nums [5], total [9]
+P3: nums [7], total [16]
+```
+
+## 13. MPI_Exscan (V, D, N, T, O, C)
+
+É um allreduce, porém o valor recebido pelos processos é acumulativo até o anterior mesmo.
+
+```bash
+# Ínicio
+P0: nums [1], total [] 
+P1: nums [3], total [] 
+P2: nums [5], total [] 
+P3: nums [7], total [] 
+
+# Fim (com MPI_SUM)
+P0: nums [1], total [0]
+P1: nums [3], total [1]
+P2: nums [5], total [3]
+P3: nums [7], total [8]
 ```
