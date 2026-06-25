@@ -33,6 +33,7 @@ int main(int argc, char *argv[])
     int total[N] = { };
     MPI_Reduce(vet, total, N, MPI_INT, MPI_SUM, raiz, MPI_COMM_WORLD);
 
+    
     //if (rank == raiz)
     {
         printf("Recebido: ");

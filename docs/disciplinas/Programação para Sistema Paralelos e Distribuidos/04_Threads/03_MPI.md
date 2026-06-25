@@ -294,13 +294,13 @@ A mensagem a ser recebido pode ter qualquer tag.
 Envia uma mensagem a partir de um único processo para todos os outros. Somente o processo origin envia, os outros recebem. 
 
 
-```c
-// Início
+```bash
+# Início
 Processo 0 -> msg = "Hello do Processo 0"
 Processo 0 -> msg = ""
 Processo 1 -> msg = ""
 
-// Fim
+# Fim
 Processo 0 -> msg = "Hello do Processo 0"
 Processo 0 -> msg = "Hello do Processo 0"
 Processo 1 -> msg = "Hello do Processo 0"
@@ -317,13 +317,13 @@ Processo 1 -> msg = "Hello do Processo 0"
 
 Coleta X elementos de um vetor de cada proceso e os junta em um outro vetor no processo raiz.
 
-```c
-// Inicio
+```bash
+# Inicio
 Processo 0 -> vet[A,B] vet2[]
 Processo 2 -> vet[C,D]
 Processo 2 -> vet[E,F]
 
-// Fim
+# Fim
 Processo 0 -> vet[A,B] vet2[]
 Processo 2 -> vet[C,D]
 Processo 2 -> vet[E,F]
@@ -342,14 +342,14 @@ Processo 2 -> vet[E,F]
 
 Oposto do gather: pega um array com X elementos de um processo raiz e o distribui para os outro procesos
 
-```c
-// Início
+```bash
+# Início
 Processo 0 -> vet['A''B','C']
 Processo 1 -> letra = '' 
 Processo 2 -> letra = '' 
 Processo 3 -> letra = '' 
 
-// Fim
+# Fim
 Processo 0 -> vet['A''B','C']
 Processo 1 -> letra = 'A' 
 Processo 2 -> letra = 'B' 
@@ -364,3 +364,52 @@ Processo 3 -> letra = 'C'
 - T: Tipo dos elementos.
 - R: Raiz que possui o array.
 - C: Comunicador.
+
+## 3. MPI_Reduce(V, D, N, T, O, R, C)
+
+Mesmo coisa do scatter porém não apenas coleta os dados, e sim os combina em um só número e guarda em uma variável. Pode ser:
+
+- MPI_SUM, MPI_PROD
+- MPI_MAX, MPI_MIN
+- MPI_LAND, MPI_LOR, MPI_LXOR
+- MPI_BAND, BPI_BAND 
+
+```bash
+# Ínicio
+P0: nums [1, 2], total [] 
+P1: nums [3, 4]
+P2: nums [5, 6]
+P3: nums [7, 8]
+
+# Fim (com MPI_SUM)
+P0: nums [1, 2], total [9, 12]
+P1: nums [3, 4]
+P2: nums [5, 6]
+P3: nums [7, 8]
+```
+
+- V = Vetor de entrada (de cada processo).
+- D = Vetor de Destino (resultado final na raiz).
+- N = Número de elementos por processo.
+- T = Tipo dos dados (MPI_INT, MPI_FLOAT…)
+- OP = Operação (MPI_SUM, MPI_MAX, MPI_MIN…).
+- R = Root (processo que recebe o resultado).
+- C = Comunicador.
+
+## 4. MPI_Allreduce (V, D, N, T, O, C)
+
+Mesma coisa do Reduce, porém envia para o vetor de destino de todos os processos (assim o bcast), não possui raiz.
+
+```bash
+# Ínicio
+P0: nums [1, 2], total [] 
+P1: nums [3, 4], total [] 
+P2: nums [5, 6], total [] 
+P3: nums [7, 8], total [] 
+
+# Fim (com MPI_SUM)
+P0: nums [1, 2], total [9, 12]
+P1: nums [3, 4], total [9, 12]
+P2: nums [5, 6], total [9, 12]
+P3: nums [7, 8], total [9, 12]
+```
