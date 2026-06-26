@@ -1,113 +1,65 @@
 # Introdução Sistemas Embarcados
 
----
-
 ## 1. Definição
 
-Um sistema embarcado é um sistema de hardware e software combinado, feito para executar uma função específica continuamente. Essa função faz parte de um sistema maior e tem conexão com o mundo físico.
 
-Eles geralmente leem o mundo externo através de sensores, processam esses dados e alteram o mundo externo através de atuadores. São exemplos: SmartTVs, micro-ondas, airbags e smartwatches.
+Um Sistema Embarcado é um sistema de hardware e software combinados projetado para executar continuamente uma mesma função específica e predefinida.
 
----
+Eles se difere de computadores de propósito geral por estes não terem sido fabricados com uma ideia prévia e exata de suas funções.
+
+Sistemas Embarcados executam funções que fazem parte de um todo maior, como por exemplo um Airbag de um carro.
+
+Além disso, muitas vezes suas funções envolvem a captura e leitura de dados do mundo reais (através de sensores) e o retorno de ações com base no processamento desses mesmos dados.
+
+Exemplos: SmartTVs, aeronaves, micro-ondas, airbags e smartwatches.
+
 
 ## 2. Características
 
-**Especificação:** Aplicação bem definida e pré-definida.
+**1. Aplicação predefinida:** O código que vai rodar é conhecido desde o início do projeto.
 
-**Restrições de tempo-real:** A resposta do sistema deve ocorrer dentro de um limite de tempo rigoroso.
+**2. Confiabilidade e Restrições de tempo real:** Muitas vezes aplicações embarcadas precisam funcionar corretamente em todas as condições, incluindo falhar parciais. A sua resposta a eventos externos deve ocorrer sempre dentro do prazo (deadline), e caso esse deadline for perdido as consequências podem ser catastróficas. Exemplo: equipamento médico e aeronave.
 
-- Hard Real-Time: Se o tempo limite for perdido, o sistema falha totalmente. Ex: acionamento de airbag.
+**3. Restrições de Energia:** Geralmente são alimentados por bateria e precisam de técnicas para minimizar o consumo de energia.
 
-- Soft Real-Time: Perde o limite de tempo diminui qualidade, mas ão destrói o sistema. Ex: atraso em um vídeo de uma plataforma de streaming
+**4. Custo e tamanho:** Geralmente são fabricados em alta escala. Assim, alguns centavos a menos ou a mais no custo de uma unidade faz toda a diferença e por isso são projetados para cumprir apenas o suficiente para a função desejada.
 
-**Confiabilidade e Tolerância a Falhas:** Precisam operar anos sem reinicialização ou update de software ou falhas físicas.
+## 3. Áreas de Aplicação
 
-**Eficiência Energética:** mMuitos operam com baterias.
+Sistemas embarcados estão em todo lugar: aviação (fly-by-wire, FADEC), automotivo (ABS, airbag, injeção eletrônica), telecomunicações (roteadores, switches), robótica (controladores de motores, visão computacional), automação industrial (CLPs, SCADA), eletrodomésticos, dispositivos médicos, eletrônicos de consumo e IoT.
 
-**Baixo custo e Restrição de memória**
+## 5. Arquitetura de Software
+
+### 5.1 Camada de Abstração de Hardware
+
+Código que manipula diretamente os registradores, bits e endereços de memória do processador. Ela esconde a complexidade do hardware e fornece funções amigáveis. Inclui:
+
+- Drivers.
+- HAL (Hardware Abstraction Layer).
+
+### 5.2 Modelo de Gerenciamento
+
+Define como o tempo e as tarefas do processador serão gerenciados. O sistema deve adotar uma das seguintes estratégias principais:
+
+**1. Bare Metal:**  Sem Sistema Operacional, baseado em Super Loop e Interrupções. 
+
+O processador liga, executa as configurações iniciais (setup()) e entra em um loop infinito (while(1)). Eventos críticos e assíncronos são tratados pausando o loop temporariamente através de Interrupções de hardware.
+
+**2. RTOS (Real-Time Operating System):** Com Sistema Operacional minimalista focado em tempo real e prazos rígidos (deadlines). Exemplo: Kernel FreeRTOS.
+
+O código é dividido em funções independentes chamadas Tasks. O Kernel (núcleo do S.O) utiliza um escalonador para "fatiar" o tempo do processador (ex: roda a Task A por 1ms, depois a Task B por 1ms), permitindo multitarefa e concorrência baseada em prioridades.
+
+**3. GPOS (General Purpose Operating System)** Com Sistema Operacional de proósito geral, é um linux customizado e reduzido para a aplicação.
+
+Utilizado em processadores mais robustos (GPPs/SoCs). Gerencia memória complexa (via MMU), sistemas de arquivos grandes e múltiplas aplicações simultâneas, sacrificando o determinismo rígido de tempo real em prol de alta capacidade de abstração e rede.
+
+### 5.3 Camada Intermediária (Middleware)
+
+Softwares e bibliotecas que rodam acima da infraestrutura de execução para resolver problema sem que você precise reescrevê-los do zero. Inclui:
+
+### 5.4 Camada de Aplicação
+
+O código exclusivo do seu projeto que consome as funções do Middleware e HAL para executar a sua lógica do negócio.
 
 
----
 
-## 3. Arquitetura de Hardware
-
-![Inserção](../../assets/pngs/93.png){align=center }
-
-### 3.1 Componentes
-
-A arquitetura de software é escolhida com base da necessidade de poder de processamento, consumo de bateria e custo. Principais componentes são:
-
-**Unidade Central (Chip)**
-
-- **Processador:** O núcleo que executa as instruções matemáticas e lógicas.
-
-- **Memória:** Armazena tanto o código do software (Flash), quanto os dados temporários (RAM).
-
-**Barramentos:** São as estradas internas que conectam o processador à memória e às interfaces, permitindo que os dados trafeguem entre eles.
-
-- **Interfaces de Comunicação:** Permitem conversar com outros dispositivos. Ex: Wi-Fi, Bluetooth.
-
-**Periféricos Externos**
-
-- **Sensores:** Entradas analógicas ou digitais que capturam dados (ex: temperatura, pressão).
-
-- **Atuadores:** Saídas analógicas ou digitais que realizam a ação no mundo físico (motores, telas).
-
-
-### 3.2 Categorias de Dispositivos de Processamento
-
-Os dispositivos de processamento são os diferentes tipos de chips que formam o núcleo do hardware. Cada um organiza o processador, a memória e os periféricos de uma forma específica para atender a diferentes necessidades:
-
-**Microcontroladores (MCUs)**
-
-São computadores em um único chip. Nele processador, memória e periféricos estão embutidos em uma única pastilha de silício.
-
-São extremamente baratos, consomem pouquíssima energia e resolvem 90% dos problemas de automação básica e eletrodoméstico.
-
-**Processadores de Propósito Geral (GPPs)**
-
-Chips poderosos, mas arquiteturalmente "dependentes". Eles não têm memória RAM ou interfaces de disco internas; dependem de componentes externos soldados na placa.
-
-Usados quando há necessidade de alto processamento ou interfaces gráficas pesadas. Exemplos: Processadores ARM Cortex-A (como no Raspberry Pi) ou Intel Core.
-
-**Processadores de Sinais Digitais (DSPs)**
-
-Microprocessadores projetados especificamente para cálculos matemáticos contínuos e pesados. Utilizam a "Arquitetura Harvard", que possui vias separadas para dados e instruções, permitindo processar informações muito mais rápido.
-
-Possuem unidades MAC (Multiply-and-Accumulate) que conseguem multiplicar e somar números em um único ciclo de clock.São essenciais para processamento de áudio, voz, radares, sonares e telecomunicações.
-
-**FPGAs (Field Programmable Gate Arrays)**
-
-Hardware que pode ser "reprogramado" pelo usuário. Ao invés de escrever um software que roda em um processador fixo, você escreve um código que fisicamente reestrutura o chip para criar circuitos digitais customizados.
-
-Compostos por uma enorme matriz de unidades lógicas e chaves de interconexão configuráveis.
-
-Executam tarefas em paralelo com velocidade extrema. São usados em processamento de vídeo em tempo real ou cálculos de altíssima velocidade.
-
-**ASICs (Application Specific Integrated Circuits)**
-
-Circuitos integrados fabricados e "fundidos" na fábrica para fazer apenas uma tarefa. Não podem ser reprogramados.
-
-Possuem a maior eficiência energética e velocidade possível. Embora o custo de criar o primeiro chip seja na casa dos milhões, eles se tornam centavos quando fabricados em grande escala (ex: chip controlador do seu mouse ou do micro-ondas).
-
-**SoCs (System-on-Chip) e MPSoCs**
-
-O ápice da integração. Colocam GPPs, Placas de Vídeo (GPUs), interfaces Wi-Fi/Modem e até FPGAs dentro de um mesmo chip físico. Os Multiple Processor System-on-Chip (MPSoCs) usam múltiplos núcleos (cores) diferentes no mesmo chip interligados por uma rede interna (Network-on-chip).
-
-A maior parte dos processadores de smartphones modernos (Snapdragon, Apple A-Series) são SoCs/MPSoCs, pois economizam espaço físico e entregam poder computacional massivo.
-
-## 4. Cenário de Mercado
-
-**Principais Aplicações:** 
-- Controle Industrial e Automação (32%).
-- Eletrônicos de Consumo (29%).
-- Internet das Coisas (25%).
-
-**Linguagens de Programação:**
-- C   (56%).
-- C++ (29%).
-
-**Sistemas Operacionais:**
-- Linux.
-- FreeRTOS;
-- Bare metal (código direto no hardware).

@@ -9,7 +9,7 @@ Fazer o download a partir do [repositório da Raspberry Pi](https://github.com/r
 ### 1.1 Baixar o Sistema Rasoberry Pi OS
 Fazer o download a partir do [site da Raspberry Pi](https://downloads.raspberrypi.com/raspios_armhf/images/raspios_armhf-2025-12-04/2025-12-04-raspios-trixie-armhf.img.xz)
 
-
+V
 ### 1.2 Configuração da Imagem
 
 1. Abrir o Raspberry Pi Imager
