@@ -73,7 +73,10 @@ Um barramento é formado por três grupos distintos de fios.
 
 **3. Barramento de Controle:** Sinais que coordenam a operação. Não depende da arquitetura do processador, e sim de quais funções ele possui: há um fio para cada função. Exemplo: Clock (sincroniza todos), Read/Write (define a direção), ACK (confirmação de recebimento), IRQ (sinaliza interrupção de um dispositivo).
 
-![Inserção](../../assets/pngs/96.png)
+
+<div style="text-align: center;">
+  <img src="../../assets/pngs/96.png" alt="Inserção" />
+</div>
 
 Quando um dispositivo quer solicitar algo, ele envia pelos fios de barramento um sinal com bits que representam o que ele quer. O dispositivo de destino recebe o sinal e lê os bits que chegaram e, de acordo com eles, executa a operação solicitada. 
 
@@ -138,7 +141,7 @@ São os modos transmitir os bits para o mundo externo ao chip e a placa, como pa
 
 **1. Em relação a Sincronia:**
 
-- Protocolos Síncronos: Existe um clock comaprtilhado. Bits são enviados e lidos de acordo com o sinal de clock. 
+- Protocolos Síncronos: Existe um clock compartilhado. Bits são enviados e lidos de acordo com o sinal de clock. 
 - Protocolos Assíncronos: Não existe um clock compartilhado. Bits não são enviados e lidos simultaneamente.
 
 **2. Em relação a Duplex:**
@@ -169,9 +172,12 @@ São os modos transmitir os bits para o mundo externo ao chip e a placa, como pa
 
 **1. UART (Universal Asynchronous Receiver-Transmitter):**
 
-- Usa dois fios (TX e RX). 
+- Usa dois fios:
+    - TX:  
+    - RX: 
 - É assíncrona: transmissor e receptor precisam concordar previamente sobre a velocidade.
-- Ideal para comunicação ponto a ponto entre dois dispositivos, como a ESP32 e um módulo GPS. 
+- Ideal para comunicação ponto a ponto entre dois dispositivos.
+- Utilizada na ESP32 na conexão com PC (USB -> CONVERSOR USB-UART -> TX/RX -> UART -> CPU da ESP32).
 - Alta velocidade.
 
 **2. RS-232, RS-422 e RS-485:**
@@ -191,7 +197,9 @@ São os modos transmitir os bits para o mundo externo ao chip e a placa, como pa
 
 **3. I2C (Inter-Integrated Circuit):**
 
-- Usa dois fios (SDA para dados e SCL para o clock). 
+- Usa dois fios:
+    - SDA: Para dados.
+    - SCL: Para o clock. 
 - É síncrona: transmissor e receptor precisam concordar nada.
 - Permite conectar até 128 dispositivos no mesmo par de fios.
 - Dispositivos identificados por um endereço único de 7 bits. 
@@ -206,9 +214,9 @@ São os modos transmitir os bits para o mundo externo ao chip e a placa, como pa
 
 **5. CAN (Controller Area Network):**
 
-    - usa 2 fios diferenciais.
-    - Ideal para ambientes com muita interferência eletromagnética (veículos, fábricas). 
-    - Padrão na indústria automotiva e em robótica industrial.
+- usa 2 fios diferenciais.
+- Ideal para ambientes com muita interferência eletromagnética (veículos, fábricas). 
+- Padrão na indústria automotiva e em robótica industrial.
 
 **6. USB (Universal Serial Bus):**
 
@@ -268,7 +276,7 @@ Se os Protocolos de Comunicação são o meio de envio através de cartas, os Pr
 
 **4. HTTP / HTTPS:** Nomes para endereços IP.
 
-### 1.5 Periféricos Externos (I/O)
+## 8. Periféricos Externos 
 
 **1. Entrada (Sensores):** Capturam grandezas físicas e as convertem em sinais elétricos que o chip pode processar. Podem ser:
 
@@ -281,11 +289,11 @@ Se os Protocolos de Comunicação são o meio de envio através de cartas, os Pr
 - Analógicas: Converte um valor numérico em tensão contínua através do DAC (Digital-to-Analog Converter).
 
 
-## 8. Tipos de Dispositivos de Processamento
+## 9. Tipos de Dispositivos de Processamento
 
 Os chips de processamento existem em diferentes categorias, cada uma otimizada para um conjunto específico de requisitos. 
 
-### 8.1 Microcontroladores (MCU)
+### 9.1 Microcontroladores (MCU)
 
 **1. Definição:**
 
@@ -299,7 +307,7 @@ Aplicações com baixo consumo de energia, tamanho reduzido, custo baixo, e que 
 
 ESP32, PIC, AVR, MSP430.
 
-### 8.2 Processadores de Propósito Geral (GPP)
+### 9.2 Processadores de Propósito Geral (GPP)
 
 **1. Definição:**
 
@@ -315,7 +323,7 @@ Processadores Intel Core, AMD Ryzen, ARM Cortex-A.
 
 A Raspberry Pi usa um processador GPP.
 
-### 8.3 Processadores de Sinal Digital (DSP)
+### 9.3 Processadores de Sinal Digital (DSP)
 
 **1. Definição:**
 
@@ -325,7 +333,7 @@ Foram criados para o problema específico de processar fluxos de dados numérico
 
 Processamento de áudio, vídeo, radar, sonar, comunicações sem fio, controle de motores que exigem algoritmos de controle vetorial.
 
-### 8.4 Field Programmable Gate Arrays (FPGA)
+### 9.4 Field Programmable Gate Arrays (FPGA)
 
 **1. Definição:**
 
@@ -335,13 +343,13 @@ São circuitos integrados cujo comportamento pode ser reprogramado após a fabri
 
 Protocolos de comunicação personalizados, aceleração de algoritmos paralelos, interfaces com timing muito rígido, processamento de sinal de alta velocidade.
 
-### 8.5 Field Programmable Gate Arrays (FPGA)
+### 9.5 Field Programmable Gate Arrays (FPGA)
 
 **SoC (System-on-Chip):** Integra em um único circuito integrado componentes que antes precisavam de chips separados: CPU, GPU, controladores de memória, interfaces de comunicação (USB, HDMI, Ethernet), DSPs para comunicação sem fio. O processador de smartphones é um SoC.
 
 **MPSoC (Multiple Processor SoC):** Inclui múltiplos processadores programáveis de arquiteturas possivelmente diferente em um único chip.
 
-### 8.6 Application Specific Integrated Circuits (ASIC)
+### 9.6 Application Specific Integrated Circuits (ASIC)
 
 **1. Definição:**
 
