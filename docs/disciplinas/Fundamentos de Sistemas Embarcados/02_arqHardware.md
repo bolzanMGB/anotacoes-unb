@@ -86,65 +86,120 @@ São elementos que auxiliam o barramento.
 
 **3. Bridge (Ponte):** Conecta dois barramentos diferentes que não são compatíveis diretamente.Por exemplo, um barramento de alta velocidade (para CPU e memória) a um barramento de baixa velocidade (para periféricos mais lentos).
 
+**4. DMA (Direct Memory Access):** Assume o trabalho de realizar as operações de leitura e escrita de endereços para a DMA, de modo a economizar CPU.
+
 ### 5.3 AMBA (Advanced Microcontroller Bus Architecture)**
 
 Há várias implementações de barramentos intra-chip, uma dessas implementações é a AMBA. 
 
-A AMBA é uma família de protocolos de barramento intra-chip para diferentes necessidades que foi desenvolvida pela ARM e é utilizada em SoCs e ASICs baseados em processadores ARM. É um padrão aberto (qualquer fabricante pode implementar) e é o barramento usado na Raspberry Pi e na ESP32. Os dois principais barramento da AMBA são
+A AMBA é uma família de protocolos de barramento intra-chip para diferentes necessidades que foi desenvolvida pela ARM e é utilizada em SoCs e ASICs baseados em processadores ARM. É um padrão aberto (qualquer fabricante pode implementar) e é o barramento usado na Raspberry Pi e na ESP32. Os principais barramentos da AMBA são
 
-**1. AHB (Advanced High-performance Bus)**
+**1. APB (Advanced Peripheral Bus)**
+
+- Baixa performance.
+- Conecta periféricos que não precisam de alta velocidade.
+- Mnor consumo, menor área.
 
 **2. AHB (Advanced High-performance Bus)**
 
-- Intra-chip
+- Alta performance.
+- Conecta os componentes mais críticos: CPU, memória e controladores DMA.
+- É um barramento pipelined (enquanto um dado está sendo transferido, o próximo endereço já está sendo enviado).
 
-### 1.4 Interfaces de Comunicação
+**3. AXI (Advanced eXtensible Interface)**
 
-Permitem que o chip converse com o mundo externo: outros chips na mesma placa, sensores, displays, ou sistemas remotos pela rede. Podem ser:
+- Altíssima Performance
+- Usa canais separados e independentes para cada tipo de informação.
+- Realmente simultâneas.
 
-Cada aplicação possui requisitos diferentes e conflitantes:
+## 6. Interfaces / Protocolos de Comunicação
 
-- Velocidade vs. Distância.
-- Número de dispositivos vs. Complexidade.
-- Custo vs. Confiabilidade.
+São os modos transmitir os bits para o mundo externo ao chip e a placa, como para sensores, displays, ou sistemas remotos pela rede. 
 
-###
+- UART.
+- I2C.
+- SPI.
+- CAN.
+- USB.
 
-**1. Comunicação Cabeada (Wired):**
+### 6.1 Classificações
 
-- UART (Universal Asynchronous Receiver-Transmitter): 
-    - Usa dois fios (TX e RX). 
-    - É assíncrona: transmissor e receptor precisam concordar previamente sobre a velocidade.
-    - Ideal para comunicação ponto a ponto entre dois dispositivos, como a ESP32 e um módulo GPS. 
-    - Alta velocidade.
-- I2C (Inter-Integrated Circuit): 
-    - Usa dois fios (SDA para dados e SCL para o clock). 
-    - É sincrona: transmissor e receptor precisam concordar nada.
-    - Permite conectar até 128 dispositivos no mesmo par de fios.
-    - Dispositivos identificados por um endereço único de 7 bits. 
-    - Ideal para sensores, displays OLED e potenciômetros digitais.
-    - Menor Velocidade.
-- SPI (Serial Peripheral Interface): 
-    - Usa 3 ou 4 fios (MOSI, MISO, SCLK e um CS por dispositivo). 
-    - É síncrono. 
-    - Ideal para displays LCD/TFT, cartões SD, memórias flash externas e conversores de alta resolução.
-- CAN (Controller Area Network): 
+**1. Em relação a Sincronia:**
+
+- Protocolos Síncronos: Existe um clock comaprtilhado. Bits são enviados e lidos de acordo com o sinal de clock. 
+- Protocolos Assíncronos: Não existe um clock compartilhado. Bits não são enviados e lidos simultaneamente.
+
+**2. Em relação a Duplex:**
+
+- Simplex: Comunicação em apenas uma direção.
+- Half-duplex: Comunicação em dois sentidos, mas não simultaneamente (um fala por vez).
+- Full-duplex: comunicação em dois sentidos simultaneamente (como uma ligação telefônica).
+
+**3. Em relação a Topologia:**
+
+- Ponto a ponto: Apenas dois dispositivos.
+- Multi-drop: Múltiplos dispositivos compartilham o mesmo barramento.
+
+**4. Em relação a Cabeamento:**
+
+- Wired: Uso de cabos. Exemplo: I2C, UART.
+- Unwired: Sem uso de cabos. Exemplo: WiFi,
+
+### 6.2 Trade Offs
+
+**1. Velocidade x Distância.**
+**2. Número de dispositivos x Complexidade.**
+**3. Custo x Confiabilidade.**
+**4. × Custo x Escabilidade.**
+**5. Desempenho × Consumo de energia.**
+
+### 6.3 Protocolos
+
+**1. UART (Universal Asynchronous Receiver-Transmitter):**
+
+- Usa dois fios (TX e RX). 
+- É assíncrona: transmissor e receptor precisam concordar previamente sobre a velocidade.
+- Ideal para comunicação ponto a ponto entre dois dispositivos, como a ESP32 e um módulo GPS. 
+- Alta velocidade.
+
+**2. I2C (Inter-Integrated Circuit):**
+
+- Usa dois fios (SDA para dados e SCL para o clock). 
+- É sincrona: transmissor e receptor precisam concordar nada.
+- Permite conectar até 128 dispositivos no mesmo par de fios.
+- Dispositivos identificados por um endereço único de 7 bits. 
+- Ideal para sensores, displays OLED e potenciômetros digitais.
+- Menor Velocidade.
+
+**3. SPI (Serial Peripheral Interface):**
+
+- Usa 3 ou 4 fios (MOSI, MISO, SCLK e um CS por dispositivo). 
+- É síncrono. 
+- Ideal para displays LCD/TFT, cartões SD, memórias flash externas e conversores de alta resolução.
+
+**3. CAN (Controller Area Network):**
+
     - usa 2 fios diferenciais.
     - Ideal para ambientes com muita interferência eletromagnética (veículos, fábricas). 
     - Padrão na indústria automotiva e em robótica industrial.
-- USB (Universal Serial Bus): 
-    - Interface externa de alta velocidade.
-    - Presente quando o sistema embarcado precisa se conectar a um computador ou a periféricos USB (câmeras, armazenamento, interfaces de áudio).
 
-**2. Comunicação Sem Fio (Wireless):**
+**4. USB (Universal Serial Bus):**
 
-- Wi-Fi: 
-    - Permite integrar o sistema embarcado a redes TCP/IP.
-    - Possibilita comunicação com a internet, servidores em nuvem e outros dispositivos na mesma rede. 
-- Bluetooth / BLE: 
-    - Comunicação de curto alcance (~10 m). 
-    - O BLE é especialmente relevante em IoT porque consome muito menos energia que o Bluetooth clássico
+- Interface externa de alta velocidade.
+- Presente quando o sistema embarcado precisa se conectar a um computador ou a periféricos USB (câmeras, armazenamento, interfaces de áudio).
 
+
+**5. Wi-Fi:**
+
+- Permite integrar o sistema embarcado a redes TCP/IP.
+- Possibilita comunicação com a internet, servidores em nuvem e outros dispositivos na mesma rede. 
+
+**6. Bluetooth / BLE:** 
+
+- Comunicação de curto alcance (~10 m). 
+- O BLE é especialmente relevante em IoT porque consome muito menos energia que o Bluetooth clássico
+
+### Protocolos de aplicação
 ### 1.5 Periféricos Externos (I/O)
 
 **1. Entrada (Sensores):** Capturam grandezas físicas e as convertem em sinais elétricos que o chip pode processar. Podem ser:
