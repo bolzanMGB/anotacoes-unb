@@ -4,8 +4,13 @@
 
 Todo sistema embarcado, independente do tamanho ou complexidade, é formado pelos mesmos blocos fundamentais. Eles são:
 
+- **1. Processador**
+- **2. Memória**
+- **3. Barramentos Internos**
+- **4. Interfaces de Comunicação**
+- **5. Periféricos Externos**
 
-### 1.1 Processador(CPU)
+## 2 Processador(CPU)
 
 É o núcleo e cérebro do sistema. O processador busca instruções armazenadas na memória, decodifica o que cada instrução significa e as executa, seja  operações matemáticas, lógicas e de controle de fluxo. 
 
@@ -15,7 +20,7 @@ O processador determina a capacidade de processamento disponível:
 - Arquitetura: quantos bits processa de uma vez (8, 16, 32 ou 64 bits).
 - Unidades especiais: pode possuir ou não. Exemplo: FPU (Floating Point Unit, para cálculos com decimais) e MMU (Memory Management Unit, necessária para rodar Linux).
 
-### 1.2 Memória:
+## 3. Memória:
 
 Pode ser: 
 
@@ -25,17 +30,85 @@ Pode ser:
 
 Alguns sistemas embarcados possuem ainda memória EEPROM ou áreas de NVS (Non-Volatile Storage) dentro da flash para armazenar pequenas configurações persistentes (senhas, calibrações, estados) que precisam sobreviver a reinicializações mas também precisam ser atualizadas durante a vida do produto.
 
-### 1.3 Barramentos:
 
-Os barramentos internos são as "estradas" que interligam o processador, a memória e os periféricos dentro do chip ou da placa. Sem eles, cada componente seria uma ilha isolada.Um barramento é composto por três grupos de sinais: 
+## 4. Comunicação
 
-- Barramento de Endereço: indica qual posição de memória ou qual periférico está sendo acessado.
-- Barramento de Dados: transporta o dado em si.
-- Barramento de Controle: sinais como clock e read/write que coordenam quem fala e quando.
+Em um sistemas embarcado a comunição ocorre em três níveis:
+
+**1. Intra-chip:** 
+
+- Ocorre por meio dos barramentos internos. 
+- Conecta módulos internos do chip.
+- Exemplos de destino: CPU, memória, controladores e periféricos internos.
+- CPU --barramento interno--> Memória.
+
+**2. Inter-chip:**
+
+- Ocorre por meio de conexões dedicadas.
+- Conecta módulo externos do chips, porém ainda na mesma placa.
+- É mediado por controladores internos (ainda no chip).
+- Exemplos de destinos: memória RAM, PCIe.
+- CPU --barramento interno--> controlador específico  --conexões dedicadas--> RAM.
+
+**3. Extra-chip:** 
+
+- Ocorre por meio de interfaces de comunicação.
+- Conecta módulos externos ao chip e a placa.
+- É mediado por controladores internos (ainda no chip).
+- Exemplo de destinos: sensores, atuadores. 
+- CPU --barramento interno--> cocontrolador específico  --interfaces de comunicação--> Sensor.
+
+
+## 5. Barramentos Internos
+
+Os barramentos internos são as "estradas" que interligam o processador, a memória, controladores e periféricos dentro do chip ou da placa. Sem eles, cada componente seria uma ilha isolada.  Eles, além de conectarem os dispostivos, também definem as regras da comunicação, como velocidade, largura de bits, protocolo e etc.
+
+### 5.1 Grupos de Sinais
+
+Um barramento é formado por três grupos distintos de fios. 
+
+**1. Barramento de Endereço:** Indica a posição de memória ou o periférico que está sendo acessado. O número de fios desse grupo depende da arquitetura do processador (16, 32, 64).
+
+**2. Barramento de Dados:** Transporta o dado em si. O número de fios também depende da arquitetura do processador.
+
+**3. Barramento de Controle:** Sinais que coordenam a operação. Não depende da arquitetura do processador, e sim de quais funções ele possui: há um fio para cada função. Exemplo: Clock (sincroniza todos), Read/Write (define a direção), ACK (confirmação de recebimento), IRQ (sinaliza interrupção de um dispositivo).
+
+Quando um dispositivo quer solicitar algo, ele envia pelos fios de barramento um sinal com bits que representam o que ele quer. O dispositivo de destino recebe o sinal e lê os bits que chegaram e, de acordo com eles, executa a operação solicitada. 
+
+- Em uma operação de leitura, o dispositivo de destino coloca o dado solicitado no barramento de dados. - Em uma operação de escrita, ele recebe o dado presente no barramento de dados.
+
+### 5.2 Elementos de Suporte
+São elementos que auxiliam o barramento.
+
+**1. Árbitro (Arbiter):** Quando múltiplos dispositivos querem usar o barramento ao mesmo tempo, o árbitro decide quem vai. Sem árbitro, dois dispositivos colocariam valores diferentes nas linhas simultaneamente, corrompendo os dados.
+
+**2. Decodificador de Endereço:** Ao ver o endereço colocado no barramento, identifica qual dispositivo deve responder. 
+
+**3. Bridge (Ponte):** Conecta dois barramentos diferentes que não são compatíveis diretamente.Por exemplo, um barramento de alta velocidade (para CPU e memória) a um barramento de baixa velocidade (para periféricos mais lentos).
+
+### 5.3 AMBA (Advanced Microcontroller Bus Architecture)**
+
+Há várias implementações de barramentos intra-chip, uma dessas implementações é a AMBA. 
+
+A AMBA é uma família de protocolos de barramento intra-chip para diferentes necessidades que foi desenvolvida pela ARM e é utilizada em SoCs e ASICs baseados em processadores ARM. É um padrão aberto (qualquer fabricante pode implementar) e é o barramento usado na Raspberry Pi e na ESP32. Os dois principais barramento da AMBA são
+
+**1. AHB (Advanced High-performance Bus)**
+
+**2. AHB (Advanced High-performance Bus)**
+
+- Intra-chip
 
 ### 1.4 Interfaces de Comunicação
 
 Permitem que o chip converse com o mundo externo: outros chips na mesma placa, sensores, displays, ou sistemas remotos pela rede. Podem ser:
+
+Cada aplicação possui requisitos diferentes e conflitantes:
+
+- Velocidade vs. Distância.
+- Número de dispositivos vs. Complexidade.
+- Custo vs. Confiabilidade.
+
+###
 
 **1. Comunicação Cabeada (Wired):**
 
@@ -83,7 +156,7 @@ Permitem que o chip converse com o mundo externo: outros chips na mesma placa, s
 
 - Digitais: Acionados com um simples sinal alto ou baixo no GPIO. Exemplo: LEDs, relés, buzzer. 
 - Analógicas: Converte um valor numérico em tensão contínua através do DAC (Digital-to-Analog Converter).
-- PWM: Simula uma tensão analógica usando uma saída digital. Exemplo: motores DC (velocidade), servomotores (posição), LEDs com controle de brilho. 
+
 
 ## 2. Tipos de Dispositivos de Processamento
 
