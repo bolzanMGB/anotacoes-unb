@@ -175,7 +175,7 @@ São os modos transmitir os bits para o mundo externo ao chip e a placa, como pa
 - Usa dois fios (TX e RX) 
 - É assíncrona: transmissor e receptor precisam concordar previamente sobre a velocidade.
 - Ponto a Ponto: Entre dois dispositivos apenas.
-    - Se já estamos utilizando a UART da ESP32 para conectar com um sensor X, precisamos desconectar o sensor X para conectar com o sensor Y. 
+    - Quantidade de conexões UART é igual o número de blocos UART.
 - Utilizada na ESP32 na conexão com PC (USB -> CONVERSOR USB-UART -> TX/RX -> UART -> CPU da ESP32).
 - Alta velocidade.
 
