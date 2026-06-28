@@ -195,24 +195,46 @@ Uma vez que a tensão elétrica foi detectada no pino de entrada, o software pre
 
 No caso de um LED que pode receber valores intermediários de brilho (não somente 0 (desligado) e 1 (ligado)) e no caso de um Sensor de Temperatura que envia valores também intermediários, como fazer para os pinos receberem/enviarem esses valores se eles só mexem com 0V ou 3.3V/5V ? 
 
-**1. PWM (Pulse-Width Modulation):**
 
-- Possibilita os pinos da GPIO fornecerem saídas intermediárias. 
-- Ocorre por meio de uma técnica de hardware.
-- Simula uma tensão analógica intermediária que altera o pino entre o Nível Alto e o Nível Baixo em uma velocidade extremamente alta.
-- Usado em:
-    - Controle de brilho em LEDs.
-    - Velocidade de motores.
-    - Controle de posição de servomotores.
-
-
-**2. ADC (Analog-to-Digital Converter)**
+**1. ADC (Analog-to-Digital Converter)**
 
 - Possibilita os pinos da GPIO receberem valores intermediárias.
-- Maioria dos chips tem resolução máxima de 12 bits (4096).
+- Maioria dos chips tem resolução máxima de 12 bits (4096 combinações).
 - Pino recebe a tensão intermediária.
 - ADC mede a tensão intermediária
 - ADC transforma a tensão em número binário fazendo uma regra de três.
 - 3.3V equivale ao valor máximo 4095.
 - Esse número 12 bits é guardando na memória
 - Quando você solicita o dado,a CPU puxa esse número inteiro direto da memória.
+
+**2. PWM (Pulse-Width Modulation):**
+
+- Possibilita os pinos da GPIO fornecerem saídas intermediárias. 
+- Ocorre por meio de uma técnica de hardware.
+- Simula uma tensão analógica intermediária que altera o pino entre o Nível Alto e o Nível Baixo em uma velocidade extremamente alta.
+- Em comparação com o DAC:
+    - Possui melhor eficiência energética.
+    - Tensão gerada possui oscilações.
+    - É mais usado por na maioria dos casos essa onda não fazer diferença.
+- Usado em:
+    - Controle de brilho em LEDs.
+    - Velocidade de motores.
+    - Controle de posição de servomotores.
+    - Sinalização de buzzers.
+
+**3. DAC (Digital-to-Analog Converter):**
+
+- Possibilita os pinos da GPIO fornecerem saídas analógicas intermediárias reais (sem simulação).
+- Maioria dos chips que possuem DAC integrado tem resolução máxima de 8 bits (256 combinações).
+- Quando o software solicita uma escrita analógica, a CPU grava um número inteiro (de 0 a 255) direto na memória especial do DAC.
+- O hardware do DAC lê esse número da memória e transforma em tensão física contínua fazendo uma regra de três:
+        - O valor mínimo 0 equivale a 0.0 V.
+        - O valor máximo 255 equivale a 3.3 V (teto elétrico do chip).
+- O pino recebe essa tensão exata e a mantém perfeitamente estável, sem pulsar.
+- Em comparação com o PWM:
+    - Possui menor eficiência energética (esquenta).
+    - Tensão gerada é precisa.
+    - Utilizado apenas em contextos onde oscilações não são bem vindas:
+        - Áudio de alta fidelidade.
+        - Sensores de precisão.
+        - Equipamentos científicos.

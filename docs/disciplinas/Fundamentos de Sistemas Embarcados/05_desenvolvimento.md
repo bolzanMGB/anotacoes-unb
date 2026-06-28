@@ -1,12 +1,11 @@
 # Desenvolvimento de Sistemas Embarcados
 
----
 
 ## 1. Cross-Platform
 
 ### 1.1 Definição de Cross-Platform
 
-Quando você programa um aplicativo para Windowns, você escreve e testa no próprio Windowns. Em sistemas, isso raramente acontece porque o hardware final (Target) geralmente não tem teclado, tela ou poder de processamento suficiente para rodar uma IDE pesada. Cria-se, então, o conceito de Cross-Platform.
+Quando você programa um aplicativo para Windows, você escreve e testa no próprio Windows. Em sistemas, isso raramente acontece porque o hardware final (Target) geralmente não tem teclado, tela ou poder de processamento suficiente para rodar uma IDE pesada. Cria-se, então, o conceito de Cross-Platform.
 
 **Host:** É o computador de desenvolvimento potente, um PC rodando Linux, Windows ou macOS. É aqui você escreve o código de rápida e confortável.
 
