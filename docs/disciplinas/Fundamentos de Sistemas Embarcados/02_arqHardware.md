@@ -172,11 +172,10 @@ São os modos transmitir os bits para o mundo externo ao chip e a placa, como pa
 
 **1. UART (Universal Asynchronous Receiver-Transmitter):**
 
-- Usa dois fios:
-    - TX:  
-    - RX: 
+- Usa dois fios (TX e RX) 
 - É assíncrona: transmissor e receptor precisam concordar previamente sobre a velocidade.
-- Ideal para comunicação ponto a ponto entre dois dispositivos.
+- Ponto a Ponto: Entre dois dispositivos apenas.
+    - Se já estamos utilizando a UART da ESP32 para conectar com um sensor X, precisamos desconectar o sensor X para conectar com o sensor Y. 
 - Utilizada na ESP32 na conexão com PC (USB -> CONVERSOR USB-UART -> TX/RX -> UART -> CPU da ESP32).
 - Alta velocidade.
 
@@ -201,7 +200,8 @@ São os modos transmitir os bits para o mundo externo ao chip e a placa, como pa
     - SDA: Para dados.
     - SCL: Para o clock. 
 - É síncrona: transmissor e receptor precisam concordar nada.
-- Permite conectar até 128 dispositivos no mesmo par de fios.
+- Permite conectar até 128 dispositivos, cada um com um par de fio.
+    - Podemos conectar a ESP32 via I2C com vários sensores ao mesmo tempo.
 - Dispositivos identificados por um endereço único de 7 bits. 
 - Ideal para sensores, displays OLED e potenciômetros digitais.
 - Menor Velocidade.
@@ -260,7 +260,23 @@ Se os Protocolos de Comunicação são o meio de envio através de cartas, os Pr
 
 ### 7.2 Contexto da IoT e Sistemas Embarcados
 
-**1. MQTT:** Leve, baseado em publish–subscribe. Muito usado em IoT.
+IoT é marcados por:
+
+- Centenas de dispositivos.
+- Dispositivos com poder computacional limitado.
+- Conexões instáveis.
+- Redes com pouca largura de banda
+
+**1. MQTT:** 
+
+- Padrão para IoT.
+- Baseado em publish–subscribe: 
+    - Publish publica a mensagem em tópicos.
+    - Subscribers se inscrevem nos tópicos.
+    - Broker recebe publicações e repassa para os subscriber interessados.
+- Desacoplamento Temporal: remetente e destinatário não precisam estar online ao mesmo tempo.
+- Desacoplamento Espacial: remetente não precisa saber endereço do destinatário.
+
 
 **2. CoAP:** Similar ao HTTP, porém otimizado para dispositivos com poucos recursos.
 
@@ -276,24 +292,12 @@ Se os Protocolos de Comunicação são o meio de envio através de cartas, os Pr
 
 **4. HTTP / HTTPS:** Nomes para endereços IP.
 
-## 8. Periféricos Externos 
 
-**1. Entrada (Sensores):** Capturam grandezas físicas e as convertem em sinais elétricos que o chip pode processar. Podem ser:
-
-- Digitais: Botões, chaves, encoders, sensores de presença por infravermelho. Geram sinais de dois estados (0 ou 1).
-- Analógicas: Sensores de temperatura (NTC/PTC), potenciômetros, sensores de luz (LDR), microfones. Geram tensões contínuas que precisam ser convertidas para digital pelo ADC (Analog-to-Digital Converter) interno do chip.
-
-**2. Saída (Atuadores):** Recebem comandos do processador e produzem efeitos no mundo físico.
-
-- Digitais: Acionados com um simples sinal alto ou baixo no GPIO. Exemplo: LEDs, relés, buzzer. 
-- Analógicas: Converte um valor numérico em tensão contínua através do DAC (Digital-to-Analog Converter).
-
-
-## 9. Tipos de Dispositivos de Processamento
+## 8. Tipos de Dispositivos de Processamento
 
 Os chips de processamento existem em diferentes categorias, cada uma otimizada para um conjunto específico de requisitos. 
 
-### 9.1 Microcontroladores (MCU)
+### 8.1 Microcontroladores (MCU)
 
 **1. Definição:**
 
@@ -307,7 +311,7 @@ Aplicações com baixo consumo de energia, tamanho reduzido, custo baixo, e que 
 
 ESP32, PIC, AVR, MSP430.
 
-### 9.2 Processadores de Propósito Geral (GPP)
+### 8.2 Processadores de Propósito Geral (GPP)
 
 **1. Definição:**
 
@@ -323,7 +327,7 @@ Processadores Intel Core, AMD Ryzen, ARM Cortex-A.
 
 A Raspberry Pi usa um processador GPP.
 
-### 9.3 Processadores de Sinal Digital (DSP)
+### 8.3 Processadores de Sinal Digital (DSP)
 
 **1. Definição:**
 
@@ -333,7 +337,7 @@ Foram criados para o problema específico de processar fluxos de dados numérico
 
 Processamento de áudio, vídeo, radar, sonar, comunicações sem fio, controle de motores que exigem algoritmos de controle vetorial.
 
-### 9.4 Field Programmable Gate Arrays (FPGA)
+### 8.4 Field Programmable Gate Arrays (FPGA)
 
 **1. Definição:**
 
@@ -343,13 +347,13 @@ São circuitos integrados cujo comportamento pode ser reprogramado após a fabri
 
 Protocolos de comunicação personalizados, aceleração de algoritmos paralelos, interfaces com timing muito rígido, processamento de sinal de alta velocidade.
 
-### 9.5 Field Programmable Gate Arrays (FPGA)
+### 8.5 Field Programmable Gate Arrays (FPGA)
 
 **SoC (System-on-Chip):** Integra em um único circuito integrado componentes que antes precisavam de chips separados: CPU, GPU, controladores de memória, interfaces de comunicação (USB, HDMI, Ethernet), DSPs para comunicação sem fio. O processador de smartphones é um SoC.
 
 **MPSoC (Multiple Processor SoC):** Inclui múltiplos processadores programáveis de arquiteturas possivelmente diferente em um único chip.
 
-### 9.6 Application Specific Integrated Circuits (ASIC)
+### 8.6 Application Specific Integrated Circuits (ASIC)
 
 **1. Definição:**
 

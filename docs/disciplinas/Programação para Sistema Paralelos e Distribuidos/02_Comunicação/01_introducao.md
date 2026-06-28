@@ -84,7 +84,7 @@ Nos sistemas distribuídos, na prática, o middleware simplifica a comunicação
 
 **Síncrona:** O emissor bloqueia até algum evento de confirmação ocorrer: o middleware aceitar a mensagem, o receptor receber ou a resposta volta.
 
-**Assíncrona:** O emissor continua eexecutano e realizando mais chamadas após transmitir a mensagem. O middleware cuida do armazenamento temporário e da entre posterior.
+**Assíncrona:** O emissor continua executando e realizando mais chamadas após transmitir a mensagem. O middleware cuida do armazenamento temporário e da entre posterior.
 
 Essas categorias combinam-se entre si. Por exemplo:
 - RPC costuma ser transiente + síncrona.

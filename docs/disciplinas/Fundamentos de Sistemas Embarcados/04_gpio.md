@@ -7,7 +7,7 @@ Como microcontroladores, como a ESP32, recebem e transmitem bits de dispositivos
 A interface elétrica física para isso é fornecida pela GPIO. Ela consiste em  pinos físicos e genéricos do microcontrolador que podem ser configurados como quisermos e utilizados como entrada ou saída digital de níveis lógicos (bits).
 
 
-## 2. Camada física
+## 2. Camada Física
 
 ### 2.1 Entrada e saída
 
@@ -100,21 +100,82 @@ Assim, fechando e abrindo esses transistores, podemos ter três circuitos difere
 - Tensão recebida vai direto para o buffer.
 - Sofre de floating-input.
 
+## 3. Camada de Sinal
 
-### 2.2 Mecanismo de Software
+O momento em que o pino da GPIO recebe uma tensão, ao apertar um botão por exemplo, pode ser detectado de duas formas:
 
-Uma vez que a tensão elétrica chega ao pino de entrada, o software precisa monitorar essas mudanças. Há três estratégias fundamentais para fazer isso:
+- Níveis.
+- Bordas.
+
+### 3.1 Níveis
+
+Representam períodos em que o sinal permanece estável em um mesmo estado lógico.
+
+```bash
+  0 1 2 3 4 5 6 7 8 9 10 
+1          
+  ______|‾‾‾‾‾‾‾‾‾‾‾|___
+0 
+```
+
+- Entre os instantes [3-9], o sinal está em **nível alto**.
+    - Durante esse intervalo, o GPIO lê o valor lógico 1.
+- Entre os instantes [0-3] e [9-10] o sinal está em **nível baixo**.
+    - Durante esse intervalo, o GPIO lê o valor lógico 0.
+
+### 3.2 Bordas
+
+Representam instantes específicos em que um evento de transição de sinal ocorre.
+
+```bash
+  0 1 2 3 4 5 6 7 8 9 10 
+1          
+  ______|‾‾‾‾‾‾‾‾‾‾‾|___
+0 
+```
+
+- **Rising Edge (Borda de Subida):** Evento no instante 3.
+- **Falling Edge (Borda de Descida):** Evento no instante 9.
+- **Any Edge (Qualquer Borda):** Evento no instante 3 e 9.
+
+### 3.3 Bounce e Debouncing
+
+No mundo real, a borda gerada muitas vezes não é única e limpa. Quando apertamos um botão, por exemplo, parece que ele afunda e toca de forma instantânea o fundo, porém na realidade ele quica mecanicamente no fundo por milissegundo antes de se firmar. Para GPIO, esse quique (bouncing) é interpretado como dezenas de oscilações entre "0" e "1".
+
+Para evitar que o software conte um único clique como múltiplos apertos, aplica-se o Debouncing, que pode ser feito de 3 formas:
+
+**1. Hardware:** 
+
+- Adiciona-se um capacitor em paralelo com o botão. 
+- O capacitor absorve os mini-quiques elétricos.
+- Suaviza a transição para uma rampa única e limpa.
+
+**2. Software 1:** 
+
+- Ao detectar a primeira transição, desabilita a interrupção ou ignora leituras por um período fixo (20–50 ms).
+- Depois reabilita. 
+- Simples mas pode perder eventos se o intervalo for mal calibrado.
+
+**3. Software 2:**
+
+- Incrementa um contador enquanto o estado lido é o esperado. 
+- Zera o contador se o estado mudar. 
+- Só registra o evento quando o contador atinge um limiar X consecutivo.
+
+## 4. Camada de Software
+
+Uma vez que a tensão elétrica foi detectada no pino de entrada, o software precisa monitorar essas mudanças. Há três estratégias fundamentais para fazer isso:
 
 **1. Pooling:**
 
-- Laço que fica verificando o estado do pino continuamente.
+- Laço que fica verificando o nível do pino continuamente.
 - Simples de implementar.
 - Ocupa CPU em 100% do tempo.
 
 **2. Eventos:**
 
-- Programa fica blocked (dormindo) e é acordado com mudanças de estado.
-- Mudanças de estados são colocadas em filas e consultadas quando conveniente.
+- Programa fica blocked (dormindo) e é acordado a cada Raising-Edge e Falling-Edge.
+- Essas Mudanças de estados são colocadas em filas e consultadas quando conveniente.
 - CPU fica livre para outras tarefas.
 - Possui pequena latência entre o clique físico e a leitura pelo software da fila.
 
@@ -130,10 +191,28 @@ Uma vez que a tensão elétrica chega ao pino de entrada, o software precisa mon
 - No bare metal funciona perfeitamente. 
 
 
-### 3.2 Bouncing: Debounce
+## 5. Valores Intermediários
+
+No caso de um LED que pode receber valores intermediários de brilho (não somente 0 (desligado) e 1 (ligado)) e no caso de um Sensor de Temperatura que envia valores também intermediários, como fazer para os pinos receberem/enviarem esses valores se eles só mexem com 0V ou 3.3V/5V ? 
+
+**1. PWM (Pulse-Width Modulation):**
+
+- Possibilita os pinos da GPIO fornecerem saídas intermediárias. 
+- Ocorre por meio de uma técnica de hardware.
+- Simula uma tensão analógica intermediária que altera o pino entre o Nível Alto e o Nível Baixo em uma velocidade extremamente alta.
+- Usado em:
+    - Controle de brilho em LEDs.
+    - Velocidade de motores.
+    - Controle de posição de servomotores.
 
 
+**2. ADC (Analog-to-Digital Converter)**
 
-<div style="text-align: center;">
-  <img src="../../assets/pngs/96.png" alt="Inserção" />
-</div>
+- Possibilita os pinos da GPIO receberem valores intermediárias.
+- Maioria dos chips tem resolução máxima de 12 bits (4096).
+- Pino recebe a tensão intermediária.
+- ADC mede a tensão intermediária
+- ADC transforma a tensão em número binário fazendo uma regra de três.
+- 3.3V equivale ao valor máximo 4095.
+- Esse número 12 bits é guardando na memória
+- Quando você solicita o dado,a CPU puxa esse número inteiro direto da memória.
