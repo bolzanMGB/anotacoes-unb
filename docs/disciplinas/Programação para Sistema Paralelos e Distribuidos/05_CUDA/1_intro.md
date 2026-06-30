@@ -100,15 +100,29 @@ int main (){
 
 - Threads são organizas em blocos.
 - Blocos são organizados em grid.
+
+**1. Parâmetros:**
+
 - Ao chamar uma função que executa em GPU utilizamos `<<<x, y>>>`, onde:
     - x: números de blocos no grid.
     - y: números de threads por bloco.
-- Para identificação usamos:
-    - `threadIdx.x`: Retorna o identificador da thread dentro de uma bloco.
-    - `blockIdx.x`: Retorna o identificador do bloco dentro de uma grid.
-    - `blockDim.x`: Retorna o número de threads dentro do bloco.
+
+**2. Identificação:**
+
+Para identificação usamos:
+
+- `threadIdx.x`: Retorna o identificador da thread dentro de uma bloco.
+- `blockIdx.x`: Retorna o identificador do bloco dentro de uma grid.
+- `blockDim.x`: Retorna o número de threads dentro do bloco.
 
 screenshot 3
+
+**3. Como escolher tamanho do block_size?**
+
+- Depende do programador.
+- Tamanho limite maioria das vezes é 1024
+- Cuda executa threads em grupos de 32 threads.
+- Então, o block_size geralmente é um múltiplo de 32.
 
 ### 3.3 Dimensões
 
@@ -152,21 +166,8 @@ Exemplo: dim3 grid (2, 2, 2), dim3 block (2, 2, 2)
 
 screenshot 4
 
-## 4. Arquitetura física
 
-- As GPUs possuem milhares de cores.
-- Os cores são organizados em Streaming Processors (SM).
-- Os SM são organizados em Graphics Processing Clusters (GPCs).
-- Ao fazer uma chamada de GPU em CUDA:
-    - Cada bloco vai para um SM.
-    - Threads desse bloco são distribuídos pelos cores desse SM.
-    - Uma thread não corresponde necessariamente a um core.
-    - Um core pode executar mais de uma thread.
-    
-screenshot 5
-
-
-## 5. Memória
+## 4. Memória
 
 - CPU trabalha com RAM.
 - GPU trabalha com VRAM.
