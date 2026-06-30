@@ -38,6 +38,8 @@
     - Agrupamento maior.
     - Agrupa TPCs.
 
+screenshot 5
+
 ## 3. Execução
 
 Ao fazer uma chamada de GPU em CUDA:
@@ -54,12 +56,69 @@ Ao fazer uma chamada de GPU em CUDA:
     - Warps: Blocos de 32 threads.
     - Por isso o número de threads por bloco geralmente é um múltiplo de 32.
 - Dai então as threads são executadas:
-    - A cada ciclo de clock um ou mais warps são escolhidos pelo Warp Scheduler.
-    - As threads desses warps são executadas pelos CUDA Cores.
-    - Não existe correspondência de 1 thread para 1 core.
-    - Cada CUDA Core executa muitas threads ao longo do tempo.
-        
-screenshot 5
+    - A cada ciclo de clock um ou mais warps são escolhidos pelos Warps Schedulers.
+    - As threads desses warps são distribuídas e executadas pelos CUDA Cores.
+        - Número de CUDA Cores por SM é de acordo com a GPU.
+        - Exemplo: Na GTX 4090 são 128 SMs, cada um com 128 CUDA Cores.
+        - Não existe correspondência de 1 thread para 1 core.
+        - Cada CUDA Core executa muitas threads ao longo do tempo.
+    - Cada thread inicia no mesmo ponto do código.
+    - Threads de um mesmo warp são executadas simultaneamente, uma instrução comum por vez.
+    - Warp Divergence: 
+        - IFs são um problema.
+        - Cada caminho é executado separadamente.
+        - Enquanto um caminho é executado, as threads dos outro caminhos ficam esperando.
+        - Após o IF acabar elas voltam a executar juntas.
+
+**__syncthreads():**
+
+- Warp Divergence: divergência dentro um warp, não pode ser corrigido.
+- Porém, a divergência entre Warps diferentes pode ser corrigido.
+- Usamos a barreira: `__syncthreads()`
+- Ela sincroniza todas as threads dentro de um mesmo bloco.
+
+## 4. SIMD x SIMT
+
+**1. SIMD (Single Instruction, Multiple Data):**
+
+- Nela o programador escreve um programa para várias threads.
+- Paralelismo é explicito através de instruções vetoriais de fazem tudo.
+- Uma instrução opera sobre várias threads.
+
+```c
+A = [1 2 3 4]
+B = [5 6 7 8]
+
+↓
+
+ADD
+
+↓
+
+C = [6 8 10 12]
+```
+
+**2. SIMT (Single Instruction, Multiple Threads):**
+
+- Nela o programador escreve um programa para uma única thread.
+- Paralelismo é criado automaticamente pela GPU.
+- Milhares de threads executam o mesmo código.
+- Não usa instruções vetoriais.
+
+
+```c
+A = [1 2 3 4]
+B = [5 6 7 8]
+
+↓
+
+c[id] = a[id] + b[id];
+
+↓
+
+C = [6 8 10 12]
+```
+
 
 ## 3. Erros
 
