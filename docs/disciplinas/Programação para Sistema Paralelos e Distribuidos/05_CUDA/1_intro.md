@@ -76,7 +76,9 @@ Significa usar mais de um tipo de processador no mesmo programa.
     - São chamadas usando <<<x, y>>>
 
 
-screenshot 3
+<div style="text-align: center;">
+  <img src="../../../assets/pngs/117.png" alt="Inserção" />
+</div>
 
 
 ```c
@@ -164,7 +166,9 @@ Imagine que os blocos e grids são organizados em camadas
 
 Exemplo: dim3 grid (2, 2, 2), dim3 block (2, 2, 2)
 
-screenshot 4
+<div style="text-align: center;">
+  <img src="../../../assets/pngs/118.png" alt="Inserção" />
+</div>
 
 
 ## 4. Memória

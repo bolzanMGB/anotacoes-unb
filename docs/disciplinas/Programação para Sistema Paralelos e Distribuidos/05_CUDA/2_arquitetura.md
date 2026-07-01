@@ -38,7 +38,11 @@
     - Agrupamento maior.
     - Agrupa TPCs.
 
-screenshot 5
+<div style="text-align: center;">
+  <img src="../../../assets/pngs/119.png" alt="Inserção" />
+</div>
+
+
 
 ## 3. Execução
 
